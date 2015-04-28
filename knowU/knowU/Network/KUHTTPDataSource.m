@@ -10,8 +10,9 @@
 #import <AFHTTPRequestOperationManager.h>
 #import "KUBaseModel.h"
 #import "MTLJSONAdapter.h"
+#import "NSString+UTF8.h"
+#import "CONSTS.h"
 
-static const NSTimeInterval TIME_OUT_INTERVAL = 60;
 static const NSInteger MAX_CONCURRENT_HTTP_REQUEST_COUNT = 3;
 
 static KUHTTPDataSource *httpDataSource;
@@ -50,83 +51,82 @@ static KUHTTPDataSource *httpDataSource;
 }
 
 #pragma mark- GET
-- (AFHTTPRequestOperation *)HTTPGET:(NSString *)URLString
-                     parameters:(id)parameters
-                     modelClass:(Class)modelClass
-                        success:(void (^)(AFHTTPRequestOperation *, KUBaseModel *))successBlock
-                        failure:(void (^)(NSError *error))failureBlock{
-    return [self.operationManager GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+- (AFHTTPRequestOperation *)GETClient:(NSString *)URLString
+                           parameters:(id)parameters
+                           modelClass:(Class)modelClass
+                              success:(KUSuccessBlock)success
+                              failure:(KUFailureBlock)failure{
+    return [self.operationManager GET:[URLString UTF8Encode] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         KUBaseModel *model = [MTLJSONAdapter modelOfClass:modelClass
                                        fromJSONDictionary:responseObject[@"data"] error:nil];
-        if (successBlock) {
-            successBlock(operation, model);
+        if (success) {
+            success(operation, model);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failureBlock) {
-            failureBlock(error);
+        if (failure) {
+            failure(operation, error);
         }
     }];
 }
 
 #pragma mark- POST no image
-- (AFHTTPRequestOperation *)HTTPPOST:(NSString *)URLString
-                      parameters:(id)parameters
-                      modelClass:(Class)modelClass
-                         success:(void (^)(AFHTTPRequestOperation *, KUBaseModel *))successBlock
-                         failure:(void (^)(NSError *error))failureBlock{
-    return [self.operationManager POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+- (AFHTTPRequestOperation *)POSTClient:(NSString *)URLString
+                            parameters:(id)parameters
+                            modelClass:(Class)modelClass
+                               success:(KUSuccessBlock)success
+                               failure:(KUFailureBlock)failure{
+    return [self.operationManager POST:[URLString UTF8Encode] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         KUBaseModel *model = [MTLJSONAdapter modelOfClass:modelClass
                                        fromJSONDictionary:responseObject[@"data"] error:nil];
-        if (successBlock) {
-            successBlock(operation, model);
+        if (success) {
+            success(operation, model);
         }
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failureBlock) {
-            failureBlock(error);
+        if (failure) {
+            failure(operation, error);
         }
     }];
 }
 
 #pragma mark- POST image
-- (AFHTTPRequestOperation *)HTTPPOSTWithImage:(NSString *)URLString
-                               parameters:(id)parameters
-                                    image:(UIImage *)image
-                                 fileName:(NSString *)fileName
-                                     type:(NSString *)type
-                               modelClass:(Class)modelClass
-                                  success:(void (^)(AFHTTPRequestOperation *, KUBaseModel *))successBlock
-                                  failure:(void (^)(NSError *error))failureBlock{
-    return [self.operationManager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+- (AFHTTPRequestOperation *)POSTClientWithImage:(NSString *)URLString
+                                     parameters:(id)parameters
+                                          image:(UIImage *)image
+                                       fileName:(NSString *)fileName
+                                     modelClass:(Class)modelClass
+                                        success:(KUSuccessBlock)success
+                                        failure:(KUFailureBlock)failure{
+    return [self.operationManager POST:[URLString UTF8Encode] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 1.0) name:@"pic" fileName:fileName mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         KUBaseModel *model = [MTLJSONAdapter modelOfClass:modelClass
                                        fromJSONDictionary:responseObject[@"data"] error:nil];
-        if (successBlock) {
-            successBlock(operation, model);
+        if (success) {
+            success(operation, model);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failureBlock) {
-            failureBlock(error);
+        if (failure) {
+            failure(operation, error);
         }
     }];
 }
 
 #pragma mark- PUT
-- (AFHTTPRequestOperation *)HTTPPUT:(NSString *)URLString
-                     parameters:(id)parameters
-                     modelClass:(Class)modelClass
-                        success:(void (^)(AFHTTPRequestOperation *, KUBaseModel *))successBlock
-                        failure:(void (^)(NSError *error))failureBlock{
-    return [self.operationManager PUT:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+- (AFHTTPRequestOperation *)PUTClient:(NSString *)URLString
+                           parameters:(id)parameters
+                           modelClass:(Class)modelClass
+                              success:(KUSuccessBlock)success
+                              failure:(KUFailureBlock)failure{
+    return [self.operationManager PUT:[URLString UTF8Encode] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         KUBaseModel *model = [MTLJSONAdapter modelOfClass:modelClass
                                        fromJSONDictionary:responseObject[@"data"] error:nil];
-        if (successBlock) {
-            successBlock(operation, model);
+        if (success) {
+            success(operation, model);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failureBlock) {
-            failureBlock(error);
+        if (failure) {
+            failure(operation, error);
         }
     }];
 }

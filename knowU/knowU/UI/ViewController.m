@@ -40,7 +40,6 @@
         CLGeocoder *geocoder = [[CLGeocoder alloc] init];
         [geocoder reverseGeocodeLocation: location completionHandler:^(NSArray *array, NSError *error) {
             
-            NSLog(@"%@\n%@ %@ %d %@ %@",array,error.localizedDescription, error.domain, error.code, error.localizedRecoveryOptions, error.helpAnchor);
             if (array.count > 0) {
                 
                 CLPlacemark *placemark = [array objectAtIndex:0];
@@ -85,7 +84,6 @@
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation: newLocation completionHandler:^(NSArray *array, NSError *error) {
         
-        NSLog(@"%@\n%@ %@ %d %@ %@",array,error.localizedDescription, error.domain, error.code, error.localizedRecoveryOptions, error.helpAnchor);
         if (array.count > 0) {
             
             CLPlacemark *placemark = [array objectAtIndex:0];
