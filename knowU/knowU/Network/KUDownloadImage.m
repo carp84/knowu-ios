@@ -33,7 +33,7 @@ static KUDownloadImage *downloadImage;
 }
 
 #pragma mark- 从服务器下载的水印
-- (void)downloadImageWithURL:(NSString *)urlString imageView:(UIImageView *)imageView{
+- (void)downloadImageWithURL:(NSString *)urlString imageView:(UIImageView *)imageView {
     imageView.image = [UIImage imageNamed:@""];
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:[urlString UTF8Encode]] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:TIME_OUT_INTERVAL];
     

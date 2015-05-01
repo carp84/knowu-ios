@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4E823F931AEFD60000FD515D /* NSString+UTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F921AEFD60000FD515D /* NSString+UTF8.m */; };
 		4E823F961AEFD7A500FD515D /* KUDownloadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F951AEFD7A500FD515D /* KUDownloadImage.m */; };
+		4E823F9F1AF3345800FD515D /* KULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F9E1AF3345800FD515D /* KULoginViewController.m */; };
+		4E823FA21AF3349900FD515D /* KUSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823FA11AF3349900FD515D /* KUSignInViewController.m */; };
+		4E823FA61AF3371700FD515D /* KUHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823FA51AF3371700FD515D /* KUHomepageViewController.m */; };
 		4EA5029B1AED36CB00B33D3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA5029A1AED36CB00B33D3C /* main.m */; };
 		4EA5029E1AED36CB00B33D3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA5029D1AED36CB00B33D3C /* AppDelegate.m */; };
 		4EA502A41AED36CB00B33D3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EA502A21AED36CB00B33D3C /* Main.storyboard */; };
@@ -38,6 +41,12 @@
 		4E823F941AEFD7A500FD515D /* KUDownloadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUDownloadImage.h; sourceTree = "<group>"; };
 		4E823F951AEFD7A500FD515D /* KUDownloadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUDownloadImage.m; sourceTree = "<group>"; };
 		4E823F981AEFDD2900FD515D /* CONSTS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CONSTS.h; path = knowU/Configuration/CONSTS.h; sourceTree = SOURCE_ROOT; };
+		4E823F9D1AF3345800FD515D /* KULoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KULoginViewController.h; sourceTree = "<group>"; };
+		4E823F9E1AF3345800FD515D /* KULoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KULoginViewController.m; sourceTree = "<group>"; };
+		4E823FA01AF3349900FD515D /* KUSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KUSignInViewController.h; path = knowU/UI/SignIn/KUSignInViewController.h; sourceTree = SOURCE_ROOT; };
+		4E823FA11AF3349900FD515D /* KUSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KUSignInViewController.m; path = knowU/UI/SignIn/KUSignInViewController.m; sourceTree = SOURCE_ROOT; };
+		4E823FA41AF3371700FD515D /* KUHomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUHomepageViewController.h; sourceTree = "<group>"; };
+		4E823FA51AF3371700FD515D /* KUHomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUHomepageViewController.m; sourceTree = "<group>"; };
 		4EA502951AED36CB00B33D3C /* knowU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = knowU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EA502991AED36CB00B33D3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EA5029A1AED36CB00B33D3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,6 +102,34 @@
 				4E823F981AEFDD2900FD515D /* CONSTS.h */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		4E823F9B1AF3341D00FD515D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4E823F9D1AF3345800FD515D /* KULoginViewController.h */,
+				4E823F9E1AF3345800FD515D /* KULoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		4E823F9C1AF3341D00FD515D /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				4E823FA01AF3349900FD515D /* KUSignInViewController.h */,
+				4E823FA11AF3349900FD515D /* KUSignInViewController.m */,
+			);
+			name = SignIn;
+			path = SingIn;
+			sourceTree = "<group>";
+		};
+		4E823FA31AF336F900FD515D /* Homepage */ = {
+			isa = PBXGroup;
+			children = (
+				4E823FA41AF3371700FD515D /* KUHomepageViewController.h */,
+				4E823FA51AF3371700FD515D /* KUHomepageViewController.m */,
+			);
+			path = Homepage;
 			sourceTree = "<group>";
 		};
 		4EA5028C1AED36CB00B33D3C = {
@@ -160,6 +197,9 @@
 		4EA502C01AED3A6300B33D3C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4E823FA31AF336F900FD515D /* Homepage */,
+				4E823F9B1AF3341D00FD515D /* Login */,
+				4E823F9C1AF3341D00FD515D /* SignIn */,
 				4EA502C11AED3A6300B33D3C /* ViewController.h */,
 				4EA502C21AED3A6300B33D3C /* ViewController.m */,
 			);
@@ -342,7 +382,10 @@
 			files = (
 				4EA502C71AED3DCB00B33D3C /* KUHTTPDataSource.m in Sources */,
 				4E823F961AEFD7A500FD515D /* KUDownloadImage.m in Sources */,
+				4E823FA61AF3371700FD515D /* KUHomepageViewController.m in Sources */,
+				4E823F9F1AF3345800FD515D /* KULoginViewController.m in Sources */,
 				4EA502C31AED3A6300B33D3C /* ViewController.m in Sources */,
+				4E823FA21AF3349900FD515D /* KUSignInViewController.m in Sources */,
 				4EECA7321AEE91E400BF3DAA /* KUBaseModel.m in Sources */,
 				4EA5029E1AED36CB00B33D3C /* AppDelegate.m in Sources */,
 				4E823F931AEFD60000FD515D /* NSString+UTF8.m in Sources */,
