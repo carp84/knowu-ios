@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E823F931AEFD60000FD515D /* NSString+UTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F921AEFD60000FD515D /* NSString+UTF8.m */; };
+		4E1DD3E91AFCB16500B53F7A /* NSString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3E81AFCB16500B53F7A /* NSString+Addition.m */; };
+		4E1DD3EC1AFCB23E00B53F7A /* KUHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3EB1AFCB23E00B53F7A /* KUHTTPClient.m */; };
+		4E1DD3EF1AFCB4A400B53F7A /* DefaultURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3EE1AFCB4A400B53F7A /* DefaultURL.m */; };
+		4E1DD3F31AFCB80100B53F7A /* KURegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3F21AFCB80100B53F7A /* KURegisterViewController.m */; };
+		4E1DD3FB1AFCD87600B53F7A /* KUResponesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3FA1AFCD87600B53F7A /* KUResponesModel.m */; };
 		4E823F961AEFD7A500FD515D /* KUDownloadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F951AEFD7A500FD515D /* KUDownloadImage.m */; };
 		4E823F9F1AF3345800FD515D /* KULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F9E1AF3345800FD515D /* KULoginViewController.m */; };
-		4E823FA21AF3349900FD515D /* KUSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823FA11AF3349900FD515D /* KUSignInViewController.m */; };
 		4E823FA61AF3371700FD515D /* KUHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823FA51AF3371700FD515D /* KUHomepageViewController.m */; };
 		4EA5029B1AED36CB00B33D3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA5029A1AED36CB00B33D3C /* main.m */; };
 		4EA5029E1AED36CB00B33D3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA5029D1AED36CB00B33D3C /* AppDelegate.m */; };
@@ -36,15 +39,21 @@
 
 /* Begin PBXFileReference section */
 		0252066633805DB1338C8DF2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		4E823F911AEFD60000FD515D /* NSString+UTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UTF8.h"; sourceTree = "<group>"; };
-		4E823F921AEFD60000FD515D /* NSString+UTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UTF8.m"; sourceTree = "<group>"; };
+		4E1DD3E71AFCB16500B53F7A /* NSString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Addition.h"; sourceTree = "<group>"; };
+		4E1DD3E81AFCB16500B53F7A /* NSString+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Addition.m"; sourceTree = "<group>"; };
+		4E1DD3EA1AFCB23E00B53F7A /* KUHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUHTTPClient.h; sourceTree = "<group>"; };
+		4E1DD3EB1AFCB23E00B53F7A /* KUHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUHTTPClient.m; sourceTree = "<group>"; };
+		4E1DD3ED1AFCB4A400B53F7A /* DefaultURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultURL.h; sourceTree = "<group>"; };
+		4E1DD3EE1AFCB4A400B53F7A /* DefaultURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultURL.m; sourceTree = "<group>"; };
+		4E1DD3F11AFCB80100B53F7A /* KURegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KURegisterViewController.h; sourceTree = "<group>"; };
+		4E1DD3F21AFCB80100B53F7A /* KURegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KURegisterViewController.m; sourceTree = "<group>"; };
+		4E1DD3F91AFCD87600B53F7A /* KUResponesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUResponesModel.h; sourceTree = "<group>"; };
+		4E1DD3FA1AFCD87600B53F7A /* KUResponesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUResponesModel.m; sourceTree = "<group>"; };
 		4E823F941AEFD7A500FD515D /* KUDownloadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUDownloadImage.h; sourceTree = "<group>"; };
 		4E823F951AEFD7A500FD515D /* KUDownloadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUDownloadImage.m; sourceTree = "<group>"; };
 		4E823F981AEFDD2900FD515D /* CONSTS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CONSTS.h; path = knowU/Configuration/CONSTS.h; sourceTree = SOURCE_ROOT; };
 		4E823F9D1AF3345800FD515D /* KULoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KULoginViewController.h; sourceTree = "<group>"; };
 		4E823F9E1AF3345800FD515D /* KULoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KULoginViewController.m; sourceTree = "<group>"; };
-		4E823FA01AF3349900FD515D /* KUSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KUSignInViewController.h; path = knowU/UI/SignIn/KUSignInViewController.h; sourceTree = SOURCE_ROOT; };
-		4E823FA11AF3349900FD515D /* KUSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KUSignInViewController.m; path = knowU/UI/SignIn/KUSignInViewController.m; sourceTree = SOURCE_ROOT; };
 		4E823FA41AF3371700FD515D /* KUHomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUHomepageViewController.h; sourceTree = "<group>"; };
 		4E823FA51AF3371700FD515D /* KUHomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUHomepageViewController.m; sourceTree = "<group>"; };
 		4EA502951AED36CB00B33D3C /* knowU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = knowU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,19 +96,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E823F8D1AEFD59400FD515D /* UTF8 */ = {
+		4E1DD3E61AFCB13100B53F7A /* extend */ = {
 			isa = PBXGroup;
 			children = (
-				4E823F911AEFD60000FD515D /* NSString+UTF8.h */,
-				4E823F921AEFD60000FD515D /* NSString+UTF8.m */,
+				4E1DD3E71AFCB16500B53F7A /* NSString+Addition.h */,
+				4E1DD3E81AFCB16500B53F7A /* NSString+Addition.m */,
 			);
-			path = UTF8;
+			path = extend;
+			sourceTree = "<group>";
+		};
+		4E1DD3F01AFCB80100B53F7A /* register */ = {
+			isa = PBXGroup;
+			children = (
+				4E1DD3F11AFCB80100B53F7A /* KURegisterViewController.h */,
+				4E1DD3F21AFCB80100B53F7A /* KURegisterViewController.m */,
+			);
+			path = register;
 			sourceTree = "<group>";
 		};
 		4E823F971AEFD9E500FD515D /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
 				4E823F981AEFDD2900FD515D /* CONSTS.h */,
+				4E1DD3ED1AFCB4A400B53F7A /* DefaultURL.h */,
+				4E1DD3EE1AFCB4A400B53F7A /* DefaultURL.m */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -111,16 +131,6 @@
 				4E823F9E1AF3345800FD515D /* KULoginViewController.m */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		4E823F9C1AF3341D00FD515D /* SignIn */ = {
-			isa = PBXGroup;
-			children = (
-				4E823FA01AF3349900FD515D /* KUSignInViewController.h */,
-				4E823FA11AF3349900FD515D /* KUSignInViewController.m */,
-			);
-			name = SignIn;
-			path = SingIn;
 			sourceTree = "<group>";
 		};
 		4E823FA31AF336F900FD515D /* Homepage */ = {
@@ -157,6 +167,7 @@
 			children = (
 				4EA5029C1AED36CB00B33D3C /* AppDelegate.h */,
 				4EA5029D1AED36CB00B33D3C /* AppDelegate.m */,
+				4E1DD3E61AFCB13100B53F7A /* extend */,
 				4E823F971AEFD9E500FD515D /* Configuration */,
 				4EA502C41AED3C2400B33D3C /* Network */,
 				4EA502C01AED3A6300B33D3C /* UI */,
@@ -197,9 +208,9 @@
 		4EA502C01AED3A6300B33D3C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4E1DD3F01AFCB80100B53F7A /* register */,
 				4E823FA31AF336F900FD515D /* Homepage */,
 				4E823F9B1AF3341D00FD515D /* Login */,
-				4E823F9C1AF3341D00FD515D /* SignIn */,
 				4EA502C11AED3A6300B33D3C /* ViewController.h */,
 				4EA502C21AED3A6300B33D3C /* ViewController.m */,
 			);
@@ -209,11 +220,12 @@
 		4EA502C41AED3C2400B33D3C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4E1DD3EA1AFCB23E00B53F7A /* KUHTTPClient.h */,
+				4E1DD3EB1AFCB23E00B53F7A /* KUHTTPClient.m */,
 				4EA502C51AED3DCB00B33D3C /* KUHTTPDataSource.h */,
 				4EA502C61AED3DCB00B33D3C /* KUHTTPDataSource.m */,
 				4E823F941AEFD7A500FD515D /* KUDownloadImage.h */,
 				4E823F951AEFD7A500FD515D /* KUDownloadImage.m */,
-				4E823F8D1AEFD59400FD515D /* UTF8 */,
 				4EECA72F1AEE91CE00BF3DAA /* ResponesModel */,
 			);
 			path = Network;
@@ -224,6 +236,8 @@
 			children = (
 				4EECA7301AEE91E400BF3DAA /* KUBaseModel.h */,
 				4EECA7311AEE91E400BF3DAA /* KUBaseModel.m */,
+				4E1DD3F91AFCD87600B53F7A /* KUResponesModel.h */,
+				4E1DD3FA1AFCD87600B53F7A /* KUResponesModel.m */,
 			);
 			path = ResponesModel;
 			sourceTree = "<group>";
@@ -385,11 +399,14 @@
 				4E823FA61AF3371700FD515D /* KUHomepageViewController.m in Sources */,
 				4E823F9F1AF3345800FD515D /* KULoginViewController.m in Sources */,
 				4EA502C31AED3A6300B33D3C /* ViewController.m in Sources */,
-				4E823FA21AF3349900FD515D /* KUSignInViewController.m in Sources */,
 				4EECA7321AEE91E400BF3DAA /* KUBaseModel.m in Sources */,
+				4E1DD3EF1AFCB4A400B53F7A /* DefaultURL.m in Sources */,
+				4E1DD3FB1AFCD87600B53F7A /* KUResponesModel.m in Sources */,
 				4EA5029E1AED36CB00B33D3C /* AppDelegate.m in Sources */,
-				4E823F931AEFD60000FD515D /* NSString+UTF8.m in Sources */,
+				4E1DD3EC1AFCB23E00B53F7A /* KUHTTPClient.m in Sources */,
 				4EA5029B1AED36CB00B33D3C /* main.m in Sources */,
+				4E1DD3F31AFCB80100B53F7A /* KURegisterViewController.m in Sources */,
+				4E1DD3E91AFCB16500B53F7A /* NSString+Addition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

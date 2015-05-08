@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KUSignInViewController : UIViewController
+@interface KURegisterViewController : UIViewController
 
 @end

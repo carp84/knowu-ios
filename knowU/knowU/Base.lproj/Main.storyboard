@@ -60,7 +60,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="r3d-4b-Egh" kind="push" identifier="login" id="wa9-9i-uMV"/>
+                                    <segue destination="r3d-4b-Egh" kind="show" id="bl0-C6-ZFq"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMv-Xg-88w">
@@ -69,7 +69,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="oFx-yV-Pl3" kind="push" identifier="signIn" id="7At-aX-598"/>
+                                    <segue destination="oFx-yV-Pl3" kind="show" id="xFN-ND-zQK"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYb-6a-wQQ">
@@ -134,7 +134,7 @@
         <!--注册-->
         <scene sceneID="7tq-Wd-cr8">
             <objects>
-                <viewController storyboardIdentifier="KUSignInViewController" id="oFx-yV-Pl3" customClass="KUSignInViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KUSignInViewController" id="oFx-yV-Pl3" customClass="KURegisterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AEe-3V-qs6"/>
                         <viewControllerLayoutGuide type="bottom" id="FBs-OJ-wIg"/>
@@ -186,7 +186,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Hg6-qB-8qB" kind="push" identifier="signIn" id="VeC-af-TMp"/>
+                                    <segue destination="Hg6-qB-8qB" kind="show" id="PE5-gY-FCd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -350,7 +350,7 @@
                     <navigationItem key="navigationItem" title="用户信息" id="w8i-By-cTf">
                         <barButtonItem key="rightBarButtonItem" title="完成" style="done" id="E0K-D5-wCk">
                             <connections>
-                                <segue destination="r3d-4b-Egh" kind="push" identifier="userInfo" id="yYe-G9-fik"/>
+                                <segue destination="r3d-4b-Egh" kind="show" id="iga-CD-dG2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -362,6 +362,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yYe-G9-fik"/>
+        <segue reference="iga-CD-dG2"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,4 +10,32 @@
 
 @implementation KUBaseModel
 
+/**
+ *  子类必须重写该方法。
+ */
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{};
+}
+
+- (instancetype)initWithSuccess:(BOOL)success
+                        message:(NSString *)message {
+    self = [super init];
+    if (self) {
+        _success = success;
+        _message = message;
+    }
+    return self;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _success = YES;
+        _message = nil;
+    }
+    return self;
+}
+
 @end

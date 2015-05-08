@@ -6,17 +6,22 @@
 //  Copyright (c) 2015年 HanJiatong. All rights reserved.
 //
 
-#import "KUSignInViewController.h"
-
-@interface KUSignInViewController ()
-
+#import "KURegisterViewController.h"
+#import "KUHTTPClient.h"
+@interface KURegisterViewController ()
 @end
 
-@implementation KUSignInViewController
+@implementation KURegisterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+//    [[KUHTTPClient manager] registerWithUID:@"露露" mail:@"854692552@qq.com" password:@"123456" success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+//        NSLog(@"%@ %@", operation, model);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@ %@", operation, error);
+//    }];
+
+    
 }
 
 - (void)didReceiveMemoryWarning {

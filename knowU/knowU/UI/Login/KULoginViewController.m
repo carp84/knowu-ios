@@ -7,7 +7,7 @@
 //
 
 #import "KULoginViewController.h"
-
+#import "KUHTTPClient.h"
 @interface KULoginViewController ()
 
 @end
@@ -16,7 +16,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [[KUHTTPClient manager] loginWithUID:@"露露" password:@"123456" success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+//    [[KUHTTPClient manager] fillUserInfoWithUID:@"露露"
+//                                       password:@"123456"
+//                                       userInfo:@{@"userId"         : @"露露",
+//                                                  @"password"       : @"123456",
+//                                                  @"homeAddress"    : @"露露",
+//                                                  @"workAddress"    : @"露露",
+//                                                  @"birthday"       : @"1996-07-09",
+//                                                  @"gender"         : @2,
+//                                                  @"jobDescription" : @"写代码的",
+//                                                  @"mobile"         : @"12345678901"}
+//                                        success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
+//    [[KUHTTPClient manager] uploadTraceWithUID:@"露露" traceInfo:@{@"userId"         : @"露露",
+//                                                                 @"latitude"       : @"123456",
+//                                                                 @"longitude"    : @"露露",
+//                                                                 @"timestamp"       : @"1996-07-09 23:58:59",
+//                                                                 @"address"         : @"北京",
+//                                                                 @"action" : @"写代码的",
+//                                                                 @"dayOfWeek"         : @1,
+//                                                                 @"otherDescription" : @"1"} success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,7 +8,7 @@
 
 #import "KUDownloadImage.h"
 #import <UIImageView+AFNetworking.h>
-#import "NSString+UTF8.h"
+#import "NSString+Addition.h"
 #import "CONSTS.h"
 
 static KUDownloadImage *downloadImage;
