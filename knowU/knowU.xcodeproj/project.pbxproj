@@ -12,6 +12,8 @@
 		4E1DD3EF1AFCB4A400B53F7A /* DefaultURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3EE1AFCB4A400B53F7A /* DefaultURL.m */; };
 		4E1DD3F31AFCB80100B53F7A /* KURegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3F21AFCB80100B53F7A /* KURegisterViewController.m */; };
 		4E1DD3FB1AFCD87600B53F7A /* KUResponesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3FA1AFCD87600B53F7A /* KUResponesModel.m */; };
+		4E6B86AC1AFF65B500956EEE /* KUBaseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B86AB1AFF65B500956EEE /* KUBaseInfoViewController.m */; };
+		4E6B86AF1AFF65C600956EEE /* KUDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B86AE1AFF65C600956EEE /* KUDetailInfoViewController.m */; };
 		4E823F961AEFD7A500FD515D /* KUDownloadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F951AEFD7A500FD515D /* KUDownloadImage.m */; };
 		4E823F9F1AF3345800FD515D /* KULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F9E1AF3345800FD515D /* KULoginViewController.m */; };
 		4E823FA61AF3371700FD515D /* KUHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823FA51AF3371700FD515D /* KUHomepageViewController.m */; };
@@ -49,6 +51,10 @@
 		4E1DD3F21AFCB80100B53F7A /* KURegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KURegisterViewController.m; sourceTree = "<group>"; };
 		4E1DD3F91AFCD87600B53F7A /* KUResponesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUResponesModel.h; sourceTree = "<group>"; };
 		4E1DD3FA1AFCD87600B53F7A /* KUResponesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUResponesModel.m; sourceTree = "<group>"; };
+		4E6B86AA1AFF65B500956EEE /* KUBaseInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUBaseInfoViewController.h; sourceTree = "<group>"; };
+		4E6B86AB1AFF65B500956EEE /* KUBaseInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUBaseInfoViewController.m; sourceTree = "<group>"; };
+		4E6B86AD1AFF65C600956EEE /* KUDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUDetailInfoViewController.h; sourceTree = "<group>"; };
+		4E6B86AE1AFF65C600956EEE /* KUDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUDetailInfoViewController.m; sourceTree = "<group>"; };
 		4E823F941AEFD7A500FD515D /* KUDownloadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUDownloadImage.h; sourceTree = "<group>"; };
 		4E823F951AEFD7A500FD515D /* KUDownloadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUDownloadImage.m; sourceTree = "<group>"; };
 		4E823F981AEFDD2900FD515D /* CONSTS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CONSTS.h; path = knowU/Configuration/CONSTS.h; sourceTree = SOURCE_ROOT; };
@@ -105,13 +111,32 @@
 			path = extend;
 			sourceTree = "<group>";
 		};
-		4E1DD3F01AFCB80100B53F7A /* register */ = {
+		4E1DD3F01AFCB80100B53F7A /* Register */ = {
 			isa = PBXGroup;
 			children = (
 				4E1DD3F11AFCB80100B53F7A /* KURegisterViewController.h */,
 				4E1DD3F21AFCB80100B53F7A /* KURegisterViewController.m */,
 			);
+			name = Register;
 			path = register;
+			sourceTree = "<group>";
+		};
+		4E6B86A81AFF658700956EEE /* BaseInfo */ = {
+			isa = PBXGroup;
+			children = (
+				4E6B86AA1AFF65B500956EEE /* KUBaseInfoViewController.h */,
+				4E6B86AB1AFF65B500956EEE /* KUBaseInfoViewController.m */,
+			);
+			path = BaseInfo;
+			sourceTree = "<group>";
+		};
+		4E6B86A91AFF658700956EEE /* DetailInfo */ = {
+			isa = PBXGroup;
+			children = (
+				4E6B86AD1AFF65C600956EEE /* KUDetailInfoViewController.h */,
+				4E6B86AE1AFF65C600956EEE /* KUDetailInfoViewController.m */,
+			);
+			path = DetailInfo;
 			sourceTree = "<group>";
 		};
 		4E823F971AEFD9E500FD515D /* Configuration */ = {
@@ -208,7 +233,9 @@
 		4EA502C01AED3A6300B33D3C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				4E1DD3F01AFCB80100B53F7A /* register */,
+				4E6B86A81AFF658700956EEE /* BaseInfo */,
+				4E6B86A91AFF658700956EEE /* DetailInfo */,
+				4E1DD3F01AFCB80100B53F7A /* Register */,
 				4E823FA31AF336F900FD515D /* Homepage */,
 				4E823F9B1AF3341D00FD515D /* Login */,
 				4EA502C11AED3A6300B33D3C /* ViewController.h */,
@@ -403,8 +430,10 @@
 				4E1DD3EF1AFCB4A400B53F7A /* DefaultURL.m in Sources */,
 				4E1DD3FB1AFCD87600B53F7A /* KUResponesModel.m in Sources */,
 				4EA5029E1AED36CB00B33D3C /* AppDelegate.m in Sources */,
+				4E6B86AF1AFF65C600956EEE /* KUDetailInfoViewController.m in Sources */,
 				4E1DD3EC1AFCB23E00B53F7A /* KUHTTPClient.m in Sources */,
 				4EA5029B1AED36CB00B33D3C /* main.m in Sources */,
+				4E6B86AC1AFF65B500956EEE /* KUBaseInfoViewController.m in Sources */,
 				4E1DD3F31AFCB80100B53F7A /* KURegisterViewController.m in Sources */,
 				4E1DD3E91AFCB16500B53F7A /* NSString+Addition.m in Sources */,
 			);
