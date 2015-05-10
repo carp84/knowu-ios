@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = YES;
     [[KUHTTPClient manager] loginWithUID:@"露露" password:@"123456" success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
