@@ -43,7 +43,9 @@ static KUHTTPDataSource *httpDataSource;
     self = [super init];
     if (self) {
         self.operationManager = [AFHTTPRequestOperationManager manager];
-        self.operationManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+//        self.operationManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+        self.operationManager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [self.operationManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [self.operationManager.operationQueue setMaxConcurrentOperationCount:MAX_CONCURRENT_HTTP_REQUEST_COUNT];
         self.operationManager.completionQueue = dispatch_queue_create("afmanager.completion.queue", DISPATCH_QUEUE_SERIAL);
         [self.operationManager.requestSerializer setTimeoutInterval:TIME_OUT_INTERVAL];

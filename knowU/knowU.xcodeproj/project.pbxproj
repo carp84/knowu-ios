@@ -25,6 +25,7 @@
 		4EA502B51AED36CB00B33D3C /* knowUTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA502B41AED36CB00B33D3C /* knowUTests.m */; };
 		4EA502C31AED3A6300B33D3C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA502C21AED3A6300B33D3C /* ViewController.m */; };
 		4EA502C71AED3DCB00B33D3C /* KUHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA502C61AED3DCB00B33D3C /* KUHTTPDataSource.m */; };
+		4EEC5DC11B024B8700F0A4B1 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC5DC01B024B8700F0A4B1 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4EECA7321AEE91E400BF3DAA /* KUBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EECA7311AEE91E400BF3DAA /* KUBaseModel.m */; };
 		FEF5C95437E90C71C335A4CE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7A5228A5B177EA920961BB /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,8 @@
 		4EA502C21AED3A6300B33D3C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4EA502C51AED3DCB00B33D3C /* KUHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUHTTPDataSource.h; sourceTree = "<group>"; };
 		4EA502C61AED3DCB00B33D3C /* KUHTTPDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUHTTPDataSource.m; sourceTree = "<group>"; };
+		4EEC5DBF1B024B8700F0A4B1 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		4EEC5DC01B024B8700F0A4B1 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		4EECA7301AEE91E400BF3DAA /* KUBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUBaseModel.h; sourceTree = "<group>"; };
 		4EECA7311AEE91E400BF3DAA /* KUBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUBaseModel.m; sourceTree = "<group>"; };
 		8844073075D57462FFC98841 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +195,7 @@
 			children = (
 				4EA5029C1AED36CB00B33D3C /* AppDelegate.h */,
 				4EA5029D1AED36CB00B33D3C /* AppDelegate.m */,
+				4EEC5DBE1B024B8700F0A4B1 /* JSONKit */,
 				4E1DD3E61AFCB13100B53F7A /* extend */,
 				4E823F971AEFD9E500FD515D /* Configuration */,
 				4EA502C41AED3C2400B33D3C /* Network */,
@@ -256,6 +260,15 @@
 				4EECA72F1AEE91CE00BF3DAA /* ResponesModel */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		4EEC5DBE1B024B8700F0A4B1 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				4EEC5DBF1B024B8700F0A4B1 /* JSONKit.h */,
+				4EEC5DC01B024B8700F0A4B1 /* JSONKit.m */,
+			);
+			path = JSONKit;
 			sourceTree = "<group>";
 		};
 		4EECA72F1AEE91CE00BF3DAA /* ResponesModel */ = {
@@ -427,6 +440,7 @@
 				4E823F9F1AF3345800FD515D /* KULoginViewController.m in Sources */,
 				4EA502C31AED3A6300B33D3C /* ViewController.m in Sources */,
 				4EECA7321AEE91E400BF3DAA /* KUBaseModel.m in Sources */,
+				4EEC5DC11B024B8700F0A4B1 /* JSONKit.m in Sources */,
 				4E1DD3EF1AFCB4A400B53F7A /* DefaultURL.m in Sources */,
 				4E1DD3FB1AFCD87600B53F7A /* KUResponesModel.m in Sources */,
 				4EA5029E1AED36CB00B33D3C /* AppDelegate.m in Sources */,

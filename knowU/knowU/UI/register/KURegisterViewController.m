@@ -15,11 +15,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [[KUHTTPClient manager] registerWithUID:@"露露" mail:@"854692552@qq.com" password:@"123456" success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-//        NSLog(@"%@ %@", operation, model);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@ %@", operation, error);
-//    }];
+    [[KUHTTPClient manager] registerWithUID:@"yy" mail:@"854692552@qq.com" password:@"123456" success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+        NSLog(@"%@ %@", operation, model);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@ %@", operation, error);
+    }];
 
     
 }

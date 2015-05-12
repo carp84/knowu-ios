@@ -8,3 +8,4 @@ pod 'FMDB'
 # pod 'FMDB/SQLCipher'   # FMDB with SQLCipher
 
 pod 'Mantle', "~> 2.0"
+pod 'ReactiveCocoa', "~> 2.5"

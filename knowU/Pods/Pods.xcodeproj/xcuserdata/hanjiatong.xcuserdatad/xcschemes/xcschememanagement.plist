@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-ReactiveCocoa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>15C7ACDA83E2DBC61DEA64CF</key>
+		<key>2AE359CE776D8157A148F886</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>29584B65FB8A31644E31ABDF</key>
+		<key>905E8D1665D39C4527708DD8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>60B32CA3BC77ADA3AEC4B847</key>
+		<key>BB0D8F7DF649592307374785</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C43EBE90727AACF404FA3CEF</key>
+		<key>C5EC3710373CCC64C7860D64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E51D7C3593B4F2331F26BD25</key>
 		<dict>
 			<key>primary</key>
 			<true/>
