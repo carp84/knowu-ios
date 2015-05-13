@@ -62,7 +62,7 @@
 }
 
 - (void)initData{
-    RAC(self.loginButton, enabled) = [RACSignal combineLatest:@[
+    RAC(self.loginButton, userInteractionEnabled) = [RACSignal combineLatest:@[
                                                                 self.userNameTextField.rac_textSignal,
                                                                 self.passwordTextField.rac_textSignal] reduce:^(NSString *userName, NSString *password){
                                                                     return @(userName.length > 0 && password.length > 0);

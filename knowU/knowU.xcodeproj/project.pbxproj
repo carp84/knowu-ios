@@ -12,6 +12,8 @@
 		4E1DD3EF1AFCB4A400B53F7A /* DefaultURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3EE1AFCB4A400B53F7A /* DefaultURL.m */; };
 		4E1DD3F31AFCB80100B53F7A /* KURegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3F21AFCB80100B53F7A /* KURegisterViewController.m */; };
 		4E1DD3FB1AFCD87600B53F7A /* KUResponesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3FA1AFCD87600B53F7A /* KUResponesModel.m */; };
+		4E254E231B03AC440081C2E2 /* DevicePlatInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E254E221B03AC440081C2E2 /* DevicePlatInfo.m */; };
+		4E254E2A1B03BF540081C2E2 /* UILabel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E254E291B03BF540081C2E2 /* UILabel+Addition.m */; };
 		4E6B86AC1AFF65B500956EEE /* KUBaseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B86AB1AFF65B500956EEE /* KUBaseInfoViewController.m */; };
 		4E6B86AF1AFF65C600956EEE /* KUDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B86AE1AFF65C600956EEE /* KUDetailInfoViewController.m */; };
 		4E823F961AEFD7A500FD515D /* KUDownloadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F951AEFD7A500FD515D /* KUDownloadImage.m */; };
@@ -52,6 +54,10 @@
 		4E1DD3F21AFCB80100B53F7A /* KURegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KURegisterViewController.m; sourceTree = "<group>"; };
 		4E1DD3F91AFCD87600B53F7A /* KUResponesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUResponesModel.h; sourceTree = "<group>"; };
 		4E1DD3FA1AFCD87600B53F7A /* KUResponesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUResponesModel.m; sourceTree = "<group>"; };
+		4E254E211B03AC440081C2E2 /* DevicePlatInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicePlatInfo.h; sourceTree = "<group>"; };
+		4E254E221B03AC440081C2E2 /* DevicePlatInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicePlatInfo.m; sourceTree = "<group>"; };
+		4E254E281B03BF540081C2E2 /* UILabel+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Addition.h"; sourceTree = "<group>"; };
+		4E254E291B03BF540081C2E2 /* UILabel+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Addition.m"; sourceTree = "<group>"; };
 		4E6B86AA1AFF65B500956EEE /* KUBaseInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUBaseInfoViewController.h; sourceTree = "<group>"; };
 		4E6B86AB1AFF65B500956EEE /* KUBaseInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUBaseInfoViewController.m; sourceTree = "<group>"; };
 		4E6B86AD1AFF65C600956EEE /* KUDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUDetailInfoViewController.h; sourceTree = "<group>"; };
@@ -110,6 +116,8 @@
 			children = (
 				4E1DD3E71AFCB16500B53F7A /* NSString+Addition.h */,
 				4E1DD3E81AFCB16500B53F7A /* NSString+Addition.m */,
+				4E254E281B03BF540081C2E2 /* UILabel+Addition.h */,
+				4E254E291B03BF540081C2E2 /* UILabel+Addition.m */,
 			);
 			path = extend;
 			sourceTree = "<group>";
@@ -122,6 +130,22 @@
 			);
 			name = Register;
 			path = register;
+			sourceTree = "<group>";
+		};
+		4E254E201B03AC440081C2E2 /* DeviceModel */ = {
+			isa = PBXGroup;
+			children = (
+				4E254E211B03AC440081C2E2 /* DevicePlatInfo.h */,
+				4E254E221B03AC440081C2E2 /* DevicePlatInfo.m */,
+			);
+			path = DeviceModel;
+			sourceTree = "<group>";
+		};
+		4E254E241B03BEE40081C2E2 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		4E6B86A81AFF658700956EEE /* BaseInfo */ = {
@@ -195,6 +219,7 @@
 			children = (
 				4EA5029C1AED36CB00B33D3C /* AppDelegate.h */,
 				4EA5029D1AED36CB00B33D3C /* AppDelegate.m */,
+				4E254E201B03AC440081C2E2 /* DeviceModel */,
 				4EEC5DBE1B024B8700F0A4B1 /* JSONKit */,
 				4E1DD3E61AFCB13100B53F7A /* extend */,
 				4E823F971AEFD9E500FD515D /* Configuration */,
@@ -237,6 +262,7 @@
 		4EA502C01AED3A6300B33D3C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4E254E241B03BEE40081C2E2 /* CustomView */,
 				4E6B86A81AFF658700956EEE /* BaseInfo */,
 				4E6B86A91AFF658700956EEE /* DetailInfo */,
 				4E1DD3F01AFCB80100B53F7A /* Register */,
@@ -442,6 +468,7 @@
 				4EECA7321AEE91E400BF3DAA /* KUBaseModel.m in Sources */,
 				4EEC5DC11B024B8700F0A4B1 /* JSONKit.m in Sources */,
 				4E1DD3EF1AFCB4A400B53F7A /* DefaultURL.m in Sources */,
+				4E254E2A1B03BF540081C2E2 /* UILabel+Addition.m in Sources */,
 				4E1DD3FB1AFCD87600B53F7A /* KUResponesModel.m in Sources */,
 				4EA5029E1AED36CB00B33D3C /* AppDelegate.m in Sources */,
 				4E6B86AF1AFF65C600956EEE /* KUDetailInfoViewController.m in Sources */,
@@ -449,6 +476,7 @@
 				4EA5029B1AED36CB00B33D3C /* main.m in Sources */,
 				4E6B86AC1AFF65B500956EEE /* KUBaseInfoViewController.m in Sources */,
 				4E1DD3F31AFCB80100B53F7A /* KURegisterViewController.m in Sources */,
+				4E254E231B03AC440081C2E2 /* DevicePlatInfo.m in Sources */,
 				4E1DD3E91AFCB16500B53F7A /* NSString+Addition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

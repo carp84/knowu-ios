@@ -11,5 +11,8 @@
 
 #define WEAKSELF typeof(self) __weak weakSelf = self;
 static const NSTimeInterval TIME_OUT_INTERVAL = 60;
-
+#define IMAGE_IPHONE4_BACKGROUND        @"640x960.png"
+#define IMAGE_IPHONE5_BACKGROUND        @"640x1136.png"
+#define IMAGE_IPHONE6_BACKGROUND        @"750x1334.png"
+#define IMAGE_IPHONE6PLUS_BACKGROUND    @"1242x2208.png"
 #endif
