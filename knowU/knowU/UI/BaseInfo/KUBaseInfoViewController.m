@@ -7,9 +7,15 @@
 //
 
 #import "KUBaseInfoViewController.h"
-
+#import "KUHTTPClient.h"
+#import "RACSubscriptingAssignmentTrampoline.h"
+#import "UITextField+RACSignalSupport.h"
+#import "RACSignal.h"
+#import "RACSignal+Operations.h"
 @interface KUBaseInfoViewController ()
-
+@property (weak, nonatomic) IBOutlet UITextField *homeAddressTextField;
+@property (weak, nonatomic) IBOutlet UITextField *companyTextField;
+@property (weak, nonatomic) IBOutlet UIButton *nextStepButton;
 @end
 
 @implementation KUBaseInfoViewController
@@ -17,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+- (IBAction)pushToViewController:(UIButton *)sender {
 }
 
 - (void)didReceiveMemoryWarning {

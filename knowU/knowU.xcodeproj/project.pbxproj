@@ -16,6 +16,7 @@
 		4E254E2A1B03BF540081C2E2 /* UILabel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E254E291B03BF540081C2E2 /* UILabel+Addition.m */; };
 		4E6B86AC1AFF65B500956EEE /* KUBaseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B86AB1AFF65B500956EEE /* KUBaseInfoViewController.m */; };
 		4E6B86AF1AFF65C600956EEE /* KUDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B86AE1AFF65C600956EEE /* KUDetailInfoViewController.m */; };
+		4E719B151B050007001CCF5B /* UIColor+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E719B141B050007001CCF5B /* UIColor+Addition.m */; };
 		4E823F961AEFD7A500FD515D /* KUDownloadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F951AEFD7A500FD515D /* KUDownloadImage.m */; };
 		4E823F9F1AF3345800FD515D /* KULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F9E1AF3345800FD515D /* KULoginViewController.m */; };
 		4E823FA61AF3371700FD515D /* KUHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823FA51AF3371700FD515D /* KUHomepageViewController.m */; };
@@ -62,6 +63,8 @@
 		4E6B86AB1AFF65B500956EEE /* KUBaseInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUBaseInfoViewController.m; sourceTree = "<group>"; };
 		4E6B86AD1AFF65C600956EEE /* KUDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUDetailInfoViewController.h; sourceTree = "<group>"; };
 		4E6B86AE1AFF65C600956EEE /* KUDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUDetailInfoViewController.m; sourceTree = "<group>"; };
+		4E719B131B050007001CCF5B /* UIColor+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Addition.h"; sourceTree = "<group>"; };
+		4E719B141B050007001CCF5B /* UIColor+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Addition.m"; sourceTree = "<group>"; };
 		4E823F941AEFD7A500FD515D /* KUDownloadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUDownloadImage.h; sourceTree = "<group>"; };
 		4E823F951AEFD7A500FD515D /* KUDownloadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUDownloadImage.m; sourceTree = "<group>"; };
 		4E823F981AEFDD2900FD515D /* CONSTS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CONSTS.h; path = knowU/Configuration/CONSTS.h; sourceTree = SOURCE_ROOT; };
@@ -118,6 +121,8 @@
 				4E1DD3E81AFCB16500B53F7A /* NSString+Addition.m */,
 				4E254E281B03BF540081C2E2 /* UILabel+Addition.h */,
 				4E254E291B03BF540081C2E2 /* UILabel+Addition.m */,
+				4E719B131B050007001CCF5B /* UIColor+Addition.h */,
+				4E719B141B050007001CCF5B /* UIColor+Addition.m */,
 			);
 			path = extend;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EA502C71AED3DCB00B33D3C /* KUHTTPDataSource.m in Sources */,
+				4E719B151B050007001CCF5B /* UIColor+Addition.m in Sources */,
 				4E823F961AEFD7A500FD515D /* KUDownloadImage.m in Sources */,
 				4E823FA61AF3371700FD515D /* KUHomepageViewController.m in Sources */,
 				4E823F9F1AF3345800FD515D /* KULoginViewController.m in Sources */,

@@ -10,6 +10,7 @@
 #import "DevicePlatInfo.h"
 #import "CONSTS.h"
 #import "UILabel+Addition.h"
+#import "UIColor+Addition.h"
 @interface KUHomepageViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *giftImageView;
@@ -53,12 +54,12 @@
     
     [self.loginDayLabel showOtherFontFromLocation:self.loginDayLabel.text.length - 1 length:1 fontSize:[UIFont systemFontOfSize:10]];
     //左面
-    self.leftTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, 100, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 50)];
+    self.leftTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.titleLabel.center.y - 1.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
     self.leftTopWhiteView.backgroundColor = [UIColor whiteColor];
     [self.backgroundView addSubview:self.leftTopWhiteView];
     
     self.leftTopGrayView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopWhiteView.frame.origin.y + self.leftTopWhiteView.frame.size.height + 0.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.leftTopGrayView.backgroundColor = [UIColor blackColor];
+    self.leftTopGrayView.backgroundColor = [UIColor homepageGrayLine];
     [self.backgroundView addSubview:self.leftTopGrayView];
     
     self.leftBottomWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopWhiteView.frame.origin.y + self.leftTopWhiteView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
@@ -66,24 +67,24 @@
     [self.backgroundView addSubview:self.leftBottomWhiteView];
     
     self.leftBottomGrayView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopGrayView.frame.origin.y + self.leftTopGrayView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.leftBottomGrayView.backgroundColor = [UIColor whiteColor];
+    self.leftBottomGrayView.backgroundColor = [UIColor homepageGrayLine];
     [self.backgroundView addSubview:self.leftBottomGrayView];
     
     //右面
-    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, 100, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.titleLabel.center.y - 1.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
     self.rightTopWhiteView.backgroundColor = [UIColor whiteColor];
     [self.backgroundView addSubview:self.rightTopWhiteView];
     
-    self.rightTopGrayView = [[UIView alloc] initWithFrame:CGRectMake(27, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 0.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.rightTopGrayView.backgroundColor = [UIColor blackColor];
+    self.rightTopGrayView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 0.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+    self.rightTopGrayView.backgroundColor = [UIColor homepageGrayLine];
     [self.backgroundView addSubview:self.rightTopGrayView];
     
-    self.rightBottomWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+    self.rightBottomWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
     self.rightBottomWhiteView.backgroundColor = [UIColor whiteColor];
     [self.backgroundView addSubview:self.rightBottomWhiteView];
     
-    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.rightTopGrayView.frame.origin.y + self.rightTopGrayView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.rightTopWhiteView.backgroundColor = [UIColor whiteColor];
+    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopGrayView.frame.origin.y + self.rightTopGrayView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+    self.rightTopWhiteView.backgroundColor = [UIColor homepageGrayLine];
     [self.backgroundView addSubview:self.rightTopWhiteView];
 }
 

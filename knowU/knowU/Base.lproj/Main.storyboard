@@ -482,6 +482,9 @@
                                     <color key="titleColor" red="0.90196078430000004" green="0.96470588239999999" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="popToViewController:" destination="oFx-yV-Pl3" eventType="touchUpInside" id="XMy-ye-b0V"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ria-W8-ZmC">
                                 <rect key="frame" x="166" y="453" width="132" height="45"/>
@@ -493,6 +496,7 @@
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="pushToViewController:" destination="oFx-yV-Pl3" eventType="touchUpInside" id="5yL-Ch-dRf"/>
                                     <segue destination="Hg6-qB-8qB" kind="show" id="B5L-Av-uI9"/>
                                 </connections>
                             </button>
@@ -532,6 +536,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="注册" id="Pz1-ND-P2W"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="confirmPasswordTextField" destination="mya-Qt-REk" id="tV1-sG-eta"/>
+                        <outlet property="mailTextField" destination="mkz-67-7aF" id="zrF-c4-VUe"/>
+                        <outlet property="nextStepButton" destination="Ria-W8-ZmC" id="DNf-rT-1YP"/>
+                        <outlet property="nickNameTextField" destination="kl9-sG-hKy" id="RJf-Fv-BC4"/>
+                        <outlet property="passwordTextField" destination="BCd-He-Qr8" id="hKl-2x-E6Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qvd-Va-OeY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -650,6 +661,7 @@
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="pushToViewController:" destination="Hg6-qB-8qB" eventType="touchUpInside" id="B2V-U2-ood"/>
                                     <segue destination="npz-3C-wbG" kind="show" id="GG5-Jp-LQ3"/>
                                 </connections>
                             </button>
@@ -673,6 +685,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="基本信息" id="w8i-By-cTf"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="companyTextField" destination="OAH-g0-lfR" id="QGe-ue-PW6"/>
+                        <outlet property="homeAddressTextField" destination="oDF-jy-3mI" id="nxM-MB-ntj"/>
+                        <outlet property="nextStepButton" destination="dbp-Te-qTc" id="zYc-wf-me3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aZ0-Dt-lrl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -756,7 +773,7 @@
                                             <constraint firstAttribute="width" constant="275" id="f1D-fW-wpH"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seI-Hy-D2F">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seI-Hy-D2F">
                                         <rect key="frame" x="88" y="-2" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="pIc-m3-5Wn"/>
@@ -765,8 +782,11 @@
                                         <state key="normal" image="注册_女icon_一般">
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="selectSex:" destination="npz-3C-wbG" eventType="touchUpInside" id="TTu-R3-onV"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfk-zS-JVt">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfk-zS-JVt">
                                         <rect key="frame" x="147" y="-2" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="4hS-ml-fEU"/>
@@ -775,6 +795,9 @@
                                         <state key="normal" image="注册_男icon_一般">
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="selectSex:" destination="npz-3C-wbG" eventType="touchUpInside" id="2ZZ-4s-2mz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -904,6 +927,12 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="careerTextField" destination="fiu-YA-jXZ" id="SU0-Jq-BLB"/>
+                        <outlet property="cellTextField" destination="wY0-iY-rho" id="qqT-ok-i39"/>
+                        <outlet property="femaleButton" destination="seI-Hy-D2F" id="3gl-f8-2Lf"/>
+                        <outlet property="maleButton" destination="Pfk-zS-JVt" id="uLq-ok-csH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jck-Bc-HIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
