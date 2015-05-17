@@ -83,7 +83,6 @@ static KUHTTPDataSource *httpDataSource;
                                failure:(KUFailureBlock)failure{
     WEAKSELF;
     return [self.operationManager POST:[URLString UTF8Encode] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);

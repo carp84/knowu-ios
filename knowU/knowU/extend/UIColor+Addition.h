@@ -13,4 +13,6 @@
 /** 首页灰色*/
 + (UIColor *)homepageGrayLine;
 
++ (UIColor *)ColorFromRGB:(int)rgbValue alpha:(CGFloat)alpha;
+
 @end

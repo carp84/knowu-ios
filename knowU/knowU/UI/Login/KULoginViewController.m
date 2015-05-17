@@ -30,21 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
-//    [[KUHTTPClient manager] fillUserInfoWithUID:@"yy"
-//                                       password:@"123456"
-//                                       userInfo:@{@"userId"         : @"yy",
-//                                                  @"password"       : @"e10adc3949ba59abbe56e057f20f883e",
-//                                                  @"homeAddress"    : @"露露",
-//                                                  @"workAddress"    : @"露露",
-//                                                  @"birthday"       : @"1996-07-09",
-//                                                  @"gender"         : @2,
-//                                                  @"jobDescription" : @"写代码的",
-//                                                  @"mobile"         : @"12345678901"}
-//                                        success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-//                                            NSLog(@"%@ %@", operation, model);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//    }];
 //    [[KUHTTPClient manager] uploadTraceWithUID:@"yy" traceInfo:@{@"userId"         : @"yy",
 //                                                                 @"latitude"       : @"130",
 //                                                                 @"longitude"    : @"45",
@@ -72,6 +57,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)login:(UIButton *)sender {
+}
+
+- (IBAction)register:(UIButton *)sender {
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

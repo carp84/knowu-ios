@@ -10,4 +10,7 @@
 
 @interface KUBaseInfoViewController : UIViewController
 
+@property (nonatomic, copy) NSString *userName;
+@property (nonatomic, copy) NSString *password;
+
 @end

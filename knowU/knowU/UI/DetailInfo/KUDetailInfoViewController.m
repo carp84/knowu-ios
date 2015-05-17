@@ -8,12 +8,18 @@
 
 #import "KUDetailInfoViewController.h"
 #import "CONSTS.h"
+#import "KUSelectedBirthdayView.h"
+#import "Masonry.h"
+#import "KUBrithdayTextField.h"
+#import "KUHTTPClient.h"
+#import "KUHomepageViewController.h"
+#import "NSString+Addition.h"
 typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     ButtonTypeOfMale = 1,   //1表示性别为女，2表示性别为男
     ButtonTypeOfFemale
 };
 
-@interface KUDetailInfoViewController ()
+@interface KUDetailInfoViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *careerTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cellTextField;
 @property (weak, nonatomic) IBOutlet UIButton *femaleButton;
@@ -21,6 +27,12 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 /** 性别类型*/
 @property (assign) NSInteger sexType;
 
+@property (nonatomic, strong) KUSelectedBirthdayView *pickerView;
+
+@property (weak, nonatomic) IBOutlet KUBrithdayTextField *birthdayTextField;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
+@property (nonatomic, getter=isSkipFillInDetailInfo) BOOL skipFillInDetailInfo;
 @end
 
 @implementation KUDetailInfoViewController
@@ -29,18 +41,98 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     [super viewDidLoad];
     [self initUI];
     [self initData];
+    [self initNotification];
 }
 
 - (void)initUI {
+    WEAKSELF;
+    self.pickerView = [[[NSBundle mainBundle] loadNibNamed:@"KUSelectedBirthdayView" owner:self options:nil] objectAtIndex:0];
+    self.pickerView.alpha = 0;
+    self.pickerView.selectedBirthdayBlock = ^(NSString *birthday){
+        NSLog(@"%@", birthday);
+        weakSelf.birthdayTextField.text = birthday;
+        weakSelf.skipFillInDetailInfo = NO;
+    };
+    [self.view addSubview:self.pickerView];
     
+    [self.pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@0);
+        make.bottom.equalTo(@0);
+        make.leading.equalTo(@0);
+        make.trailing.equalTo(@0);
+    }];
+    
+    self.birthdayTextField.touchBlock = ^{
+        [weakSelf.pickerView show];
+        
+    };
 }
 
 - (void)initData {
+    self.sexType = 0;
+}
+
+- (void)initNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeJumpButtonTitle:) name:UITextFieldTextDidChangeNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification{
+    NSDictionary *userInfo = [notification userInfo];
+    
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    
+    CGRect keyboardRect = [aValue CGRectValue];
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    [animationDurationValue getValue:&animationDuration];
+    
+    
+    [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(@(-keyboardRect.size.height));
+        }];
+        [self.scrollView layoutIfNeeded];
+    } completion:^(BOOL finished) {
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification{
+    
+    NSDictionary *userInfo = [notification userInfo];
+    
+    NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    [animationDurationValue getValue:&animationDuration];
+    
+    [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(@0);
+        }];
+        [self.scrollView layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)changeJumpButtonTitle:(NSNotification *)notification{
+    if ([self.careerTextField.text length] || [self.cellTextField.text length] || self.sexType != 0 || [self.birthdayTextField.text length]) {
+        [self.skipButton setTitle:@"确定" forState:UIControlStateNormal];
+        [self.skipButton setTitle:@"确定" forState:UIControlStateHighlighted];
+        self.skipFillInDetailInfo = NO;
+    }
+    else {
+        [self.skipButton setTitle:@"跳过" forState:UIControlStateNormal];
+        [self.skipButton setTitle:@"跳过" forState:UIControlStateHighlighted];
+        self.skipFillInDetailInfo = YES;
+    }
 }
 
 - (IBAction)selectSex:(UIButton *)sender {
     self.sexType = sender.tag;
+    self.skipFillInDetailInfo = NO;
     switch (sender.tag) {
         case ButtonTypeOfFemale:
         {
@@ -63,6 +155,46 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
         default:
             break;
     }
+}
+- (IBAction)popToViewController:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)pushToViewController:(UIButton *)sender {
+    
+    
+    if (self.skipFillInDetailInfo) {
+        [self handlePushViewController];
+    }
+    else {
+        [[KUHTTPClient manager] fillUserInfoWithUID:self.userName
+                                           password:self.password
+                                           userInfo:@{@"userId"         : self.userName,
+                                                      @"password"       : [self.password MD5],
+                                                      @"homeAddress"    : self.homeAddress,
+                                                      @"workAddress"    : self.companyAddress,
+                                                      @"birthday"       : self.birthdayTextField.text,
+                                                      @"gender"         : @(self.sexType),
+                                                      @"jobDescription" : self.careerTextField.text,
+                                                      @"mobile"         : self.cellTextField.text
+                                                      }
+                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+                                                [self handlePushViewController];
+                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                
+                                            }];
+
+    }
+}
+
+- (void)handlePushViewController {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    KUHomepageViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUHomepageViewController"];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {

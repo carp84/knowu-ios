@@ -10,4 +10,9 @@
 
 @interface KUDetailInfoViewController : UIViewController
 
+@property (nonatomic, copy) NSString *homeAddress;
+@property (nonatomic, copy) NSString *companyAddress;
+@property (nonatomic, copy) NSString *userName;
+@property (nonatomic, copy) NSString *password;
+
 @end
