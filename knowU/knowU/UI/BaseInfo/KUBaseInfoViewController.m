@@ -15,12 +15,12 @@
 #import "Masonry.h"
 #import "KUDetailInfoViewController.h"
 #import "CONSTS.h"
+#import "DevicePlatInfo.h"
 
 @interface KUBaseInfoViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *homeAddressTextField;
 @property (weak, nonatomic) IBOutlet UITextField *companyAddressTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextStepButton;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
 
 @implementation KUBaseInfoViewController
@@ -50,12 +50,21 @@
     NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [animationDurationValue getValue:&animationDuration];
     
-    
+    CGFloat tranformY = 0;//keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
+    if ([DevicePlatInfo devicePlatform] == 3.5) {
+        tranformY = -180;
+    }
+    else if ([DevicePlatInfo devicePlatform] == 4) {
+        tranformY = -100;
+    }
+    else if ([DevicePlatInfo devicePlatform] == 4.7) {
+        tranformY = -100;
+    }
+    else if ([DevicePlatInfo devicePlatform] == 5.5) {
+        tranformY = -100;
+    }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(@(-keyboardRect.size.height));
-        }];
-        [self.scrollView layoutIfNeeded];
+        self.view.transform = CGAffineTransformMakeTranslation(0, tranformY);
     } completion:^(BOOL finished) {
     }];
 }
@@ -69,27 +78,24 @@
     [animationDurationValue getValue:&animationDuration];
     
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(@0);
-        }];
-        [self.scrollView layoutIfNeeded];
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
     } completion:^(BOOL finished) {
         
     }];
 }
 
 - (IBAction)pushToViewController:(UIButton *)sender {
-    if (![self.homeAddressTextField.text length]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_HOME_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-        [alertView show];
-        return;
-    }
-
-    if (![self.companyAddressTextField.text length]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_COMPANY_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-        [alertView show];
-        return;
-    }
+//    if (![self.homeAddressTextField.text length]) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_HOME_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+//        [alertView show];
+//        return;
+//    }
+//
+//    if (![self.companyAddressTextField.text length]) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_COMPANY_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+//        [alertView show];
+//        return;
+//    }
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     KUDetailInfoViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUDetailInfoViewController"];
     controller.userName = self.userName;

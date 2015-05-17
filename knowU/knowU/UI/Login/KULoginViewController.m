@@ -16,6 +16,8 @@
 #import "RACSignal+Operations.h"
 #import "Masonry.h"
 #import "KUHomepageViewController.h"
+#import "DevicePlatInfo.h"
+#import "KUPetAlertView.h"
 
 @interface KULoginViewController ()
 
@@ -28,7 +30,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *hideHandImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *showHandImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -49,6 +50,10 @@
 //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        
 //    }];
+    
+    KUPetAlertView *view = [[[NSBundle mainBundle] loadNibNamed:@"KUPetAlertView" owner:self options:nil] objectAtIndex:0];
+    view.frame = [UIScreen mainScreen].bounds;
+    [self.view addSubview:view];
     
     [self initData];
     [self initNotification];
@@ -90,19 +95,19 @@
 - (void)keyboardWillShow:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    
-    CGRect keyboardRect = [aValue CGRectValue];
+//    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+//    
+//    CGRect keyboardRect = [aValue CGRectValue];
     NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [animationDurationValue getValue:&animationDuration];
     
-    CGFloat tranformY = keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
+    CGFloat tranformY = 0;//keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
+    if ([DevicePlatInfo devicePlatform] == 3.5) {
+        tranformY = -100;
+
+    }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-//        [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.bottom.equalTo(@(-keyboardRect.size.height));
-//        }];
-//        [self.scrollView layoutIfNeeded];
         self.view.transform = CGAffineTransformMakeTranslation(0, tranformY);
     } completion:^(BOOL finished) {
     }];

@@ -15,6 +15,8 @@
 		4E1DD3FB1AFCD87600B53F7A /* KUResponesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3FA1AFCD87600B53F7A /* KUResponesModel.m */; };
 		4E254E231B03AC440081C2E2 /* DevicePlatInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E254E221B03AC440081C2E2 /* DevicePlatInfo.m */; };
 		4E254E2A1B03BF540081C2E2 /* UILabel+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E254E291B03BF540081C2E2 /* UILabel+Addition.m */; };
+		4E38D0E11B090680003BB8FE /* KUPetAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E38D0E01B090680003BB8FE /* KUPetAlertView.m */; };
+		4E38D0E31B09068E003BB8FE /* KUPetAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E38D0E21B09068E003BB8FE /* KUPetAlertView.xib */; };
 		4E6B86AC1AFF65B500956EEE /* KUBaseInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B86AB1AFF65B500956EEE /* KUBaseInfoViewController.m */; };
 		4E6B86AF1AFF65C600956EEE /* KUDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B86AE1AFF65C600956EEE /* KUDetailInfoViewController.m */; };
 		4E719B151B050007001CCF5B /* UIColor+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E719B141B050007001CCF5B /* UIColor+Addition.m */; };
@@ -65,6 +67,9 @@
 		4E254E221B03AC440081C2E2 /* DevicePlatInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicePlatInfo.m; sourceTree = "<group>"; };
 		4E254E281B03BF540081C2E2 /* UILabel+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Addition.h"; sourceTree = "<group>"; };
 		4E254E291B03BF540081C2E2 /* UILabel+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Addition.m"; sourceTree = "<group>"; };
+		4E38D0DF1B090680003BB8FE /* KUPetAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUPetAlertView.h; sourceTree = "<group>"; };
+		4E38D0E01B090680003BB8FE /* KUPetAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUPetAlertView.m; sourceTree = "<group>"; };
+		4E38D0E21B09068E003BB8FE /* KUPetAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KUPetAlertView.xib; sourceTree = "<group>"; };
 		4E6B86AA1AFF65B500956EEE /* KUBaseInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUBaseInfoViewController.h; sourceTree = "<group>"; };
 		4E6B86AB1AFF65B500956EEE /* KUBaseInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUBaseInfoViewController.m; sourceTree = "<group>"; };
 		4E6B86AD1AFF65C600956EEE /* KUDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUDetailInfoViewController.h; sourceTree = "<group>"; };
@@ -167,6 +172,9 @@
 				4EF22B681B064E81004FE5AC /* KUSelectedBirthdayView.xib */,
 				4E09EB241B076AF50032708C /* KUBrithdayTextField.h */,
 				4E09EB251B076AF50032708C /* KUBrithdayTextField.m */,
+				4E38D0DF1B090680003BB8FE /* KUPetAlertView.h */,
+				4E38D0E01B090680003BB8FE /* KUPetAlertView.m */,
+				4E38D0E21B09068E003BB8FE /* KUPetAlertView.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -433,6 +441,7 @@
 				4EA502A41AED36CB00B33D3C /* Main.storyboard in Resources */,
 				4EA502A91AED36CB00B33D3C /* LaunchScreen.xib in Resources */,
 				4EF22B691B064E81004FE5AC /* KUSelectedBirthdayView.xib in Resources */,
+				4E38D0E31B09068E003BB8FE /* KUPetAlertView.xib in Resources */,
 				4EA502A61AED36CB00B33D3C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,6 +513,7 @@
 				4EA5029B1AED36CB00B33D3C /* main.m in Sources */,
 				4E6B86AC1AFF65B500956EEE /* KUBaseInfoViewController.m in Sources */,
 				4E1DD3F31AFCB80100B53F7A /* KURegisterViewController.m in Sources */,
+				4E38D0E11B090680003BB8FE /* KUPetAlertView.m in Sources */,
 				4E254E231B03AC440081C2E2 /* DevicePlatInfo.m in Sources */,
 				4E1DD3E91AFCB16500B53F7A /* NSString+Addition.m in Sources */,
 			);

@@ -15,14 +15,13 @@
 #import "Masonry.h"
 #import "KUBaseInfoViewController.h"
 #import "CONSTS.h"
-
-@interface KURegisterViewController ()
+#import "DevicePlatInfo.h"
+@interface KURegisterViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *mailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextStepButton;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
 
 @implementation KURegisterViewController
@@ -50,22 +49,28 @@
 - (void)keyboardWillShow:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    
-    CGRect keyboardRect = [aValue CGRectValue];
+//    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+//    
+//    CGRect keyboardRect = [aValue CGRectValue];
     NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [animationDurationValue getValue:&animationDuration];
     
-    
+    CGFloat tranformY = 0;//keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
+    if ([DevicePlatInfo devicePlatform] == 3.5) {
+        tranformY = -150;
+    }
+    else if ([DevicePlatInfo devicePlatform] == 4) {
+        tranformY = -80;
+    }
+    else if ([DevicePlatInfo devicePlatform] == 4.7) {
+        tranformY = -80;
+    }
+    else if ([DevicePlatInfo devicePlatform] == 5.5) {
+        tranformY = -100;
+    }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(@(-keyboardRect.size.height));
-//            make.top.equalTo(@(-20));
-            make.leading.equalTo(@0);
-            make.trailing.equalTo(@0);
-        }];
-        [self.scrollView layoutIfNeeded];
+        self.view.transform = CGAffineTransformMakeTranslation(0, tranformY);
     } completion:^(BOOL finished) {
     }];
 }
@@ -79,13 +84,7 @@
     [animationDurationValue getValue:&animationDuration];
     
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(@0);
-            make.top.equalTo(@0);
-            make.leading.equalTo(@0);
-            make.trailing.equalTo(@0);
-        }];
-        [self.scrollView layoutIfNeeded];
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
     } completion:^(BOOL finished) {
         
     }];
@@ -135,6 +134,15 @@
 //    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        NSLog(@"%@ %@", operation, error);
 //    }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
 }
 
 - (void)didReceiveMemoryWarning {

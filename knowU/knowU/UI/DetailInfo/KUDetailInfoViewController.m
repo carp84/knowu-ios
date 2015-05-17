@@ -14,6 +14,8 @@
 #import "KUHTTPClient.h"
 #import "KUHomepageViewController.h"
 #import "NSString+Addition.h"
+#import "DevicePlatInfo.h"
+
 typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     ButtonTypeOfMale = 1,   //1表示性别为女，2表示性别为男
     ButtonTypeOfFemale
@@ -30,7 +32,6 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 @property (nonatomic, strong) KUSelectedBirthdayView *pickerView;
 
 @property (weak, nonatomic) IBOutlet KUBrithdayTextField *birthdayTextField;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (nonatomic, getter=isSkipFillInDetailInfo) BOOL skipFillInDetailInfo;
 @end
@@ -89,12 +90,21 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [animationDurationValue getValue:&animationDuration];
     
-    
+    CGFloat tranformY = 0;//keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
+    if ([DevicePlatInfo devicePlatform] == 3.5) {
+        tranformY = -200;
+    }
+    else if ([DevicePlatInfo devicePlatform] == 4) {
+        tranformY = -100;
+    }
+    else if ([DevicePlatInfo devicePlatform] == 4.7) {
+        tranformY = -100;
+    }
+    else if ([DevicePlatInfo devicePlatform] == 5.5) {
+        tranformY = -80;
+    }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(@(-keyboardRect.size.height));
-        }];
-//        [self.scrollView layoutIfNeeded];
+        self.view.transform = CGAffineTransformMakeTranslation(0, tranformY);
     } completion:^(BOOL finished) {
     }];
 }
@@ -108,10 +118,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     [animationDurationValue getValue:&animationDuration];
     
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(@0);
-        }];
-        [self.scrollView layoutIfNeeded];
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
     } completion:^(BOOL finished) {
         
     }];
