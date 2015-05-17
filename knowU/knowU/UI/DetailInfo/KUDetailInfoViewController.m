@@ -76,7 +76,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeJumpButtonTitle:) name:UITextFieldTextDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSkipButtonTitle:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification{
@@ -94,7 +94,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
         [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(@(-keyboardRect.size.height));
         }];
-        [self.scrollView layoutIfNeeded];
+//        [self.scrollView layoutIfNeeded];
     } completion:^(BOOL finished) {
     }];
 }
@@ -117,7 +117,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     }];
 }
 
-- (void)changeJumpButtonTitle:(NSNotification *)notification{
+- (void)changeSkipButtonTitle:(NSNotification *)notification{
     if ([self.careerTextField.text length] || [self.cellTextField.text length] || self.sexType != 0 || [self.birthdayTextField.text length]) {
         [self.skipButton setTitle:@"确定" forState:UIControlStateNormal];
         [self.skipButton setTitle:@"确定" forState:UIControlStateHighlighted];
@@ -166,22 +166,22 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
         [self handlePushViewController];
     }
     else {
-        [[KUHTTPClient manager] fillUserInfoWithUID:self.userName
-                                           password:self.password
-                                           userInfo:@{@"userId"         : self.userName,
-                                                      @"password"       : [self.password MD5],
-                                                      @"homeAddress"    : self.homeAddress,
-                                                      @"workAddress"    : self.companyAddress,
-                                                      @"birthday"       : self.birthdayTextField.text,
-                                                      @"gender"         : @(self.sexType),
-                                                      @"jobDescription" : self.careerTextField.text,
-                                                      @"mobile"         : self.cellTextField.text
-                                                      }
-                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+//        [[KUHTTPClient manager] fillUserInfoWithUID:self.userName
+//                                           password:self.password
+//                                           userInfo:@{@"userId"         : self.userName,
+//                                                      @"password"       : [self.password MD5],
+//                                                      @"homeAddress"    : self.homeAddress,
+//                                                      @"workAddress"    : self.companyAddress,
+//                                                      @"birthday"       : self.birthdayTextField.text,
+//                                                      @"gender"         : @(self.sexType),
+//                                                      @"jobDescription" : self.careerTextField.text,
+//                                                      @"mobile"         : self.cellTextField.text
+//                                                      }
+//                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
                                                 [self handlePushViewController];
-                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                
-                                            }];
+//                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                                                
+//                                            }];
 
     }
 }

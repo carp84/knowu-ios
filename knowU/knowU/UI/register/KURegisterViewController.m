@@ -13,7 +13,7 @@
 #import "RACSignal.h"
 #import "RACSignal+Operations.h"
 #import "Masonry.h"
-#import "KUDetailInfoViewController.h"
+#import "KUBaseInfoViewController.h"
 #import "CONSTS.h"
 
 @interface KURegisterViewController ()
@@ -35,13 +35,10 @@
 }
 
 - (void)initData{
-    RAC(self.nextStepButton, userInteractionEnabled) = [RACSignal combineLatest:@[
-                                                                               self.userNameTextField.rac_textSignal,
-                                                                               self.mailTextField.rac_textSignal,
-                                                                               self.passwordTextField.rac_textSignal,
-                                                                               self.confirmPasswordTextField.rac_textSignal] reduce:^(NSString *nickName, NSString *mail, NSString *password, NSString *confirmPassword){
-                                                                                   return @(nickName.length > 0 && mail.length > 0 && password.length > 0 && confirmPassword.length > 0);
-                                                                               }];
+    RAC(self.nextStepButton, userInteractionEnabled) =
+    [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal,self.mailTextField.rac_textSignal,self.passwordTextField.rac_textSignal,self.confirmPasswordTextField.rac_textSignal] reduce:^(NSString *nickName, NSString *mail, NSString *password, NSString *confirmPassword){
+            return @(nickName.length > 0 && mail.length > 0 && password.length > 0 && confirmPassword.length > 0);
+    }];
 }
 
 - (void)initNotification {
@@ -64,6 +61,9 @@
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(@(-keyboardRect.size.height));
+//            make.top.equalTo(@(-20));
+            make.leading.equalTo(@0);
+            make.trailing.equalTo(@0);
         }];
         [self.scrollView layoutIfNeeded];
     } completion:^(BOOL finished) {
@@ -81,6 +81,9 @@
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(@0);
+            make.top.equalTo(@0);
+            make.leading.equalTo(@0);
+            make.trailing.equalTo(@0);
         }];
         [self.scrollView layoutIfNeeded];
     } completion:^(BOOL finished) {
@@ -93,45 +96,45 @@
 }
 
 - (IBAction)pushToViewController:(UIButton *)sender {
-    if (![self.userNameTextField.text length]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_USER_NAME delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-        [alertView show];
-        return;
-    }
+//    if (![self.userNameTextField.text length]) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_USER_NAME delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+//        [alertView show];
+//        return;
+//    }
+//    
+//    if (![self.mailTextField.text length]) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_MAIL delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+//        [alertView show];
+//        return;
+//    }
+//    if (![self.passwordTextField.text length]) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_PASSWORD delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+//        [alertView show];
+//        return;
+//    }
+//    
+//    if (![self.confirmPasswordTextField.text length]) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_CONFIRM_PASSWORD delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+//        [alertView show];
+//        return;
+//    }
+//    
+//    if ([self.confirmPasswordTextField.text isEqualToString:self.passwordTextField.text]) {
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_PASSWORD_NO_SAME delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+//        [alertView show];
+//        return;
+//    }
     
-    if (![self.mailTextField.text length]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_MAIL delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-        [alertView show];
-        return;
-    }
-    if (![self.passwordTextField.text length]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_PASSWORD delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-        [alertView show];
-        return;
-    }
     
-    if (![self.confirmPasswordTextField.text length]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_CONFIRM_PASSWORD delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-        [alertView show];
-        return;
-    }
-    
-    if ([self.confirmPasswordTextField.text isEqualToString:self.passwordTextField.text]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_PASSWORD_NO_SAME delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-        [alertView show];
-        return;
-    }
-    
-    
-    [[KUHTTPClient manager] registerWithUID:self.userNameTextField.text mail:self.mailTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+//    [[KUHTTPClient manager] registerWithUID:self.userNameTextField.text mail:self.mailTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        KUDetailInfoViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUDetailInfoViewController"];
+        KUBaseInfoViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUBaseInfoViewController"];
         controller.userName = self.userNameTextField.text;
         controller.password = self.passwordTextField.text;
         [self.navigationController pushViewController:controller animated:YES];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@ %@", operation, error);
-    }];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@ %@", operation, error);
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {
