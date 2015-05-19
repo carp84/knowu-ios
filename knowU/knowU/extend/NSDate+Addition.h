@@ -10,6 +10,12 @@
 
 @interface NSDate (Addition)
 
-- (NSString *)convertString;
+- (NSString *)convertStringWithFormat:(NSString *)format;
 
++ (BOOL)dateIsYesterdayWithInterval:(NSTimeInterval)interval;
+
+- (NSInteger)weekdayWithDate;
+
+/** 是否可以上传数据*/
+- (BOOL)isCanUpdate:(NSDate *)date;
 @end

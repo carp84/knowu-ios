@@ -17,9 +17,12 @@
 #import "Masonry.h"
 #import "KUHomepageViewController.h"
 #import "DevicePlatInfo.h"
-#import "KUPetAlertView.h"
+#import "KUFeedPetViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface KULoginViewController ()
+@interface KULoginViewController () <CLLocationManagerDelegate>
+
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) NSMutableData *receiveData;
 /** 用户名*/
@@ -38,28 +41,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
-//    [[KUHTTPClient manager] uploadTraceWithUID:@"yy" traceInfo:@{@"userId"         : @"yy",
-//                                                                 @"latitude"       : @"130",
-//                                                                 @"longitude"    : @"45",
-//                                                                 @"timestamp"       : @"1996-07-09 23:58:59",
-//                                                                 @"address"         : @"北京",
-//                                                                 @"action" : @"写代码的",
-//                                                                 @"dayOfWeek"         : @1,
-//                                                                 @"otherDescription" : @"1"} success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-//        NSLog(@"%@ %@", operation, model);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//    }];
-    
-    KUPetAlertView *view = [[[NSBundle mainBundle] loadNibNamed:@"KUPetAlertView" owner:self options:nil] objectAtIndex:0];
-    view.frame = [UIScreen mainScreen].bounds;
-    [self.view addSubview:view];
     
     [self initData];
     [self initNotification];
 }
 
 - (void)initData{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 10;
+    self.locationManager.delegate = self;
+    self.locationManager.activityType = CLActivityTypeFitness;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    [self.locationManager startUpdatingLocation];
+    
     RAC(self.loginButton, userInteractionEnabled) =
     [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *userName, NSString *password){
             return @(userName.length > 0 && password.length > 0);
@@ -133,19 +131,22 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)login:(UIButton *)sender {
-//    [[KUHTTPClient manager] loginWithUID:self.userNameTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+    [[KUHTTPClient manager] loginWithUID:self.userNameTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
 
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         KUHomepageViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUHomepageViewController"];
+        controller.userName = self.userNameTextField.text;
         [self.navigationController pushViewController:controller animated:YES];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//    }];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
-- (IBAction)register:(UIButton *)sender {
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation{
+  
 }
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;

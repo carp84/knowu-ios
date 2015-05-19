@@ -24,8 +24,6 @@
     self.picker.backgroundColor = [UIColor whiteColor];
 }
 
-//- (instancetype) 
-
 - (IBAction)cancel:(UIButton *)sender {
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         
@@ -42,7 +40,7 @@
 }
 - (IBAction)confirm:(UIButton *)sender {
     if (self.selectedBirthdayBlock) {
-        self.selectedBirthdayBlock([self.picker.date convertString]);
+        self.selectedBirthdayBlock([self.picker.date convertStringWithFormat:@"yyyy-MM-dd"]);
     }
     [self cancel:sender];
 }

@@ -43,9 +43,9 @@
 - (void)keyboardWillShow:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    
-    CGRect keyboardRect = [aValue CGRectValue];
+//    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+//    
+//    CGRect keyboardRect = [aValue CGRectValue];
     NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [animationDurationValue getValue:&animationDuration];
@@ -85,17 +85,17 @@
 }
 
 - (IBAction)pushToViewController:(UIButton *)sender {
-//    if (![self.homeAddressTextField.text length]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_HOME_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-//        [alertView show];
-//        return;
-//    }
-//
-//    if (![self.companyAddressTextField.text length]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_COMPANY_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-//        [alertView show];
-//        return;
-//    }
+    if (![self.homeAddressTextField.text length]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_HOME_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+
+    if (![self.companyAddressTextField.text length]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_COMPANY_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     KUDetailInfoViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUDetailInfoViewController"];
     controller.userName = self.userName;

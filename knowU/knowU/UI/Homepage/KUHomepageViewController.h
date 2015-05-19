@@ -10,4 +10,6 @@
 
 @interface KUHomepageViewController : UIViewController
 
+@property (nonatomic, copy) NSString *userName;
+
 @end

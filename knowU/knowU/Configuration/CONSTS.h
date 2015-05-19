@@ -41,4 +41,12 @@ static const NSTimeInterval TIME_OUT_INTERVAL = 60;
 #define STRING_NO_SEX                  @"请选择性别"
 #define STRING_NO_CAREER               @"请输入职业"
 #define STRING_NO_CELL                 @"请输入电话"
+
+/*************************************主页*******************************************/
+#define IMAGE_HOMEPAGE_GIFT_1      @"主页_礼盒_1"
+#define IMAGE_HOMEPAGE_GIFT_2      @"主页_礼盒_2"
+#define IMAGE_HOMEPAGE_GIFT_3      @"主页_礼盒_3"
+#define IMAGE_HOMEPAGE_GIFT_4      @"主页_礼盒_4"
+#define STRING_HOMEPAGE_FEED_TITLE       @"最懂你的APP"
+#define STRING_HOMEPAGE_HATCH_TITLE       @"惊喜 ・ 还有"
 #endif

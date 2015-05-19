@@ -95,45 +95,45 @@
 }
 
 - (IBAction)pushToViewController:(UIButton *)sender {
-//    if (![self.userNameTextField.text length]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_USER_NAME delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-//        [alertView show];
-//        return;
-//    }
-//    
-//    if (![self.mailTextField.text length]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_MAIL delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-//        [alertView show];
-//        return;
-//    }
-//    if (![self.passwordTextField.text length]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_PASSWORD delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-//        [alertView show];
-//        return;
-//    }
-//    
-//    if (![self.confirmPasswordTextField.text length]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_CONFIRM_PASSWORD delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-//        [alertView show];
-//        return;
-//    }
-//    
-//    if ([self.confirmPasswordTextField.text isEqualToString:self.passwordTextField.text]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_PASSWORD_NO_SAME delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-//        [alertView show];
-//        return;
-//    }
+    if (![self.userNameTextField.text length]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_USER_NAME delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+    
+    if (![self.mailTextField.text length]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_MAIL delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+    if (![self.passwordTextField.text length]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_PASSWORD delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+    
+    if (![self.confirmPasswordTextField.text length]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_CONFIRM_PASSWORD delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+    
+    if ([self.confirmPasswordTextField.text isEqualToString:self.passwordTextField.text]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_PASSWORD_NO_SAME delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
     
     
-//    [[KUHTTPClient manager] registerWithUID:self.userNameTextField.text mail:self.mailTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+    [[KUHTTPClient manager] registerWithUID:self.userNameTextField.text mail:self.mailTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         KUBaseInfoViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUBaseInfoViewController"];
         controller.userName = self.userNameTextField.text;
         controller.password = self.passwordTextField.text;
         [self.navigationController pushViewController:controller animated:YES];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@ %@", operation, error);
-//    }];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@ %@", operation, error);
+    }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

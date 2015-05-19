@@ -19,7 +19,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BiV-1X-HzR">
                     <rect key="frame" x="22" y="109" width="275" height="215"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ADA-Pg-OUl">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="弹框秘书" translatesAutoresizingMaskIntoConstraints="NO" id="ADA-Pg-OUl">
                             <rect key="frame" x="30" y="13" width="50" height="85"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="LPe-iT-nEX"/>
@@ -38,7 +38,10 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入您所在地点的具体位置" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EsF-T2-lTF">
                             <rect key="frame" x="15" y="113" width="245" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="hhI-Vc-FdX"/>
+                            </connections>
                         </textField>
                         <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Leg-Ba-pEX">
                             <rect key="frame" x="5" y="149" width="265" height="0.0"/>
@@ -52,6 +55,9 @@
                             <state key="normal" title="取消" backgroundImage="注册_btn_返回_一般">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="cancel:" destination="iN0-l3-epB" eventType="touchUpInside" id="JwJ-zw-43A"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gM-h4-kz5">
                             <rect key="frame" x="138" y="170" width="137" height="45"/>
@@ -61,6 +67,9 @@
                             <state key="normal" title="确定" backgroundImage="注册_btn_一般">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="confirm:" destination="iN0-l3-epB" eventType="touchUpInside" id="70n-JX-vQ0"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -98,7 +107,6 @@
                     </variation>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Y4r-r1-gnH" secondAttribute="bottom" id="2D8-uW-RP8"/>
                 <constraint firstItem="Y4r-r1-gnH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Bha-ya-nV2"/>
@@ -110,11 +118,15 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="confirmButton" destination="0gM-h4-kz5" id="lqC-Y3-MNU"/>
+                <outlet property="locationTextField" destination="EsF-T2-lTF" id="2aZ-LN-xVj"/>
+                <outlet property="petImageView" destination="ADA-Pg-OUl" id="ueh-RM-WLW"/>
                 <outlet property="whiteView" destination="BiV-1X-HzR" id="h69-7R-0b0"/>
             </connections>
         </view>
     </objects>
     <resources>
+        <image name="弹框秘书" width="50" height="85"/>
         <image name="注册_btn_一般" width="8" height="8"/>
         <image name="注册_btn_返回_一般" width="8" height="9"/>
     </resources>

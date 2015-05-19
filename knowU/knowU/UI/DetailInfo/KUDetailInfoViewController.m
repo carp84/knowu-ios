@@ -83,9 +83,9 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 - (void)keyboardWillShow:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    
-    CGRect keyboardRect = [aValue CGRectValue];
+//    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+//    
+//    CGRect keyboardRect = [aValue CGRectValue];
     NSValue *animationDurationValue = [userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval animationDuration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [animationDurationValue getValue:&animationDuration];
@@ -173,22 +173,22 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
         [self handlePushViewController];
     }
     else {
-//        [[KUHTTPClient manager] fillUserInfoWithUID:self.userName
-//                                           password:self.password
-//                                           userInfo:@{@"userId"         : self.userName,
-//                                                      @"password"       : [self.password MD5],
-//                                                      @"homeAddress"    : self.homeAddress,
-//                                                      @"workAddress"    : self.companyAddress,
-//                                                      @"birthday"       : self.birthdayTextField.text,
-//                                                      @"gender"         : @(self.sexType),
-//                                                      @"jobDescription" : self.careerTextField.text,
-//                                                      @"mobile"         : self.cellTextField.text
-//                                                      }
-//                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+        [[KUHTTPClient manager] fillUserInfoWithUID:self.userName
+                                           password:self.password
+                                           userInfo:@{@"userId"         : self.userName,
+                                                      @"password"       : [self.password MD5],
+                                                      @"homeAddress"    : self.homeAddress,
+                                                      @"workAddress"    : self.companyAddress,
+                                                      @"birthday"       : self.birthdayTextField.text,
+                                                      @"gender"         : @(self.sexType),
+                                                      @"jobDescription" : self.careerTextField.text,
+                                                      @"mobile"         : self.cellTextField.text
+                                                      }
+                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
                                                 [self handlePushViewController];
-//                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                                                
-//                                            }];
+                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                
+                                            }];
 
     }
 }

@@ -10,4 +10,8 @@
 
 @interface KUPetAlertView : UIView
 
+@property (nonatomic, copy) void (^inputBlock)(NSString *location);
+
+- (void)show;
+
 @end
