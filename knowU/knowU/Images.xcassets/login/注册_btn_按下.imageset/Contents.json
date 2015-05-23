@@ -5,12 +5,41 @@
       "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 8,
+          "top" : 7,
+          "right" : 9,
+          "left" : 7
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "注册_btn_按下@2x.png"
+      "filename" : "注册_btn_按下@2x.png",
+      "scale" : "2x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 13,
+          "top" : 12,
+          "right" : 13,
+          "left" : 12
+        }
+      },
       "idiom" : "universal",
+      "filename" : "注册_btn_按下@3x.png",
       "scale" : "3x"
     }
   ],

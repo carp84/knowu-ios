@@ -13,6 +13,7 @@
 #import "NSString+Addition.h"
 #import "CONSTS.h"
 #import "KUBaseModel.h"
+#import "KUResponesModel.h"
 
 static const int successCode = 200;
 
@@ -69,9 +70,11 @@ static KUHTTPDataSource *httpDataSource;
         NSLog(@"%@",responseObject);
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
-            failure(operation, error);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (failure) {
+                failure(operation, error);
+            }
+        });
     }];
 }
 
@@ -86,9 +89,11 @@ static KUHTTPDataSource *httpDataSource;
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);
-        if (failure) {
-            failure(operation, error);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (failure) {
+                failure(operation, error);
+            }
+        });
     }];
 }
 
@@ -106,9 +111,11 @@ static KUHTTPDataSource *httpDataSource;
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
-            failure(operation, error);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (failure) {
+                failure(operation, error);
+            }
+        });
     }];
 }
 
@@ -122,9 +129,11 @@ static KUHTTPDataSource *httpDataSource;
     return [self.operationManager PUT:[URLString UTF8Encode] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (failure) {
-            failure(operation, error);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (failure) {
+                failure(operation, error);
+            }
+        });
     }];
 }
 
@@ -133,19 +142,42 @@ static KUHTTPDataSource *httpDataSource;
                  modelClass:(Class)modelClass
                     success:(KUSuccessBlock)success
                     failure:(KUFailureBlock)failure {
-    KUBaseModel *baseModel = [MTLJSONAdapter modelOfClass:modelClass
-                                               fromJSONDictionary:responseObject error:nil];
-    if (baseModel.success && baseModel.code == successCode) {
-        if (success) {
-            success(operation, baseModel);
-        }
-    }
-    else {
-        if (failure) {
-            failure(operation, nil);
-        }
-    }
     
+    KUBaseModel *baseModel = [MTLJSONAdapter modelOfClass:modelClass fromJSONDictionary:responseObject error:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (baseModel) {
+            if (baseModel.success == 1 && baseModel.code == successCode) {
+                
+                if (success) {
+                    success(operation, baseModel);
+                }
+            }
+            else {
+                if (failure) {
+                    failure(operation, nil);
+                }
+            }
+        }
+        else if (![baseModel isKindOfClass:modelClass]){
+            if (failure) {
+                failure(operation, nil);
+            }
+        }
+        else {
+            if (failure) {
+                failure(operation, nil);
+            }
+        }
+    });
+    
+    
+}
+
+- (BOOL)isRequestOperationValid:(id)responseObject{
+    if ([[responseObject objectForKey:@"success"] integerValue] == 1) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

@@ -20,6 +20,13 @@ static const NSTimeInterval TIME_OUT_INTERVAL = 60;
 #define IMAGE_REGISTER_MALE_NORMAL     @"注册_男icon_一般"
 #define IMAGE_REGISTER_FEMALE_SELECTED @"注册_女icon_选中"
 #define IMAGE_REGISTER_FRMALE_NORMAL   @"注册_女icon_一般"
+#define IMAGE_LOGIN_NORMAL             @"登录_btn_一般"
+#define IMAGE_LOGIN_HIGHLIGHTED @"登录_btn_按下"
+#define IMAGE_BACK_NORMAL      @"注册_btn_返回_一般"
+#define IMAGE_BACK_HIGHLIGHTED @"注册_btn_返回_按下"
+#define IMAGE_REGISTER_NORMAL      @"注册_btn_一般"
+#define IMAGE_REGISTER_HIGHLIGHTED @"注册_btn_按下"
+#define IMAGE_RIGISTER_NO_USE   @"注册_btn_不可用"
 
 /*************************************AlertView信息*******************************************/
 #define STRING_TIP_TITLE               @"温馨提示"
@@ -41,7 +48,7 @@ static const NSTimeInterval TIME_OUT_INTERVAL = 60;
 #define STRING_NO_SEX                  @"请选择性别"
 #define STRING_NO_CAREER               @"请输入职业"
 #define STRING_NO_CELL                 @"请输入电话"
-
+#define IMAGE_POINT                    @"list_icon_jump"
 /*************************************主页*******************************************/
 #define IMAGE_HOMEPAGE_GIFT_1      @"主页_礼盒_1"
 #define IMAGE_HOMEPAGE_GIFT_2      @"主页_礼盒_2"

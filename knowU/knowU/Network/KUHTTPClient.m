@@ -63,9 +63,8 @@ static KUHTTPClient *client;
                                     success:(KUSuccessBlock)success
                                     failure:(KUFailureBlock)failure{
     
-    
+//    [[dictionary objectForKey:@"url"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
     NSString *url = [self URLWithPath:[DefaultURL manager].registerURL path:[NSString stringWithFormat:@"?userId=%@&emailAddress=%@&password=%@", [UID UTF8Encode], [mail UTF8Encode], [password MD5]]];
-    NSLog(@"%@ %@",[DefaultURL manager].registerURL,url);
     return [dataSource POSTClient:url
                        parameters:nil
                        modelClass:[KUResponesModel class]

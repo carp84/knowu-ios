@@ -28,7 +28,7 @@
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         
         self.alpha = 0;
-        self.blackView.backgroundColor = [UIColor ColorFromRGB:0 alpha:0];
+        self.blackView.backgroundColor = [UIColor colorFromRGB:0 alpha:0];
         [self.selectedView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_bottom);
         }];
@@ -48,7 +48,7 @@
 - (void)show {
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.alpha = 1;
-        self.blackView.backgroundColor = [UIColor ColorFromRGB:0 alpha:0.6];
+        self.blackView.backgroundColor = [UIColor colorFromRGB:0 alpha:0.6];
         [self.selectedView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.mas_bottom).with.offset(-202);
         }];

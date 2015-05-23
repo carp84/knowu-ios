@@ -6,16 +6,12 @@
 //  Copyright (c) 2015年 HanJiatong. All rights reserved.
 //
 
-#import "MTLModel.h"
-#import "MTLJSONAdapter.h"
+#import <Mantle/Mantle.h>
 
 @interface KUBaseModel : MTLModel <MTLJSONSerializing>
 
 @property (assign, readonly, nonatomic) int code;
-@property (assign, readonly, nonatomic) BOOL success;
+@property (assign, readonly, nonatomic) int success;
 @property (copy, readonly, nonatomic) NSString *message;
-
-- (instancetype)initWithSuccess:(BOOL)success
-                        message:(NSString *)message;
 
 @end

@@ -34,6 +34,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 @property (weak, nonatomic) IBOutlet KUBrithdayTextField *birthdayTextField;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (nonatomic, getter=isSkipFillInDetailInfo) BOOL skipFillInDetailInfo;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @end
 
 @implementation KUDetailInfoViewController
@@ -53,6 +54,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
         NSLog(@"%@", birthday);
         weakSelf.birthdayTextField.text = birthday;
         weakSelf.skipFillInDetailInfo = NO;
+        [weakSelf changeSkipButtonTitle:nil];
     };
     [self.view addSubview:self.pickerView];
     
@@ -67,6 +69,11 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
         [weakSelf.pickerView show];
         
     };
+    
+    [self.backButton setBackgroundImage:[UIImage imageNamed:IMAGE_BACK_NORMAL] forState:UIControlStateNormal];
+    [self.backButton setBackgroundImage:[UIImage imageNamed:IMAGE_BACK_HIGHLIGHTED] forState:UIControlStateHighlighted];
+    [self.skipButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_NORMAL] forState:UIControlStateNormal];
+    [self.skipButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_HIGHLIGHTED] forState:UIControlStateHighlighted];
 }
 
 - (void)initData {
@@ -162,6 +169,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
         default:
             break;
     }
+    [self changeSkipButtonTitle:nil];
 }
 - (IBAction)popToViewController:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -196,7 +204,10 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 - (void)handlePushViewController {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     KUHomepageViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUHomepageViewController"];
-    [self.navigationController pushViewController:controller animated:YES];
+    controller.userName = self.userName;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+    navigationController.navigationBar.hidden = YES;
+    [self presentViewController:navigationController animated:NO completion:NULL];
 }
 
 

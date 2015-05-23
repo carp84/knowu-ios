@@ -119,7 +119,6 @@
     view.inputBlock = ^(NSString *location){
         weakSelf.userInputLocation = location;
     };
-    [view show];
 
 }
 

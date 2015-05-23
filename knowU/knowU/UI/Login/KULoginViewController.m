@@ -19,6 +19,7 @@
 #import "DevicePlatInfo.h"
 #import "KUFeedPetViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "CONSTS.h"
 
 @interface KULoginViewController () <CLLocationManagerDelegate>
 
@@ -33,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *hideHandImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *showHandImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @end
 
@@ -40,10 +42,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.hidden = YES;
-    
+    self.navigationController.navigationBarHidden = YES;
+    [self initUI];
     [self initData];
     [self initNotification];
+}
+
+- (void)initUI{
+    [self.loginButton setBackgroundImage:[UIImage imageNamed:IMAGE_LOGIN_NORMAL] forState:UIControlStateNormal];
+    [self.loginButton setBackgroundImage:[UIImage imageNamed:IMAGE_LOGIN_HIGHLIGHTED] forState:UIControlStateHighlighted];
+    [self.registerButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_NORMAL] forState:UIControlStateNormal];
+    [self.registerButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_HIGHLIGHTED] forState:UIControlStateHighlighted];
 }
 
 - (void)initData{
@@ -60,12 +69,12 @@
     
     RAC(self.loginButton, userInteractionEnabled) =
     [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *userName, NSString *password){
-            return @(userName.length > 0 && password.length > 0);
+            return @([userName length] > 0 && [password length]> 0);
     }];
     
     RAC(self.headerImageView, image) =
     [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *userName, NSString *password){
-            if (userName.length > 0 && password.length > 0) {
+            if ([userName length] > 0 && [password length] > 0) {
                 return [UIImage imageNamed:@"sign_peo_2_0"];
             }
             else{
@@ -75,12 +84,12 @@
 
     RAC(self.hideHandImageView, hidden) =
     [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *userName, NSString *password){
-        return @(userName.length > 0 && password.length > 0);
+        return @([userName length] > 0 && [password length] > 0);
     }];
 
     RAC(self.showHandImageView, hidden) =
     [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *userName, NSString *password){
-        return @(!(userName.length > 0 && password.length > 0));
+        return @(!([userName length] > 0 && [password length] > 0));
     }];
 }
 
@@ -103,7 +112,9 @@
     CGFloat tranformY = 0;//keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
     if ([DevicePlatInfo devicePlatform] == 3.5) {
         tranformY = -100;
-
+    }
+    else if ([DevicePlatInfo devicePlatform] == 4) {
+        tranformY = -20;
     }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.transform = CGAffineTransformMakeTranslation(0, tranformY);
@@ -132,11 +143,13 @@
 }
 - (IBAction)login:(UIButton *)sender {
     [[KUHTTPClient manager] loginWithUID:self.userNameTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-
+    
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         KUHomepageViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUHomepageViewController"];
         controller.userName = self.userNameTextField.text;
-        [self.navigationController pushViewController:controller animated:YES];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+        navigationController.navigationBar.hidden = YES;
+        [self presentViewController:navigationController animated:NO completion:NULL];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];

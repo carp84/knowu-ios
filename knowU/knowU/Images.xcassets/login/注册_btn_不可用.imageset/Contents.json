@@ -10,7 +10,22 @@
       "filename" : "注册_btn_不可用@2x.png"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 13,
+          "top" : 11,
+          "right" : 13,
+          "left" : 11
+        }
+      },
       "idiom" : "universal",
+      "filename" : "注册_btn_不可用@3x.png",
       "scale" : "3x"
     }
   ],

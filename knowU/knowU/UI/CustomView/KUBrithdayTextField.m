@@ -7,11 +7,12 @@
 //
 
 #import "KUBrithdayTextField.h"
-
+#import "CONSTS.h"
+#import "Masonry.h"
 @implementation KUBrithdayTextField
 
 - (void)awakeFromNib {
-  
+   
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -19,6 +20,8 @@
         self.touchBlock();
     }
 }
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

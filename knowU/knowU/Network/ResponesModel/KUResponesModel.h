@@ -8,6 +8,6 @@
 
 #import "KUBaseModel.h"
 
-@interface KUResponesModel : KUBaseModel
+@interface KUResponesModel : KUBaseModel 
 
 @end

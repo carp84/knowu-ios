@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, KUAlertType) {
+    KULocationAlertType = 1,   //1表示输入的是地点，2表示喂养
+    KUFeedAlertType
+};
+
 @interface KUPetAlertView : UIView
 
 @property (nonatomic, copy) void (^inputBlock)(NSString *location);
 
-- (void)show;
+- (void)showWithType:(KUAlertType)type image:(UIImage *)image;
 
 @end

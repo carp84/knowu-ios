@@ -10,11 +10,4 @@
 
 @implementation KUResponesModel
 
-+ (NSDictionary *)JSONKeyPathsByPropertyKey
-{
-    return @{@"code"    : @"code",
-             @"message" : @"message",
-             @"success" : @"success"};
-}
-
 @end

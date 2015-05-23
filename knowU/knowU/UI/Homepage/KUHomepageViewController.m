@@ -60,6 +60,8 @@
 /** 上传数据的时间，3秒之内禁止上传数据，避免数据重复*/
 @property (nonatomic, strong) NSDate *updateLocationDate;
 
+@property (nonatomic, strong) NSDictionary *petDictionary;
+
 @end
 
 @implementation KUHomepageViewController
@@ -122,6 +124,9 @@
 }
 
 - (void)initData {
+    NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pet" ofType:@"plist"]];
+    self.petDictionary = [array objectAtIndex:arc4random() % [array count]];
+
     [self showWithLoginInfo:[[KUProfile manager] readFile]];
     [[KUProfile manager] updateFile];
     
@@ -138,6 +143,9 @@
     
     self.updateLocationDate = [NSDate date];
     self.userInputLocation = @"";
+    
+    
+    
 }
 
 #pragma mark- 根据登录天数展示不同数据
@@ -177,7 +185,7 @@
     }
     
     self.titleLabel.text = totalLoginDay.integerValue < 5 ? STRING_HOMEPAGE_HATCH_TITLE : STRING_HOMEPAGE_FEED_TITLE;
-    
+    self.petImageView.image = [UIImage imageNamed:[self.petDictionary objectForKey:@"pet"]];
     if (totalLoginDay.integerValue == 5) {
         self.petImageView.hidden = NO;
         self.inputLocationButton.hidden = NO;
@@ -220,7 +228,12 @@
 }
 
 - (IBAction)feed:(UIButton *)sender {
-    
+    WEAKSELF;
+    KUPetAlertView *view = [[[NSBundle mainBundle] loadNibNamed:@"KUPetAlertView" owner:self options:nil] objectAtIndex:0];
+    view.inputBlock = ^(NSString *location){
+        weakSelf.userInputLocation = location;
+    };
+    [view showWithType:KUFeedAlertType image:[UIImage imageNamed:[self.petDictionary objectForKey:@"alert"]]];
 }
 
 - (IBAction)inputLocation:(UIButton *)sender {
@@ -229,7 +242,7 @@
     view.inputBlock = ^(NSString *location){
         weakSelf.userInputLocation = location;
     };
-    [view show];
+    [view showWithType:KULocationAlertType image:[UIImage imageNamed:[self.petDictionary objectForKey:@"alert"]]];
 }
 
 - (void)uploadLocation:(CLLocationCoordinate2D)coordinate{
