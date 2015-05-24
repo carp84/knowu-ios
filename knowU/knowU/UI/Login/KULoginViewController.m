@@ -142,7 +142,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)login:(UIButton *)sender {
-    [[KUHTTPClient manager] loginWithUID:self.userNameTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+//    [[KUHTTPClient manager] loginWithUID:self.userNameTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
     
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         KUHomepageViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUHomepageViewController"];
@@ -150,9 +150,9 @@
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
         navigationController.navigationBar.hidden = YES;
         [self presentViewController:navigationController animated:NO completion:NULL];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
 }
 
 - (void)locationManager:(CLLocationManager *)manager

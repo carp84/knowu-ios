@@ -14,21 +14,27 @@
 #import "RACSignal.h"
 #import "RACSignal+Operations.h"
 #import "KUTextField.h"
-@interface KUPetAlertView () <UITextFieldDelegate>
+#import "CONSTS.h"
+
+@interface KUPetAlertView () <UITextFieldDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *whiteView;
 @property (weak, nonatomic) IBOutlet KUTextField *locationTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *petImageView;
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;
-
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UITextView *actionTextView;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 @end
 
 @implementation KUPetAlertView
 
 - (void)awakeFromNib{
-    RAC(self.confirmButton, enabled) = [RACSignal combineLatest:@[self.locationTextField.rac_textSignal] reduce:^(NSString *loc){
-        return @(loc.length > 0);
-    }];
     //输入您所在地点的具体位置
+    [self.cancelButton setBackgroundImage:[UIImage imageNamed:IMAGE_ALERT_CANCEL_NORMAL] forState:UIControlStateNormal];
+    [self.cancelButton setBackgroundImage:[UIImage imageNamed:IMAGE_ALERT_CANCEL_HIGHLIGHTED] forState:UIControlStateHighlighted];
+    [self.confirmButton setBackgroundImage:[UIImage imageNamed:IMAGE_ALERT_CONFIRM_NORMAL] forState:UIControlStateNormal];
+    [self.confirmButton setBackgroundImage:[UIImage imageNamed:IMAGE_ALERT_CONFIRM_HIGHLIGHTED] forState:UIControlStateHighlighted];
+    self.actionTextView.delegate = self;
 }
 - (IBAction)cancel:(UIButton *)sender {
     [self.locationTextField resignFirstResponder];
@@ -45,6 +51,10 @@
         self.inputBlock(self.locationTextField.text);
     }
     [self cancel:sender];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self cancel:nil];
 }
 
 - (void)showWithType:(KUAlertType)type image:(UIImage *)image{
@@ -88,6 +98,26 @@
     [self confirm:self.confirmButton];
     return YES;
 }
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    }
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    if ([self.actionTextView.text length]) {
+        self.placeholderLabel.hidden = YES;
+        if ([self.actionTextView.text length] > 20) {
+            self.actionTextView.text = [self.actionTextView.text substringWithRange:NSMakeRange(0, 20)];
+        }
+    }
+    else {
+        self.placeholderLabel.hidden = NO;
+    }
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

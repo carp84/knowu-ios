@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *homeAddressTextField;
 @property (weak, nonatomic) IBOutlet UITextField *companyAddressTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextStepButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *singleNextStepButton;
+
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @end
 
@@ -35,13 +38,13 @@
 - (void)initUI{
     [self.backButton setBackgroundImage:[UIImage imageNamed:IMAGE_BACK_NORMAL] forState:UIControlStateNormal];
     [self.backButton setBackgroundImage:[UIImage imageNamed:IMAGE_BACK_HIGHLIGHTED] forState:UIControlStateHighlighted];
-    [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_NORMAL] forState:UIControlStateNormal];
-    [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_HIGHLIGHTED] forState:UIControlStateHighlighted];
+    [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateNormal];
+    [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateHighlighted];
+    self.nextStepButton.userInteractionEnabled = NO;
     
-    RAC(self.nextStepButton, userInteractionEnabled) =
-    [RACSignal combineLatest:@[self.homeAddressTextField.rac_textSignal,self.companyAddressTextField.rac_textSignal] reduce:^(NSString *homeAddress, NSString *companyAddress){
-        return @([homeAddress length] > 0 && [companyAddress length] > 0);
-    }];
+    [self.singleNextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateNormal];
+    [self.singleNextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateHighlighted];
+    self.singleNextStepButton.userInteractionEnabled = NO;
 }
 
 
@@ -49,6 +52,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSkipButtonImage:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification{
@@ -95,6 +100,27 @@
     }];
 }
 
+- (void)changeSkipButtonImage:(NSNotification *)notification{
+    if ([self.homeAddressTextField.text length] && [self.companyAddressTextField.text length]) {
+        [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_NORMAL] forState:UIControlStateNormal];
+        [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_HIGHLIGHTED] forState:UIControlStateHighlighted];
+        self.nextStepButton.userInteractionEnabled = YES;
+        
+        [self.singleNextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_NORMAL] forState:UIControlStateNormal];
+        [self.singleNextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_HIGHLIGHTED] forState:UIControlStateHighlighted];
+        self.singleNextStepButton.userInteractionEnabled = YES;
+    }
+    else {
+        [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateNormal];
+        [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateHighlighted];
+        self.nextStepButton.userInteractionEnabled = NO;
+        
+        [self.singleNextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateNormal];
+        [self.singleNextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateHighlighted];
+        self.singleNextStepButton.userInteractionEnabled = NO;
+    }
+}
+
 - (IBAction)pushToViewController:(UIButton *)sender {
 //    if (![self.homeAddressTextField.text length]) {
 //        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_HOME_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
@@ -117,6 +143,11 @@
 }
 - (IBAction)popToViewController:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

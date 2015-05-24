@@ -177,28 +177,28 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 - (IBAction)pushToViewController:(UIButton *)sender {
     
     
-    if (self.skipFillInDetailInfo) {
+//    if (self.skipFillInDetailInfo) {
         [self handlePushViewController];
-    }
-    else {
-        [[KUHTTPClient manager] fillUserInfoWithUID:self.userName
-                                           password:self.password
-                                           userInfo:@{@"userId"         : self.userName,
-                                                      @"password"       : [self.password MD5],
-                                                      @"homeAddress"    : self.homeAddress,
-                                                      @"workAddress"    : self.companyAddress,
-                                                      @"birthday"       : self.birthdayTextField.text,
-                                                      @"gender"         : @(self.sexType),
-                                                      @"jobDescription" : self.careerTextField.text,
-                                                      @"mobile"         : self.cellTextField.text
-                                                      }
-                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-                                                [self handlePushViewController];
-                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                
-                                            }];
-
-    }
+//    }
+//    else {
+//        [[KUHTTPClient manager] fillUserInfoWithUID:self.userName
+//                                           password:self.password
+//                                           userInfo:@{@"userId"         : self.userName,
+//                                                      @"password"       : [self.password MD5],
+//                                                      @"homeAddress"    : self.homeAddress,
+//                                                      @"workAddress"    : self.companyAddress,
+//                                                      @"birthday"       : self.birthdayTextField.text,
+//                                                      @"gender"         : @(self.sexType),
+//                                                      @"jobDescription" : self.careerTextField.text,
+//                                                      @"mobile"         : self.cellTextField.text
+//                                                      }
+//                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+//                                                [self handlePushViewController];
+//                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                                                
+//                                            }];
+//
+//    }
 }
 
 - (void)handlePushViewController {

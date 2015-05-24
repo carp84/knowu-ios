@@ -19,10 +19,12 @@
 #import "RACSubscriptingAssignmentTrampoline.h"
 #import "RACSignal.h"
 #import "RACSignal+Operations.h"
+#import "Masonry.h"
 
 @interface KUHomepageViewController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *giftImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
@@ -41,10 +43,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 /** 显示连续登录天数*/
-@property (weak, nonatomic) IBOutlet UILabel *loginDayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *loginDayLabel;        //还剩几天
 
 /** 显示总登录天数*/
-@property (weak, nonatomic) IBOutlet UILabel *totalLoginDayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalLoginDayLabel;   //已登陆几天
 
 /** 显示登录天数的背景图片*/
 @property (weak, nonatomic) IBOutlet UIImageView *showLoginDayImageView;
@@ -56,6 +58,8 @@
 @property (nonatomic, copy) NSString *locationWithSystem;
 @property (weak, nonatomic) IBOutlet UIButton *feedButton;
 @property (weak, nonatomic) IBOutlet UIButton *inputLocationButton;
+@property (weak, nonatomic) IBOutlet UIImageView *leftSpliteImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *rightSpliteImageView;
 
 /** 上传数据的时间，3秒之内禁止上传数据，避免数据重复*/
 @property (nonatomic, strong) NSDate *updateLocationDate;
@@ -74,8 +78,12 @@
 }
 
 - (void)initUI {
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     if ([DevicePlatInfo devicePlatform] == 3.5) {
         self.backgroundView.image = [UIImage imageNamed:IMAGE_IPHONE4_BACKGROUND];
+        [self initUIWith35Screen];
     }
     else if ([DevicePlatInfo devicePlatform] == 4) {
         self.backgroundView.image = [UIImage imageNamed:IMAGE_IPHONE5_BACKGROUND];
@@ -88,39 +96,94 @@
     }
     
     [self.loginDayLabel showOtherFontFromLocation:self.loginDayLabel.text.length - 1 length:1 fontSize:[UIFont systemFontOfSize:10]];
-    //左面
-    self.leftTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.titleLabel.center.y - 1.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.leftTopWhiteView.backgroundColor = [UIColor whiteColor];
-    [self.backgroundView addSubview:self.leftTopWhiteView];
+//    //左面
+//    self.leftTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.titleLabel.center.y - 1.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+//    self.leftTopWhiteView.backgroundColor = [UIColor whiteColor];
+//    [self.backgroundView addSubview:self.leftTopWhiteView];
+//    
+//    self.leftTopGrayView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopWhiteView.frame.origin.y + self.leftTopWhiteView.frame.size.height + 0.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+//    self.leftTopGrayView.backgroundColor = [UIColor homepageGrayLine];
+//    [self.backgroundView addSubview:self.leftTopGrayView];
+//    
+//    self.leftBottomWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopWhiteView.frame.origin.y + self.leftTopWhiteView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+//    self.leftBottomWhiteView.backgroundColor = [UIColor whiteColor];
+//    [self.backgroundView addSubview:self.leftBottomWhiteView];
+//    
+//    self.leftBottomGrayView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopGrayView.frame.origin.y + self.leftTopGrayView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+//    self.leftBottomGrayView.backgroundColor = [UIColor homepageGrayLine];
+//    [self.backgroundView addSubview:self.leftBottomGrayView];
+//    
+//    //右面
+//    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.titleLabel.center.y - 1.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+//    self.rightTopWhiteView.backgroundColor = [UIColor whiteColor];
+//    [self.backgroundView addSubview:self.rightTopWhiteView];
+//    
+//    self.rightTopGrayView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 0.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+//    self.rightTopGrayView.backgroundColor = [UIColor homepageGrayLine];
+//    [self.backgroundView addSubview:self.rightTopGrayView];
+//    
+//    self.rightBottomWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+//    self.rightBottomWhiteView.backgroundColor = [UIColor whiteColor];
+//    [self.backgroundView addSubview:self.rightBottomWhiteView];
+//    
+//    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopGrayView.frame.origin.y + self.rightTopGrayView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
+//    self.rightTopWhiteView.backgroundColor = [UIColor homepageGrayLine];
+//    [self.backgroundView addSubview:self.rightTopWhiteView];
+}
+
+#pragma mark- 3.5寸屏幕UI
+- (void)initUIWith35Screen{
+    [self.logoImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@33);
+    }];
     
-    self.leftTopGrayView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopWhiteView.frame.origin.y + self.leftTopWhiteView.frame.size.height + 0.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.leftTopGrayView.backgroundColor = [UIColor homepageGrayLine];
-    [self.backgroundView addSubview:self.leftTopGrayView];
+    [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.logoImageView.mas_bottom).offset(20);
+    }];
+
+    [self.showLoginDayImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(15);
+    }];
     
-    self.leftBottomWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopWhiteView.frame.origin.y + self.leftTopWhiteView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.leftBottomWhiteView.backgroundColor = [UIColor whiteColor];
-    [self.backgroundView addSubview:self.leftBottomWhiteView];
+//    [self.loginDayLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//        
+//    }];
+//
+//    
+//    [self.totalLoginDayLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//        
+//    }];
     
-    self.leftBottomGrayView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopGrayView.frame.origin.y + self.leftTopGrayView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.leftBottomGrayView.backgroundColor = [UIColor homepageGrayLine];
-    [self.backgroundView addSubview:self.leftBottomGrayView];
+    [self.petImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(15);
+        make.width.equalTo(@155);
+        make.height.equalTo(@270);
+        
+    }];
+
+    [self.feedButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.petImageView.mas_bottom).offset(0);
+        make.height.equalTo(@35);
+        make.width.equalTo(@110);
+        make.centerX.equalTo(@(-60));
+    }];
+
+//    [self.inputLocationButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.petImageView.mas_bottom).offset(0);
+//        make.height.equalTo(@35);
+//        make.width.equalTo(@110);
+////        make.trailing.equalTo(@(([UIScreen mainScreen].bounds.size.width - (110 * 2 + 10)) / 2));
+//    }];
+//
+//    [self.inputLocationButton mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.petImageView.mas_bottom).offset(5);
+//    }];
+
+}
+
+#pragma mark- 其他屏幕UI
+- (void)initUIWithOtherScreen{
     
-    //右面
-    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.titleLabel.center.y - 1.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.rightTopWhiteView.backgroundColor = [UIColor whiteColor];
-    [self.backgroundView addSubview:self.rightTopWhiteView];
-    
-    self.rightTopGrayView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 0.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.rightTopGrayView.backgroundColor = [UIColor homepageGrayLine];
-    [self.backgroundView addSubview:self.rightTopGrayView];
-    
-    self.rightBottomWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.rightBottomWhiteView.backgroundColor = [UIColor whiteColor];
-    [self.backgroundView addSubview:self.rightBottomWhiteView];
-    
-    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopGrayView.frame.origin.y + self.rightTopGrayView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-    self.rightTopWhiteView.backgroundColor = [UIColor homepageGrayLine];
-    [self.backgroundView addSubview:self.rightTopWhiteView];
 }
 
 - (void)initData {
@@ -186,7 +249,7 @@
     
     self.titleLabel.text = totalLoginDay.integerValue < 5 ? STRING_HOMEPAGE_HATCH_TITLE : STRING_HOMEPAGE_FEED_TITLE;
     self.petImageView.image = [UIImage imageNamed:[self.petDictionary objectForKey:@"pet"]];
-    if (totalLoginDay.integerValue == 5) {
+    if (totalLoginDay.integerValue == 4) {
         self.petImageView.hidden = NO;
         self.inputLocationButton.hidden = NO;
         self.feedButton.hidden = NO;
@@ -271,8 +334,8 @@
     [geocoder reverseGeocodeLocation: newLocation completionHandler:^(NSArray *array, NSError *error) {
         if (array.count > 0) {
             if ([self.updateLocationDate isCanUpdate:[NSDate date]]) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:newLocation.timestamp.description delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [alertView show];
+//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:newLocation.timestamp.description delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+//                [alertView show];
                 CLPlacemark *placemark = [array objectAtIndex:0];
                 self.locationWithSystem = placemark.name;
                 [self uploadLocation:newLocation.coordinate];

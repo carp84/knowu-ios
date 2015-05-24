@@ -37,13 +37,9 @@
 - (void)initUI{
     [self.backButton setBackgroundImage:[UIImage imageNamed:IMAGE_BACK_NORMAL] forState:UIControlStateNormal];
     [self.backButton setBackgroundImage:[UIImage imageNamed:IMAGE_BACK_HIGHLIGHTED] forState:UIControlStateHighlighted];
-    [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_NORMAL] forState:UIControlStateNormal];
-    [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_HIGHLIGHTED] forState:UIControlStateHighlighted];
-    
-    RAC(self.nextStepButton, userInteractionEnabled) =
-    [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal,self.mailTextField.rac_textSignal,self.passwordTextField.rac_textSignal,self.confirmPasswordTextField.rac_textSignal] reduce:^(NSString *nickName, NSString *mail, NSString *password, NSString *confirmPassword){
-        return @([nickName length] > 0 && [mail length] > 0 && [password length] > 0 && [confirmPassword length] > 0);
-    }];
+    [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateNormal];
+    [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateHighlighted];
+    self.nextStepButton.userInteractionEnabled = NO;
 }
 
 - (void)initData{
@@ -54,6 +50,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSkipButtonImage:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification{
@@ -100,6 +98,19 @@
     }];
 }
 
+- (void)changeSkipButtonImage:(NSNotification *)notification{
+    if ([self.userNameTextField.text length] && [self.mailTextField.text length] && [self.passwordTextField.text length] && [self.confirmPasswordTextField.text length]) {
+        [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_NORMAL] forState:UIControlStateNormal];
+        [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_HIGHLIGHTED] forState:UIControlStateHighlighted];
+        self.nextStepButton.userInteractionEnabled = YES;
+    }
+    else {
+        [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateNormal];
+        [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateHighlighted];
+        self.nextStepButton.userInteractionEnabled = NO;
+    }
+}
+
 - (IBAction)popToViewController:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -129,15 +140,15 @@
         return;
     }
     
-    [[KUHTTPClient manager] registerWithUID:self.userNameTextField.text mail:self.mailTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+//    [[KUHTTPClient manager] registerWithUID:self.userNameTextField.text mail:self.mailTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         KUBaseInfoViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUBaseInfoViewController"];
         controller.userName = self.userNameTextField.text;
         controller.password = self.passwordTextField.text;
         [self.navigationController pushViewController:controller animated:YES];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@ %@", operation, error);
-    }];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"%@ %@", operation, error);
+//    }];
 }
 
 - (void)showAlertViewWithMessage:(NSString *)message{
@@ -148,10 +159,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
 }
 
 - (void)didReceiveMemoryWarning {
