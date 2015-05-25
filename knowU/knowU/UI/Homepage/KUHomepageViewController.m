@@ -28,17 +28,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *giftImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
-
-@property (nonatomic, strong) UIView *leftTopWhiteView;
-@property (nonatomic, strong) UIView *leftBottomWhiteView;
-@property (nonatomic, strong) UIView *leftTopGrayView;
-@property (nonatomic, strong) UIView *leftBottomGrayView;
-
-@property (nonatomic, strong) UIView *rightTopWhiteView;
-@property (nonatomic, strong) UIView *rightBottomWhiteView;
-@property (nonatomic, strong) UIView *rightTopGrayView;
-@property (nonatomic, strong) UIView *rightBottomGrayView;
-
 /** 标题*/
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
@@ -96,39 +85,7 @@
     }
     
     [self.loginDayLabel showOtherFontFromLocation:self.loginDayLabel.text.length - 1 length:1 fontSize:[UIFont systemFontOfSize:10]];
-//    //左面
-//    self.leftTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.titleLabel.center.y - 1.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-//    self.leftTopWhiteView.backgroundColor = [UIColor whiteColor];
-//    [self.backgroundView addSubview:self.leftTopWhiteView];
-//    
-//    self.leftTopGrayView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopWhiteView.frame.origin.y + self.leftTopWhiteView.frame.size.height + 0.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-//    self.leftTopGrayView.backgroundColor = [UIColor homepageGrayLine];
-//    [self.backgroundView addSubview:self.leftTopGrayView];
-//    
-//    self.leftBottomWhiteView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopWhiteView.frame.origin.y + self.leftTopWhiteView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-//    self.leftBottomWhiteView.backgroundColor = [UIColor whiteColor];
-//    [self.backgroundView addSubview:self.leftBottomWhiteView];
-//    
-//    self.leftBottomGrayView = [[UIView alloc] initWithFrame:CGRectMake(27, self.leftTopGrayView.frame.origin.y + self.leftTopGrayView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-//    self.leftBottomGrayView.backgroundColor = [UIColor homepageGrayLine];
-//    [self.backgroundView addSubview:self.leftBottomGrayView];
-//    
-//    //右面
-//    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.titleLabel.center.y - 1.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-//    self.rightTopWhiteView.backgroundColor = [UIColor whiteColor];
-//    [self.backgroundView addSubview:self.rightTopWhiteView];
-//    
-//    self.rightTopGrayView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 0.5, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-//    self.rightTopGrayView.backgroundColor = [UIColor homepageGrayLine];
-//    [self.backgroundView addSubview:self.rightTopGrayView];
-//    
-//    self.rightBottomWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopWhiteView.frame.origin.y + self.rightTopWhiteView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-//    self.rightBottomWhiteView.backgroundColor = [UIColor whiteColor];
-//    [self.backgroundView addSubview:self.rightBottomWhiteView];
-//    
-//    self.rightTopWhiteView = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 + self.titleLabel.frame.size.width / 2 + 20, self.rightTopGrayView.frame.origin.y + self.rightTopGrayView.frame.size.height + 2, [UIScreen mainScreen].bounds.size.width / 2 - self.titleLabel.frame.size.width / 2 - 27 - 20, 0.5)];
-//    self.rightTopWhiteView.backgroundColor = [UIColor homepageGrayLine];
-//    [self.backgroundView addSubview:self.rightTopWhiteView];
+
 }
 
 #pragma mark- 3.5寸屏幕UI
@@ -145,15 +102,6 @@
         make.top.equalTo(self.titleLabel.mas_bottom).offset(15);
     }];
     
-//    [self.loginDayLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-//        
-//    }];
-//
-//    
-//    [self.totalLoginDayLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-//        
-//    }];
-    
     [self.petImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(15);
         make.width.equalTo(@155);
@@ -168,16 +116,9 @@
         make.centerX.equalTo(@(-60));
     }];
 
-//    [self.inputLocationButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.petImageView.mas_bottom).offset(0);
-//        make.height.equalTo(@35);
-//        make.width.equalTo(@110);
-////        make.trailing.equalTo(@(([UIScreen mainScreen].bounds.size.width - (110 * 2 + 10)) / 2));
-//    }];
-//
-//    [self.inputLocationButton mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.petImageView.mas_bottom).offset(5);
-//    }];
+    [self.giftImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(@0);
+    }];
 
 }
 

@@ -44,7 +44,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gM-h4-kz5">
-                            <rect key="frame" x="137" y="190" width="137.5" height="45"/>
+                            <rect key="frame" x="138" y="190" width="137.5" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="TUI-cs-MAo"/>
                             </constraints>
@@ -100,7 +100,7 @@
                         <constraint firstItem="uUz-92-T1m" firstAttribute="leading" secondItem="owJ-CE-bsH" secondAttribute="leading" constant="-8" id="hWo-kA-joo"/>
                         <constraint firstItem="3iv-eB-jN2" firstAttribute="centerY" secondItem="ADA-Pg-OUl" secondAttribute="centerY" id="mff-Gn-oc1"/>
                         <constraint firstItem="Leg-Ba-pEX" firstAttribute="top" secondItem="uUz-92-T1m" secondAttribute="bottom" constant="5" id="qf9-mW-QwQ"/>
-                        <constraint firstAttribute="trailing" secondItem="0gM-h4-kz5" secondAttribute="trailing" constant="0.5" id="uKF-ZS-8SD"/>
+                        <constraint firstAttribute="trailing" secondItem="0gM-h4-kz5" secondAttribute="trailing" id="uKF-ZS-8SD"/>
                         <constraint firstItem="uUz-92-T1m" firstAttribute="top" secondItem="owJ-CE-bsH" secondAttribute="top" constant="-8" id="uvS-d4-pY3"/>
                         <constraint firstItem="ADA-Pg-OUl" firstAttribute="top" secondItem="BiV-1X-HzR" secondAttribute="top" constant="13" id="v8e-b9-g7E"/>
                         <constraint firstItem="CCR-gf-tQl" firstAttribute="centerY" secondItem="0gM-h4-kz5" secondAttribute="centerY" id="x4G-P8-cYa"/>

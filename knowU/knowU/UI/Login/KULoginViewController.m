@@ -99,6 +99,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.userNameTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+}
+
 - (void)keyboardWillShow:(NSNotification *)notification{
     NSDictionary *userInfo = [notification userInfo];
     

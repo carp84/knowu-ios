@@ -23,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextStepButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIView *userNameView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @end
 
 @implementation KURegisterViewController
@@ -40,6 +43,12 @@
     [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateNormal];
     [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateHighlighted];
     self.nextStepButton.userInteractionEnabled = NO;
+    
+//    if ([DevicePlatInfo devicePlatform] == 3.5) {
+//        [self.userNameView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.logoImageView.mas_bottom).offset(23);
+//        }];
+//    }
 }
 
 - (void)initData{
@@ -52,6 +61,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSkipButtonImage:) name:UITextFieldTextDidChangeNotification object:nil];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.userNameTextField resignFirstResponder];
+    [self.mailTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+    [self.confirmPasswordTextField resignFirstResponder];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification{
@@ -69,13 +85,13 @@
         tranformY = -150;
     }
     else if ([DevicePlatInfo devicePlatform] == 4) {
-        tranformY = -80;
+        tranformY = -120;
     }
     else if ([DevicePlatInfo devicePlatform] == 4.7) {
         tranformY = -80;
     }
     else if ([DevicePlatInfo devicePlatform] == 5.5) {
-        tranformY = -100;
+        tranformY = -30;
     }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.transform = CGAffineTransformMakeTranslation(0, tranformY);

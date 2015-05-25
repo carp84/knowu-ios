@@ -35,6 +35,8 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (nonatomic, getter=isSkipFillInDetailInfo) BOOL skipFillInDetailInfo;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIView *birthdayView;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @end
 
 @implementation KUDetailInfoViewController
@@ -74,6 +76,12 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     [self.backButton setBackgroundImage:[UIImage imageNamed:IMAGE_BACK_HIGHLIGHTED] forState:UIControlStateHighlighted];
     [self.skipButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_NORMAL] forState:UIControlStateNormal];
     [self.skipButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_HIGHLIGHTED] forState:UIControlStateHighlighted];
+    
+//    if ([DevicePlatInfo devicePlatform] == 3.5) {
+//        [self.birthdayView mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.logoImageView.mas_bottom).offset(23);
+//        }];
+//    }
 }
 
 - (void)initData {
@@ -85,6 +93,11 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSkipButtonTitle:) name:UITextFieldTextDidChangeNotification object:nil];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.cellTextField resignFirstResponder];
+    [self.careerTextField resignFirstResponder];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification{
@@ -102,13 +115,13 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
         tranformY = -200;
     }
     else if ([DevicePlatInfo devicePlatform] == 4) {
-        tranformY = -100;
+        tranformY = -140;
     }
     else if ([DevicePlatInfo devicePlatform] == 4.7) {
-        tranformY = -100;
+        tranformY = -80;
     }
     else if ([DevicePlatInfo devicePlatform] == 5.5) {
-        tranformY = -80;
+        tranformY = -40;
     }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.view.transform = CGAffineTransformMakeTranslation(0, tranformY);
@@ -211,8 +224,9 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 }
 
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    return NO;
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
