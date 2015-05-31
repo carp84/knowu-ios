@@ -142,7 +142,7 @@ static KUHTTPDataSource *httpDataSource;
                  modelClass:(Class)modelClass
                     success:(KUSuccessBlock)success
                     failure:(KUFailureBlock)failure {
-    
+    NSLog(@"%@", responseObject);
     KUBaseModel *baseModel = [MTLJSONAdapter modelOfClass:modelClass fromJSONDictionary:responseObject error:nil];
     dispatch_async(dispatch_get_main_queue(), ^{
         if (baseModel) {

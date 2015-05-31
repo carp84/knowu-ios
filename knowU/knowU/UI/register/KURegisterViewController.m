@@ -44,11 +44,11 @@
     [self.nextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateHighlighted];
     self.nextStepButton.userInteractionEnabled = NO;
     
-//    if ([DevicePlatInfo devicePlatform] == 3.5) {
-//        [self.userNameView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.logoImageView.mas_bottom).offset(23);
-//        }];
-//    }
+    if (iPhone4) {
+        [self.userNameView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.logoImageView.mas_bottom).offset(23);
+        }];
+    }
 }
 
 - (void)initData{
@@ -81,16 +81,16 @@
     [animationDurationValue getValue:&animationDuration];
     
     CGFloat tranformY = 0;//keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
-    if ([DevicePlatInfo devicePlatform] == 3.5) {
+    if (iPhone4) {
         tranformY = -150;
     }
-    else if ([DevicePlatInfo devicePlatform] == 4) {
+    else if (iPhone5) {
         tranformY = -120;
     }
-    else if ([DevicePlatInfo devicePlatform] == 4.7) {
+    else if (iPhone6) {
         tranformY = -80;
     }
-    else if ([DevicePlatInfo devicePlatform] == 5.5) {
+    else if (iPhone6Plus || iPhone6PlusZoom) {
         tranformY = -30;
     }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -156,15 +156,15 @@
         return;
     }
     
-//    [[KUHTTPClient manager] registerWithUID:self.userNameTextField.text mail:self.mailTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+    [[KUHTTPClient manager] registerWithUID:self.userNameTextField.text mail:self.mailTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         KUBaseInfoViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUBaseInfoViewController"];
         controller.userName = self.userNameTextField.text;
         controller.password = self.passwordTextField.text;
         [self.navigationController pushViewController:controller animated:YES];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@ %@", operation, error);
-//    }];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@ %@", operation, error);
+    }];
 }
 
 - (void)showAlertViewWithMessage:(NSString *)message{

@@ -25,10 +25,10 @@
                                 <constraint firstAttribute="width" constant="50" id="g3n-BZ-QGo"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快来告诉你的位置～" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iv-eB-jN2">
-                            <rect key="frame" x="95" y="46" width="153" height="19"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快来告诉你的位置～" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3iv-eB-jN2">
+                            <rect key="frame" x="95" y="45.5" width="160" height="20.5"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="19" id="hev-4y-9eN"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="gPa-XF-XZw"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.16078431372549021" green="0.16078431372549021" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -99,6 +99,7 @@
                         <constraint firstItem="uUz-92-T1m" firstAttribute="trailing" secondItem="Leg-Ba-pEX" secondAttribute="trailing" constant="-10" id="gNz-9J-yUL"/>
                         <constraint firstItem="uUz-92-T1m" firstAttribute="leading" secondItem="owJ-CE-bsH" secondAttribute="leading" constant="-8" id="hWo-kA-joo"/>
                         <constraint firstItem="3iv-eB-jN2" firstAttribute="centerY" secondItem="ADA-Pg-OUl" secondAttribute="centerY" id="mff-Gn-oc1"/>
+                        <constraint firstAttribute="trailing" secondItem="3iv-eB-jN2" secondAttribute="trailing" constant="20" id="qJi-Vm-Sx9"/>
                         <constraint firstItem="Leg-Ba-pEX" firstAttribute="top" secondItem="uUz-92-T1m" secondAttribute="bottom" constant="5" id="qf9-mW-QwQ"/>
                         <constraint firstAttribute="trailing" secondItem="0gM-h4-kz5" secondAttribute="trailing" id="uKF-ZS-8SD"/>
                         <constraint firstItem="uUz-92-T1m" firstAttribute="top" secondItem="owJ-CE-bsH" secondAttribute="top" constant="-8" id="uvS-d4-pY3"/>
@@ -138,6 +139,7 @@
                 <outlet property="confirmButton" destination="0gM-h4-kz5" id="lqC-Y3-MNU"/>
                 <outlet property="petImageView" destination="ADA-Pg-OUl" id="ueh-RM-WLW"/>
                 <outlet property="placeholderLabel" destination="owJ-CE-bsH" id="Aie-Z3-4Mw"/>
+                <outlet property="titleLabel" destination="3iv-eB-jN2" id="ls1-ug-nDA"/>
                 <outlet property="whiteView" destination="BiV-1X-HzR" id="h69-7R-0b0"/>
             </connections>
         </view>

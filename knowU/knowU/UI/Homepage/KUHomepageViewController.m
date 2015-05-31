@@ -70,17 +70,17 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    if ([DevicePlatInfo devicePlatform] == 3.5) {
+    if (iPhone4) {
         self.backgroundView.image = [UIImage imageNamed:IMAGE_IPHONE4_BACKGROUND];
         [self initUIWith35Screen];
     }
-    else if ([DevicePlatInfo devicePlatform] == 4) {
+    else if (iPhone5) {
         self.backgroundView.image = [UIImage imageNamed:IMAGE_IPHONE5_BACKGROUND];
     }
-    else if ([DevicePlatInfo devicePlatform] == 4.7) {
+    else if (iPhone6) {
         self.backgroundView.image = [UIImage imageNamed:IMAGE_IPHONE6_BACKGROUND];
     }
-    else if ([DevicePlatInfo devicePlatform] == 5.5) {
+    else if (iPhone6Plus || iPhone6PlusZoom) {
         self.backgroundView.image = [UIImage imageNamed:IMAGE_IPHONE6PLUS_BACKGROUND];
     }
     

@@ -115,10 +115,10 @@
     [animationDurationValue getValue:&animationDuration];
     
     CGFloat tranformY = 0;//keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
-    if ([DevicePlatInfo devicePlatform] == 3.5) {
+    if (iPhone4) {
         tranformY = -100;
     }
-    else if ([DevicePlatInfo devicePlatform] == 4) {
+    else if (iPhone5) {
         tranformY = -20;
     }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -147,7 +147,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)login:(UIButton *)sender {
-//    [[KUHTTPClient manager] loginWithUID:self.userNameTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+    [[KUHTTPClient manager] loginWithUID:self.userNameTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
     
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         KUHomepageViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUHomepageViewController"];
@@ -155,9 +155,9 @@
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
         navigationController.navigationBar.hidden = YES;
         [self presentViewController:navigationController animated:NO completion:NULL];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//    }];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 - (void)locationManager:(CLLocationManager *)manager

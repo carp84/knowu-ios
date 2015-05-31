@@ -77,11 +77,11 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     [self.skipButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_NORMAL] forState:UIControlStateNormal];
     [self.skipButton setBackgroundImage:[UIImage imageNamed:IMAGE_REGISTER_HIGHLIGHTED] forState:UIControlStateHighlighted];
     
-//    if ([DevicePlatInfo devicePlatform] == 3.5) {
-//        [self.birthdayView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.logoImageView.mas_bottom).offset(23);
-//        }];
-//    }
+    if (iPhone4) {
+        [self.birthdayView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.logoImageView.mas_bottom).offset(23);
+        }];
+    }
 }
 
 - (void)initData {
@@ -111,16 +111,16 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     [animationDurationValue getValue:&animationDuration];
     
     CGFloat tranformY = 0;//keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
-    if ([DevicePlatInfo devicePlatform] == 3.5) {
+    if (iPhone4) {
         tranformY = -200;
     }
-    else if ([DevicePlatInfo devicePlatform] == 4) {
+    else if (iPhone5) {
         tranformY = -140;
     }
-    else if ([DevicePlatInfo devicePlatform] == 4.7) {
+    else if (iPhone6) {
         tranformY = -80;
     }
-    else if ([DevicePlatInfo devicePlatform] == 5.5) {
+    else if (iPhone6Plus || iPhone6PlusZoom) {
         tranformY = -40;
     }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -190,28 +190,28 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 - (IBAction)pushToViewController:(UIButton *)sender {
     
     
-//    if (self.skipFillInDetailInfo) {
+    if (self.skipFillInDetailInfo) {
         [self handlePushViewController];
-//    }
-//    else {
-//        [[KUHTTPClient manager] fillUserInfoWithUID:self.userName
-//                                           password:self.password
-//                                           userInfo:@{@"userId"         : self.userName,
-//                                                      @"password"       : [self.password MD5],
-//                                                      @"homeAddress"    : self.homeAddress,
-//                                                      @"workAddress"    : self.companyAddress,
-//                                                      @"birthday"       : self.birthdayTextField.text,
-//                                                      @"gender"         : @(self.sexType),
-//                                                      @"jobDescription" : self.careerTextField.text,
-//                                                      @"mobile"         : self.cellTextField.text
-//                                                      }
-//                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-//                                                [self handlePushViewController];
-//                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                                                
-//                                            }];
-//
-//    }
+    }
+    else {
+        [[KUHTTPClient manager] fillUserInfoWithUID:self.userName
+                                           password:self.password
+                                           userInfo:@{@"userId"         : self.userName,
+                                                      @"password"       : [self.password MD5],
+                                                      @"homeAddress"    : self.homeAddress,
+                                                      @"workAddress"    : self.companyAddress,
+                                                      @"birthday"       : self.birthdayTextField.text,
+                                                      @"gender"         : @(self.sexType),
+                                                      @"jobDescription" : self.careerTextField.text,
+                                                      @"mobile"         : self.cellTextField.text
+                                                      }
+                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+                                                [self handlePushViewController];
+                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                
+                                            }];
+
+    }
 }
 
 - (void)handlePushViewController {

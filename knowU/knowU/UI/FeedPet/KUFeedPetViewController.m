@@ -123,6 +123,8 @@
 }
 
 - (void)uploadLocation:(CLLocationCoordinate2D)coordinate{
+//    [UIScreen mainScreen].bounds.size.width
+//    [UIScreen mainScreen].bounds.size.height
     [[KUHTTPClient manager] uploadTraceWithUID:@"yy" traceInfo:
      @{@"userId"            : self.userName,
        @"latitude"          : @(coordinate.latitude),

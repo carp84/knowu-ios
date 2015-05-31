@@ -11,6 +11,31 @@
 
 #define WEAKSELF typeof(self) __weak weakSelf = self;
 static const NSTimeInterval TIME_OUT_INTERVAL = 60;
+#define SCREENWIDTH     [UIScreen mainScreen].bounds.size.width
+#define SCREENHEIGHT    [UIScreen mainScreen].bounds.size.height
+
+//判断iphone4S
+
+#define iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断iphone5S
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断iphone6
+
+#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断iphone6+
+
+#define iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断iPhone6P放大模式
+#define iPhone6PlusZoom ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2001), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断系统版本是否大于IOS8
+#define IS_IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0f)
+
 #define IMAGE_IPHONE4_BACKGROUND        @"640x960.png"
 #define IMAGE_IPHONE5_BACKGROUND        @"640x1136.png"
 #define IMAGE_IPHONE6_BACKGROUND        @"750x1334.png"

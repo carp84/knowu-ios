@@ -7,7 +7,7 @@
 //
 
 #import "DevicePlatInfo.h"
-
+#import "CONSTS.h"
 @implementation DevicePlatInfo
 
 + (NSString *)deviceName{

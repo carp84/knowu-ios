@@ -48,11 +48,11 @@
     [self.singleNextStepButton setBackgroundImage:[UIImage imageNamed:IMAGE_RIGISTER_NO_USE] forState:UIControlStateHighlighted];
     self.singleNextStepButton.userInteractionEnabled = NO;
     
-//    if ([DevicePlatInfo devicePlatform] == 3.5) {
-//        [self.homeAddressView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.logoImageView.mas_bottom).offset(28);
-//        }];
-//    }
+    if (iPhone4) {
+        [self.homeAddressView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.logoImageView.mas_bottom).offset(28);
+        }];
+    }
 }
 
 
@@ -80,13 +80,13 @@
     [animationDurationValue getValue:&animationDuration];
     
     CGFloat tranformY = 0;//keyboardRect.origin.y - [UIScreen mainScreen].bounds.size.height;
-    if ([DevicePlatInfo devicePlatform] == 3.5) {
+    if (iPhone4) {
         tranformY = -180;
     }
-    else if ([DevicePlatInfo devicePlatform] == 4) {
+    else if (iPhone5) {
         tranformY = -100;
     }
-    else if ([DevicePlatInfo devicePlatform] == 4.7) {
+    else if (iPhone6) {
         tranformY = -60;
     }
     [UIView animateWithDuration:animationDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -132,17 +132,17 @@
 }
 
 - (IBAction)pushToViewController:(UIButton *)sender {
-//    if (![self.homeAddressTextField.text length]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_HOME_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-//        [alertView show];
-//        return;
-//    }
-//
-//    if (![self.companyAddressTextField.text length]) {
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_COMPANY_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
-//        [alertView show];
-//        return;
-//    }
+    if (![self.homeAddressTextField.text length]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_HOME_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
+
+    if (![self.companyAddressTextField.text length]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:STRING_NO_COMPANY_ADDRESS delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+        return;
+    }
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     KUDetailInfoViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUDetailInfoViewController"];
     controller.userName = self.userName;

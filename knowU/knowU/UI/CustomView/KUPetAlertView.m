@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UITextView *actionTextView;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @end
 
 @implementation KUPetAlertView
@@ -54,19 +55,21 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self cancel:nil];
+    [self.actionTextView resignFirstResponder];
 }
 
 - (void)showWithType:(KUAlertType)type image:(UIImage *)image{
     switch (type) {
         case KULocationAlertType:
         {
-            self.locationTextField.placeholder = @"输入您所在地点的具体位置";
+            self.placeholderLabel.text = @"输入您所在地点的具体位置";
+            self.titleLabel.text = @"快来告诉你的位置～";
         }
             break;
         case KUFeedAlertType:
         {
-            self.locationTextField.placeholder = @"吃饭/睡觉/喝水...";
+            self.placeholderLabel.text = @"吃饭/睡觉/喝水...";
+            self.titleLabel.text = @"快来告诉你正在干什么吧～";
         }
             break;
         default:
