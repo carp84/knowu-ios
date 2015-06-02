@@ -36,6 +36,8 @@ static DefaultURL *url;
         _loginURL = [self baseURLWithPath:@"login"];
         _fillInUserInfoURL = [self baseURLWithPath:@"completeUserInfo"];
         _traceInfoURL = [self baseURLWithPath:@"uploadTrace"];
+        _loginDayURL = [self baseURLWithPath:@"getLoginDays"];
+        _petTypeURL = [self baseURLWithPath:@"getPetType"];
     }
     return self;
 }

@@ -13,7 +13,6 @@
 #import "NSString+Addition.h"
 #import "CONSTS.h"
 #import "KUBaseModel.h"
-#import "KUResponesModel.h"
 
 static const int successCode = 200;
 
@@ -72,7 +71,7 @@ static KUHTTPDataSource *httpDataSource;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
-                failure(operation, error);
+                failure(operation, nil);
             }
         });
     }];
@@ -91,7 +90,7 @@ static KUHTTPDataSource *httpDataSource;
         NSLog(@"%@",error);
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
-                failure(operation, error);
+                failure(operation, nil);
             }
         });
     }];
@@ -113,7 +112,7 @@ static KUHTTPDataSource *httpDataSource;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
-                failure(operation, error);
+                failure(operation, nil);
             }
         });
     }];
@@ -131,7 +130,7 @@ static KUHTTPDataSource *httpDataSource;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
-                failure(operation, error);
+                failure(operation, nil);
             }
         });
     }];
@@ -142,39 +141,34 @@ static KUHTTPDataSource *httpDataSource;
                  modelClass:(Class)modelClass
                     success:(KUSuccessBlock)success
                     failure:(KUFailureBlock)failure {
-    NSLog(@"%@", responseObject);
-    KUBaseModel *baseModel = [MTLJSONAdapter modelOfClass:modelClass fromJSONDictionary:responseObject error:nil];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (baseModel) {
-            if (baseModel.success == 1 && baseModel.code == successCode) {
-                
+    if ([self isRequestOperationValid:responseObject]) {
+        KUBaseModel *baseModel = [MTLJSONAdapter modelOfClass:modelClass
+                                                   fromJSONDictionary:responseObject error:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (baseModel) {
                 if (success) {
                     success(operation, baseModel);
                 }
             }
             else {
                 if (failure) {
-                    failure(operation, nil);
+                    failure(operation, baseModel);
                 }
             }
+        });
+    }
+    else {
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:[responseObject[@"code"] intValue] message:responseObject[@"message"] success:[responseObject[@"success"] intValue]];
+        if (failure) {
+            failure(operation, baseModel);
         }
-        else if (![baseModel isKindOfClass:modelClass]){
-            if (failure) {
-                failure(operation, nil);
-            }
-        }
-        else {
-            if (failure) {
-                failure(operation, nil);
-            }
-        }
-    });
-    
-    
+    }
 }
 
-- (BOOL)isRequestOperationValid:(id)responseObject{
-    if ([[responseObject objectForKey:@"success"] integerValue] == 1) {
+#pragma mark - Internal helpers
+- (BOOL)isRequestOperationValid:(id)responseObject {
+    
+    if (1 == [responseObject[@"success"] intValue] && successCode == [responseObject[@"code"] intValue]) {
         return YES;
     }
     return NO;

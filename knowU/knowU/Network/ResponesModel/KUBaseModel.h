@@ -14,4 +14,8 @@
 @property (assign, readonly, nonatomic) int success;
 @property (copy, readonly, nonatomic) NSString *message;
 
+- (instancetype)initWithCode:(int)code
+                     message:(NSString *)message
+                     success:(int)success;
+
 @end

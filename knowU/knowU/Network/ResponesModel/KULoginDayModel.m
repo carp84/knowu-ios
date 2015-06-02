@@ -6,8 +6,13 @@
 //  Copyright (c) 2015年 HanJiatong. All rights reserved.
 //
 
-#import "KUResponesModel.h"
+#import "KULoginDayModel.h"
 
-@implementation KUResponesModel
+@implementation KULoginDayModel
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{@"day" : @"data"};
+}
 
 @end

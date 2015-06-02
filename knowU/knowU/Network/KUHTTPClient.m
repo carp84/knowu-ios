@@ -11,7 +11,8 @@
 #import "KUHTTPDataSource.h"
 #import "DefaultURL.h"
 #import "NSString+Addition.h"
-#import "KUResponesModel.h"
+#import "KULoginDayModel.h"
+#import "KUPetTypeModel.h"
 
 static KUHTTPClient *client;
 
@@ -67,7 +68,7 @@ static KUHTTPClient *client;
     NSString *url = [self URLWithPath:[DefaultURL manager].registerURL path:[NSString stringWithFormat:@"?userId=%@&emailAddress=%@&password=%@", [UID UTF8Encode], [mail UTF8Encode], [password MD5]]];
     return [dataSource POSTClient:url
                        parameters:nil
-                       modelClass:[KUResponesModel class]
+                       modelClass:[KUBaseModel class]
                           success:success failure:failure];
 }
 
@@ -91,7 +92,7 @@ static KUHTTPClient *client;
     
     return [dataSource GETClient:url
                        parameters:nil
-                       modelClass:[KUResponesModel class]
+                       modelClass:[KUBaseModel class]
                           success:success failure:failure];
 }
 
@@ -117,7 +118,7 @@ static KUHTTPClient *client;
     
     return [dataSource POSTClient:url
                        parameters:userInfo
-                       modelClass:[KUResponesModel class]
+                       modelClass:[KUBaseModel class]
                           success:success failure:failure];
     
 }
@@ -142,9 +143,54 @@ static KUHTTPClient *client;
     
     return [dataSource POSTClient:url
                        parameters:traceInfo
-                       modelClass:[KUResponesModel class]
+                       modelClass:[KUBaseModel class]
                           success:success failure:failure];
     
+}
+
+/**
+ *
+ *  获取已登录天数
+ *
+ *  @param UID 用户id
+ *  @param traceInfo 轨迹信息
+ *  @param success    success description
+ *  @param failure    failure description
+ *
+ *  @return return value description
+ */
+
+- (AFHTTPRequestOperation *)loginDayWithUID:(NSString *)UID
+                                    success:(KUSuccessBlock)success
+                                    failure:(KUFailureBlock)failure{
+    NSString *url = [self URLWithPath:[DefaultURL manager].loginDayURL path:[NSString stringWithFormat:@"?userId=%@",[UID UTF8Encode]]];
+    
+    return [dataSource GETClient:url
+                      parameters:nil
+                      modelClass:[KULoginDayModel class]
+                         success:success failure:failure];
+}
+
+/**
+ *
+ *  获取宠物类型
+ *
+ *  @param UID 用户id
+ *  @param success    success description
+ *  @param failure    failure description
+ *
+ *  @return return value description
+ */
+
+- (AFHTTPRequestOperation *)petTypeWithUID:(NSString *)UID
+                                   success:(KUSuccessBlock)success
+                                   failure:(KUFailureBlock)failure{
+    NSString *url = [self URLWithPath:[DefaultURL manager].petTypeURL path:[NSString stringWithFormat:@"?userId=%@",[UID UTF8Encode]]];
+    
+    return [dataSource GETClient:url
+                      parameters:nil
+                      modelClass:[KUPetTypeModel class]
+                         success:success failure:failure];
 }
 
 @end

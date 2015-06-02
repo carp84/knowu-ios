@@ -8,6 +8,8 @@
 
 #import "KUBaseModel.h"
 
-@interface KUResponesModel : KUBaseModel 
+@interface KULoginDayModel : KUBaseModel
+
+@property (nonatomic, assign) int day;
 
 @end

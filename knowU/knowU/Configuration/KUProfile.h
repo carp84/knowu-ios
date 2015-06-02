@@ -14,6 +14,6 @@
 
 - (NSDictionary *)readFile;
 
-- (void)updateFile;
+- (void)updateFileWithDay:(int)day;
 
 @end

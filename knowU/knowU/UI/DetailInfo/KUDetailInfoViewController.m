@@ -207,7 +207,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
                                                       }
                                             success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
                                                 [self handlePushViewController];
-                                            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                            } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
                                                 
                                             }];
 

@@ -155,7 +155,7 @@
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
         navigationController.navigationBar.hidden = YES;
         [self presentViewController:navigationController animated:NO completion:NULL];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         
     }];
 }

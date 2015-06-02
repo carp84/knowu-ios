@@ -15,13 +15,39 @@
  */
 + (NSDictionary *)JSONKeyPathsByPropertyKey
 {
-    return @{@"code"    : @"code",
-             @"message" : @"message",
-             @"success" : @"success"};
+    return  @{};
+//    return @{@"code"    : @"code",
+//             @"message" : @"message",
+//             @"success" : @"success"};
 }
 
 + (NSValueTransformer *)JSONTransformerForKey:(NSString *)key {
     return [NSValueTransformer valueTransformerForName:key];
 }
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _code= 200;
+        _message = nil;
+        _success = 1;
+    }
+    return self;
+}
+
+- (instancetype)initWithCode:(int)code
+                          message:(NSString *)message
+                          success:(int)success
+{
+    self = [super init];
+    if (self) {
+        _code = code;
+        _message = message;
+        _success = success;
+    }
+    return self;
+}
+
 
 @end

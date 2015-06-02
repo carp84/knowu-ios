@@ -12,7 +12,7 @@
 @class KUBaseModel;
 
 typedef void (^KUSuccessBlock)(AFHTTPRequestOperation *operation, KUBaseModel *model);
-typedef void (^KUFailureBlock)(AFHTTPRequestOperation *operation, NSError *error);
+typedef void (^KUFailureBlock)(AFHTTPRequestOperation *operation, KUBaseModel *model);
 
 @interface KUHTTPClient : NSObject
 
@@ -90,5 +90,34 @@ typedef void (^KUFailureBlock)(AFHTTPRequestOperation *operation, NSError *error
                                        success:(KUSuccessBlock)success
                                        failure:(KUFailureBlock)failure;
 
+/**
+ *
+ *  获取已登录天数
+ *
+ *  @param UID 用户id
+ *  @param success    success description
+ *  @param failure    failure description
+ *
+ *  @return return value description
+ */
+
+- (AFHTTPRequestOperation *)loginDayWithUID:(NSString *)UID
+                                    success:(KUSuccessBlock)success
+                                    failure:(KUFailureBlock)failure;
+
+/**
+ *
+ *  获取宠物类型
+ *
+ *  @param UID 用户id
+ *  @param success    success description
+ *  @param failure    failure description
+ *
+ *  @return return value description
+ */
+
+- (AFHTTPRequestOperation *)petTypeWithUID:(NSString *)UID
+                                   success:(KUSuccessBlock)success
+                                   failure:(KUFailureBlock)failure;
 
 @end

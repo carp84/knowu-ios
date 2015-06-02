@@ -35,7 +35,7 @@ static KUProfile *profile;
         if (![self readFile].count) {
             NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
             //初始化登录天数
-            [self writeFileWithInitialValue:@{@"loginDay" : @1, @"totalLoginDay" : @1, @"loginDate" : @(interval)}];
+            [self writeFileWithInitialValue:@{@"loginDay" : @1, @"loginDate" : @(interval)}];
         }
     }
     return self;
@@ -45,18 +45,11 @@ static KUProfile *profile;
     return [NSDictionary dictionaryWithContentsOfFile:self.filePath];
 }
 
-- (void)updateFile{
+- (void)updateFileWithDay:(int)day{
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithDictionary:[self readFile]];
-    NSNumber *totalLoginDay = [dictionary objectForKey:@"totalLoginDay"];
-    totalLoginDay = [NSNumber numberWithInteger:totalLoginDay.integerValue + 1];
     NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
-    //如果登录是昨天，那么连续登录的天数加1
-    if ([NSDate dateIsYesterdayWithInterval:interval]) {
-        NSNumber *loginDay = [dictionary objectForKey:@"loginDay"];
-        loginDay = [NSNumber numberWithInteger:loginDay.integerValue + 1];
-        [dictionary setObject:loginDay forKey:@"loginDay"];
-    }
-    [dictionary setObject:totalLoginDay forKey:@"totalLoginDay"];
+    NSNumber *loginDay = @(day);
+    [dictionary setObject:loginDay forKey:@"loginDay"];
     [dictionary setObject:@(interval) forKey:@"loginDate"];
     [dictionary writeToFile:self.filePath atomically:YES];
     

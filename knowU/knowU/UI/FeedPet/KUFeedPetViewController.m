@@ -135,7 +135,7 @@
        @"dayOfWeek"         : @([[NSDate date] weekdayWithDate]),
        @"otherDescription"  : self.userInputLocation} success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         NSLog(@"%@ %@", operation, model);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
     
     }];
 

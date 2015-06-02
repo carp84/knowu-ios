@@ -20,6 +20,8 @@
 #import "RACSignal.h"
 #import "RACSignal+Operations.h"
 #import "Masonry.h"
+#import "KULoginDayModel.h"
+#import "KUPetTypeModel.h"
 
 @interface KUHomepageViewController () <CLLocationManagerDelegate>
 
@@ -127,12 +129,22 @@
     
 }
 
-- (void)initData {
-    NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"pet" ofType:@"plist"]];
-    self.petDictionary = [array objectAtIndex:arc4random() % [array count]];
+- (NSDictionary *)petInfoWithIndex:(NSInteger)index{
+    
+    NSArray *array = @[@{@"pet" : @"秘书" , @"alert" : @"弹框秘书"},
+                       @{@"pet" : @"助手" , @"alert" : @"弹框助手"},
+                       @{@"pet" : @"女神" , @"alert" : @"弹框女神"},
+                       @{@"pet" : @"宠物" , @"alert" : @"弹框宠物"},
+                       @{@"pet" : @"运动女" , @"alert" : @"弹框运动女"},
+                       @{@"pet" : @"运动男" , @"alert" : @"弹框运动男"}];
+    if (index == -1) {
+        return [array objectAtIndex:arc4random() % [array count]];
+    }
+    return [array objectAtIndex:index - 1];
+}
 
-    [self showWithLoginInfo:[[KUProfile manager] readFile]];
-    [[KUProfile manager] updateFile];
+- (void)initData {
+    
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -148,8 +160,29 @@
     self.updateLocationDate = [NSDate date];
     self.userInputLocation = @"";
     
-    
-    
+    [[KUHTTPClient manager] loginDayWithUID:self.userName success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+        if ([model isKindOfClass: [KULoginDayModel class]]) {
+            KULoginDayModel *loginModel = (KULoginDayModel *)model;
+            self.loginDayLabel.text = [NSString stringWithFormat:@"%d", loginModel.day];
+            [[KUProfile manager] updateFileWithDay:loginModel.day];
+            [self showPetType];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+        [self showPetType];
+        NSLog(@"%@",operation);
+    }];
+}
+
+- (void)showPetType{
+    [[KUHTTPClient manager] petTypeWithUID:self.userName success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+        if ([model isKindOfClass:[KUPetTypeModel class]]) {
+            self.petDictionary = [self petInfoWithIndex:((KUPetTypeModel *)model).petType];
+            
+            [self showWithLoginInfo:[[KUProfile manager] readFile]];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+        NSLog(@"%@",operation);
+    }];
 }
 
 #pragma mark- 根据登录天数展示不同数据
@@ -261,7 +294,7 @@
        @"otherDescription"  : self.userInputLocation}
         success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
            NSLog(@"%@ %@", operation, model);
-       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+       } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
            
        }];
     

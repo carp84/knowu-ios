@@ -162,8 +162,8 @@
         controller.userName = self.userNameTextField.text;
         controller.password = self.passwordTextField.text;
         [self.navigationController pushViewController:controller animated:YES];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@ %@", operation, error);
+    } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+       
     }];
 }
 

@@ -13,7 +13,7 @@
 @class KUBaseModel;
 
 typedef void (^KUSuccessBlock)(AFHTTPRequestOperation *operation, KUBaseModel *model);
-typedef void (^KUFailureBlock)(AFHTTPRequestOperation *operation, NSError *error);
+typedef void (^KUFailureBlock)(AFHTTPRequestOperation *operation, KUBaseModel *model);
 
 @interface KUHTTPDataSource : NSObject
 
