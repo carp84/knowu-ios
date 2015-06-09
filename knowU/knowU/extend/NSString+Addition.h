@@ -15,4 +15,10 @@
 /** string转utf8*/
 - (NSString *)UTF8Encode;
 
+/** 验证是否为有效电话*/
+- (BOOL) validateCell;
+
+/** 验证是否为有效邮箱*/
+- (BOOL) validateEmail;
+
 @end

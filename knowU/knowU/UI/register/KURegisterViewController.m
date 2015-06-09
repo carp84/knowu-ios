@@ -16,6 +16,7 @@
 #import "KUBaseInfoViewController.h"
 #import "CONSTS.h"
 #import "DevicePlatInfo.h"
+#import "NSString+Addition.h"
 @interface KURegisterViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *mailTextField;
@@ -141,6 +142,12 @@
         [self showAlertViewWithMessage:STRING_NO_MAIL];
         return;
     }
+    
+    if (![self.mailTextField.text validateEmail]) {
+        [self showAlertViewWithMessage:STRING_VALID_MAIL];
+        return;
+    }
+    
     if (![self.passwordTextField.text length]) {
         [self showAlertViewWithMessage:STRING_NO_PASSWORD];
         return;
@@ -155,6 +162,7 @@
         [self showAlertViewWithMessage:STRING_PASSWORD_NO_SAME];
         return;
     }
+    
     
     [[KUHTTPClient manager] registerWithUID:self.userNameTextField.text mail:self.mailTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];

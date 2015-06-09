@@ -71,6 +71,7 @@ static const NSTimeInterval TIME_OUT_INTERVAL = 60;
 #define STRING_NO_PASSWORD              @"没有密码账户会不安全的"
 #define STRING_NO_CONFIRM_PASSWORD      @"两次密码输入不一致哦～～"
 #define STRING_PASSWORD_NO_SAME         @"两次输入的密码怎么不一致？修改下试试吧^_^"
+#define STRING_VALID_MAIL               @"邮箱好像不对哦"
 
 /*************************************填写详细信息*******************************************/
 #define STRING_NO_BIRTHDAY              @"请填写出生日期"

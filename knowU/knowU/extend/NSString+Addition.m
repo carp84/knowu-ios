@@ -24,4 +24,21 @@
     return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)self, (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]", NULL,  kCFStringEncodingUTF8));
 }
 
+- (BOOL) validateCell
+{
+    NSString *cellRegex = @"^1\\d{10}$";
+    NSPredicate *cellTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", cellRegex];
+    return [cellTest evaluateWithObject:self];
+}
+
+#pragma mark- 验证是否为正确邮箱地址
+- (BOOL) validateEmail
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:self];
+}
+
+
 @end
