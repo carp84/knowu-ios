@@ -57,6 +57,10 @@
 
 @property (nonatomic, strong) NSDictionary *petDictionary;
 
+@property (nonatomic, assign) CLLocationCoordinate2D nowLocation;
+
+@property (nonatomic, copy) NSString *action;
+
 @end
 
 @implementation KUHomepageViewController
@@ -152,50 +156,50 @@
     self.locationManager.delegate = self;
     self.locationManager.activityType = CLActivityTypeFitness;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
-        [self.locationManager requestWhenInUseAuthorization];
+//        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
     }
     
     [self.locationManager startUpdatingLocation];
     
     self.updateLocationDate = [NSDate date];
     self.userInputLocation = @"";
+    self.locationWithSystem = @"";
+    self.action = @"";
     
     [[KUHTTPClient manager] loginDayWithUID:self.userName success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         if ([model isKindOfClass: [KULoginDayModel class]]) {
-            KULoginDayModel *loginModel = (KULoginDayModel *)model;
-            self.loginDayLabel.text = [NSString stringWithFormat:@"%d", loginModel.day];
-            [[KUProfile manager] updateFileWithDay:loginModel.day];
-            [self showPetType];
+            [self showPetTypeWithLoginModel:(KULoginDayModel *)model];
         }
     } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-        [self showPetType];
-        NSLog(@"%@",operation);
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
     }];
 }
 
-- (void)showPetType{
+- (void)showPetTypeWithLoginModel:(KULoginDayModel *)loginModel{
     [[KUHTTPClient manager] petTypeWithUID:self.userName success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         if ([model isKindOfClass:[KUPetTypeModel class]]) {
             self.petDictionary = [self petInfoWithIndex:((KUPetTypeModel *)model).petType];
-            
-            [self showWithLoginInfo:[[KUProfile manager] readFile]];
+            [self showWithLoginInfoWithModel:loginModel];
         }
     } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-        NSLog(@"%@",operation);
+        self.petDictionary = [self petInfoWithIndex:-1];
+
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
     }];
 }
 
 #pragma mark- 根据登录天数展示不同数据
-- (void)showWithLoginInfo:(NSDictionary *)dictionary {
-    NSNumber *loginDay = [dictionary objectForKey:@"loginDay"];
-    NSNumber *totalLoginDay = [dictionary objectForKey:@"totalLoginDay"];
+- (void)showWithLoginInfoWithModel:(KULoginDayModel *)model {
     
-    self.loginDayLabel.text = [NSString stringWithFormat:@"%ld天", (long)loginDay.integerValue];
+    self.loginDayLabel.text = [NSString stringWithFormat:@"%d天", model.day];
     [self.loginDayLabel showOtherFontFromLocation:[self.loginDayLabel.text length] - 1 length:1 fontSize:[UIFont systemFontOfSize:12]];
     
-    self.totalLoginDayLabel.text = [NSString stringWithFormat:@"已登录%ld天", (long)totalLoginDay.integerValue];
+    self.totalLoginDayLabel.text = [NSString stringWithFormat:@"已登录%d天", model.day];
     
-    switch (totalLoginDay.integerValue) {
+    switch (model.day) {
         case 1:
         {
             self.giftImageView.image = [UIImage imageNamed:IMAGE_HOMEPAGE_GIFT_1];
@@ -221,9 +225,9 @@
             break;
     }
     
-    self.titleLabel.text = totalLoginDay.integerValue < 5 ? STRING_HOMEPAGE_HATCH_TITLE : STRING_HOMEPAGE_FEED_TITLE;
+    self.titleLabel.text = model.day < 5 ? STRING_HOMEPAGE_HATCH_TITLE : STRING_HOMEPAGE_FEED_TITLE;
     self.petImageView.image = [UIImage imageNamed:[self.petDictionary objectForKey:@"pet"]];
-    if (totalLoginDay.integerValue == 4) {
+    if (model.day == 4) {
         self.petImageView.hidden = NO;
         self.inputLocationButton.hidden = NO;
         self.feedButton.hidden = NO;
@@ -253,14 +257,14 @@
         }];
     }
     else {
-        self.petImageView.hidden = totalLoginDay.integerValue < 5 ? YES : NO;
-        self.inputLocationButton.hidden = totalLoginDay.integerValue < 5 ? YES : NO;
-        self.feedButton.hidden = totalLoginDay.integerValue < 5 ? YES : NO;
+        self.petImageView.hidden = model.day < 5 ? YES : NO;
+        self.inputLocationButton.hidden = model.day < 5 ? YES : NO;
+        self.feedButton.hidden = model.day < 5 ? YES : NO;
         
-        self.giftImageView.hidden = totalLoginDay.integerValue < 5 ? NO : YES;
-        self.loginDayLabel.hidden = totalLoginDay.integerValue < 5 ? NO : YES;
-        self.totalLoginDayLabel.hidden = totalLoginDay.integerValue < 5 ? NO : YES;
-        self.showLoginDayImageView.hidden = totalLoginDay.integerValue < 5 ? NO : YES;
+        self.giftImageView.hidden = model.day < 5 ? NO : YES;
+        self.loginDayLabel.hidden = model.day < 5 ? NO : YES;
+        self.totalLoginDayLabel.hidden = model.day < 5 ? NO : YES;
+        self.showLoginDayImageView.hidden = model.day < 5 ? NO : YES;
     }
 }
 
@@ -268,7 +272,8 @@
     WEAKSELF;
     KUPetAlertView *view = [[[NSBundle mainBundle] loadNibNamed:@"KUPetAlertView" owner:self options:nil] objectAtIndex:0];
     view.inputBlock = ^(NSString *location){
-        weakSelf.userInputLocation = location;
+        weakSelf.action = location;
+        [weakSelf uploadLocation:self.nowLocation];
     };
     [view showWithType:KUFeedAlertType image:[UIImage imageNamed:[self.petDictionary objectForKey:@"alert"]]];
 }
@@ -278,22 +283,27 @@
     KUPetAlertView *view = [[[NSBundle mainBundle] loadNibNamed:@"KUPetAlertView" owner:self options:nil] objectAtIndex:0];
     view.inputBlock = ^(NSString *location){
         weakSelf.userInputLocation = location;
+        [weakSelf uploadLocation:self.nowLocation];
     };
     [view showWithType:KULocationAlertType image:[UIImage imageNamed:[self.petDictionary objectForKey:@"alert"]]];
 }
 
 - (void)uploadLocation:(CLLocationCoordinate2D)coordinate{
+    NSLog(@"%@ %@ ", self.userName, self.userInputLocation);
     [[KUHTTPClient manager] uploadTraceWithUID:self.userName traceInfo:
      @{@"userId"            : self.userName,
-       @"latitude"          : @(coordinate.latitude),
-       @"longitude"         : @(coordinate.longitude),
+       @"latitude"          : @(self.nowLocation.latitude),
+       @"longitude"         : @(self.nowLocation.longitude),
        @"timestamp"         : [[NSDate date] convertStringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
        @"address"           : self.locationWithSystem,
-       @"action"            : @"",
+       @"action"            : self.action,
        @"dayOfWeek"         : @([[NSDate date] weekdayWithDate]),
        @"otherDescription"  : self.userInputLocation}
         success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
            NSLog(@"%@ %@", operation, model);
+            self.locationWithSystem = @"";
+            self.userInputLocation = @"";
+            self.action = @"";
        } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
            
        }];
@@ -308,8 +318,8 @@
     [geocoder reverseGeocodeLocation: newLocation completionHandler:^(NSArray *array, NSError *error) {
         if (array.count > 0) {
             if ([self.updateLocationDate isCanUpdate:[NSDate date]]) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:newLocation.timestamp.description delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-//                [alertView show];
+                self.nowLocation = newLocation.coordinate;
+
                 CLPlacemark *placemark = [array objectAtIndex:0];
                 self.locationWithSystem = placemark.name;
                 [self uploadLocation:newLocation.coordinate];

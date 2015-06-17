@@ -159,9 +159,12 @@ static KUHTTPDataSource *httpDataSource;
     }
     else {
         KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:[responseObject[@"code"] intValue] message:responseObject[@"message"] success:[responseObject[@"success"] intValue]];
-        if (failure) {
-            failure(operation, baseModel);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (failure) {
+                failure(operation, baseModel);
+            }
+        });
+       
     }
 }
 

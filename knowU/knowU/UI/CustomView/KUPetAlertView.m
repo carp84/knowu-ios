@@ -18,7 +18,6 @@
 
 @interface KUPetAlertView () <UITextFieldDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *whiteView;
-@property (weak, nonatomic) IBOutlet KUTextField *locationTextField;
 @property (weak, nonatomic) IBOutlet UIImageView *petImageView;
 @property (weak, nonatomic) IBOutlet UIButton *confirmButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
@@ -38,7 +37,7 @@
     self.actionTextView.delegate = self;
 }
 - (IBAction)cancel:(UIButton *)sender {
-    [self.locationTextField resignFirstResponder];
+    [self.actionTextView resignFirstResponder];
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.alpha = 0;
     } completion:^(BOOL finished) {
@@ -49,7 +48,7 @@
 - (IBAction)confirm:(UIButton *)sender {
     
     if (self.inputBlock) {
-        self.inputBlock(self.locationTextField.text);
+        self.inputBlock(self.actionTextView.text);
     }
     [self cancel:sender];
 }

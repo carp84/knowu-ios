@@ -17,6 +17,8 @@
 #import "CONSTS.h"
 #import "DevicePlatInfo.h"
 #import "NSString+Addition.h"
+#import "KUBaseModel.h"
+
 @interface KURegisterViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *mailTextField;
@@ -171,7 +173,8 @@
         controller.password = self.passwordTextField.text;
         [self.navigationController pushViewController:controller animated:YES];
     } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-       
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
     }];
 }
 

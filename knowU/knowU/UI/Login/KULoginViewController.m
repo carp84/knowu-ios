@@ -20,6 +20,7 @@
 #import "KUFeedPetViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "CONSTS.h"
+#import "KUBaseModel.h"
 
 @interface KULoginViewController () <CLLocationManagerDelegate>
 
@@ -62,7 +63,8 @@
     self.locationManager.delegate = self;
     self.locationManager.activityType = CLActivityTypeFitness;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
-        [self.locationManager requestWhenInUseAuthorization];
+//        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
     }
     
     [self.locationManager startUpdatingLocation];
@@ -156,7 +158,8 @@
         navigationController.navigationBar.hidden = YES;
         [self presentViewController:navigationController animated:NO completion:NULL];
     } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
     }];
 }
 
