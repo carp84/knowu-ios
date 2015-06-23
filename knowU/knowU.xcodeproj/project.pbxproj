@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4E09EB261B076AF50032708C /* KUBrithdayTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E09EB251B076AF50032708C /* KUBrithdayTextField.m */; };
-		4E11C5241B0F85CE001F56C2 /* pet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E11C5231B0F85CE001F56C2 /* pet.plist */; };
 		4E11C52A1B0F8A18001F56C2 /* KUTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E11C5291B0F8A18001F56C2 /* KUTextField.m */; };
 		4E1DD3E91AFCB16500B53F7A /* NSString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3E81AFCB16500B53F7A /* NSString+Addition.m */; };
 		4E1DD3EC1AFCB23E00B53F7A /* KUHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E1DD3EB1AFCB23E00B53F7A /* KUHTTPClient.m */; };
@@ -36,6 +35,9 @@
 		4EA502C31AED3A6300B33D3C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA502C21AED3A6300B33D3C /* ViewController.m */; };
 		4EA502C71AED3DCB00B33D3C /* KUHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA502C61AED3DCB00B33D3C /* KUHTTPDataSource.m */; };
 		4ECD7C441B0A2A92003BD81E /* KUFeedPetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECD7C431B0A2A92003BD81E /* KUFeedPetViewController.m */; };
+		4EE761E21B39B01400B82E57 /* DBHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE761E11B39B01400B82E57 /* DBHandler.m */; };
+		4EE761E71B39B06B00B82E57 /* KULocationDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE761E61B39B06B00B82E57 /* KULocationDAO.m */; };
+		4EE761EB1B39B0B100B82E57 /* KULocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE761EA1B39B0B100B82E57 /* KULocationModel.m */; };
 		4EEC5DC11B024B8700F0A4B1 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC5DC01B024B8700F0A4B1 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4EECA7321AEE91E400BF3DAA /* KUBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EECA7311AEE91E400BF3DAA /* KUBaseModel.m */; };
 		4EF22B671B064DEF004FE5AC /* KUSelectedBirthdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF22B661B064DEF004FE5AC /* KUSelectedBirthdayView.m */; };
@@ -58,7 +60,6 @@
 		0252066633805DB1338C8DF2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4E09EB241B076AF50032708C /* KUBrithdayTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUBrithdayTextField.h; sourceTree = "<group>"; };
 		4E09EB251B076AF50032708C /* KUBrithdayTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUBrithdayTextField.m; sourceTree = "<group>"; };
-		4E11C5231B0F85CE001F56C2 /* pet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pet.plist; sourceTree = "<group>"; };
 		4E11C5281B0F8A18001F56C2 /* KUTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUTextField.h; sourceTree = "<group>"; };
 		4E11C5291B0F8A18001F56C2 /* KUTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUTextField.m; sourceTree = "<group>"; };
 		4E1DD3E71AFCB16500B53F7A /* NSString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Addition.h"; sourceTree = "<group>"; };
@@ -112,6 +113,12 @@
 		4EA502C61AED3DCB00B33D3C /* KUHTTPDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUHTTPDataSource.m; sourceTree = "<group>"; };
 		4ECD7C421B0A2A92003BD81E /* KUFeedPetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUFeedPetViewController.h; sourceTree = "<group>"; };
 		4ECD7C431B0A2A92003BD81E /* KUFeedPetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUFeedPetViewController.m; sourceTree = "<group>"; };
+		4EE761E01B39B01400B82E57 /* DBHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHandler.h; sourceTree = "<group>"; };
+		4EE761E11B39B01400B82E57 /* DBHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHandler.m; sourceTree = "<group>"; };
+		4EE761E51B39B06B00B82E57 /* KULocationDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KULocationDAO.h; sourceTree = "<group>"; };
+		4EE761E61B39B06B00B82E57 /* KULocationDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KULocationDAO.m; sourceTree = "<group>"; };
+		4EE761E91B39B0B100B82E57 /* KULocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KULocationModel.h; sourceTree = "<group>"; };
+		4EE761EA1B39B0B100B82E57 /* KULocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KULocationModel.m; sourceTree = "<group>"; };
 		4EEC5DBF1B024B8700F0A4B1 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		4EEC5DC01B024B8700F0A4B1 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		4EECA7301AEE91E400BF3DAA /* KUBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUBaseModel.h; sourceTree = "<group>"; };
@@ -144,14 +151,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E11C5221B0F85B6001F56C2 /* petAndText */ = {
-			isa = PBXGroup;
-			children = (
-				4E11C5231B0F85CE001F56C2 /* pet.plist */,
-			);
-			path = petAndText;
-			sourceTree = "<group>";
-		};
 		4E1DD3E61AFCB13100B53F7A /* extend */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,7 +275,7 @@
 			children = (
 				4EA5029C1AED36CB00B33D3C /* AppDelegate.h */,
 				4EA5029D1AED36CB00B33D3C /* AppDelegate.m */,
-				4E11C5221B0F85B6001F56C2 /* petAndText */,
+				4EE761DF1B39AFE900B82E57 /* Business */,
 				4E254E201B03AC440081C2E2 /* DeviceModel */,
 				4EEC5DBE1B024B8700F0A4B1 /* JSONKit */,
 				4E1DD3E61AFCB13100B53F7A /* extend */,
@@ -342,6 +341,7 @@
 				4EA502C61AED3DCB00B33D3C /* KUHTTPDataSource.m */,
 				4E823F941AEFD7A500FD515D /* KUDownloadImage.h */,
 				4E823F951AEFD7A500FD515D /* KUDownloadImage.m */,
+				4EE761E81B39B0A000B82E57 /* Model */,
 				4EECA72F1AEE91CE00BF3DAA /* ResponesModel */,
 			);
 			path = Network;
@@ -354,6 +354,26 @@
 				4ECD7C431B0A2A92003BD81E /* KUFeedPetViewController.m */,
 			);
 			path = FeedPet;
+			sourceTree = "<group>";
+		};
+		4EE761DF1B39AFE900B82E57 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				4EE761E01B39B01400B82E57 /* DBHandler.h */,
+				4EE761E11B39B01400B82E57 /* DBHandler.m */,
+				4EE761E51B39B06B00B82E57 /* KULocationDAO.h */,
+				4EE761E61B39B06B00B82E57 /* KULocationDAO.m */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		4EE761E81B39B0A000B82E57 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4EE761E91B39B0B100B82E57 /* KULocationModel.h */,
+				4EE761EA1B39B0B100B82E57 /* KULocationModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4EEC5DBE1B024B8700F0A4B1 /* JSONKit */ = {
@@ -480,7 +500,6 @@
 			files = (
 				4EA502A41AED36CB00B33D3C /* Main.storyboard in Resources */,
 				4EA502A91AED36CB00B33D3C /* LaunchScreen.xib in Resources */,
-				4E11C5241B0F85CE001F56C2 /* pet.plist in Resources */,
 				4EF22B691B064E81004FE5AC /* KUSelectedBirthdayView.xib in Resources */,
 				4E38D0E31B09068E003BB8FE /* KUPetAlertView.xib in Resources */,
 				4EA502A61AED36CB00B33D3C /* Images.xcassets in Resources */,
@@ -550,9 +569,11 @@
 				4E1DD3FB1AFCD87600B53F7A /* KULoginDayModel.m in Sources */,
 				4E09EB261B076AF50032708C /* KUBrithdayTextField.m in Sources */,
 				4EA5029E1AED36CB00B33D3C /* AppDelegate.m in Sources */,
+				4EE761EB1B39B0B100B82E57 /* KULocationModel.m in Sources */,
 				4E6B86AF1AFF65C600956EEE /* KUDetailInfoViewController.m in Sources */,
 				4E86355D1B09DB2500A5F8D5 /* KUProfile.m in Sources */,
 				4E1DD3EC1AFCB23E00B53F7A /* KUHTTPClient.m in Sources */,
+				4EE761E71B39B06B00B82E57 /* KULocationDAO.m in Sources */,
 				4EF22B671B064DEF004FE5AC /* KUSelectedBirthdayView.m in Sources */,
 				4EA5029B1AED36CB00B33D3C /* main.m in Sources */,
 				4E6B86AC1AFF65B500956EEE /* KUBaseInfoViewController.m in Sources */,
@@ -560,6 +581,7 @@
 				4E38D0E11B090680003BB8FE /* KUPetAlertView.m in Sources */,
 				4E254E231B03AC440081C2E2 /* DevicePlatInfo.m in Sources */,
 				4E1DD3E91AFCB16500B53F7A /* NSString+Addition.m in Sources */,
+				4EE761E21B39B01400B82E57 /* DBHandler.m in Sources */,
 				4ECD7C441B0A2A92003BD81E /* KUFeedPetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,6 +710,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = knowU/Info.plist;
@@ -695,6 +718,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -704,6 +728,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = knowU/Info.plist;

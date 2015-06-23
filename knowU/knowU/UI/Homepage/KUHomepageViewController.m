@@ -22,6 +22,9 @@
 #import "Masonry.h"
 #import "KULoginDayModel.h"
 #import "KUPetTypeModel.h"
+#import <AFNetworking.h>
+#import "KULocationDAO.h"
+#import "KULocationModel.h"
 
 @interface KUHomepageViewController () <CLLocationManagerDelegate>
 
@@ -69,6 +72,7 @@
     [super viewDidLoad];
     [self initUI];
     [self initData];
+    [self initNotification];
     
 }
 
@@ -128,10 +132,6 @@
 
 }
 
-#pragma mark- 其他屏幕UI
-- (void)initUIWithOtherScreen{
-    
-}
 
 - (NSDictionary *)petInfoWithIndex:(NSInteger)index{
     
@@ -175,6 +175,10 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
         [alertView show];
     }];
+}
+
+- (void)initNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkingReachabilityChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
 }
 
 - (void)showPetTypeWithLoginModel:(KULoginDayModel *)loginModel{
@@ -289,24 +293,38 @@
 }
 
 - (void)uploadLocation:(CLLocationCoordinate2D)coordinate{
-    NSLog(@"%@ %@ ", self.userName, self.userInputLocation);
-    [[KUHTTPClient manager] uploadTraceWithUID:self.userName traceInfo:
-     @{@"userId"            : self.userName,
-       @"latitude"          : @(self.nowLocation.latitude),
-       @"longitude"         : @(self.nowLocation.longitude),
-       @"timestamp"         : [[NSDate date] convertStringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
-       @"address"           : self.locationWithSystem,
-       @"action"            : self.action,
-       @"dayOfWeek"         : @([[NSDate date] weekdayWithDate]),
-       @"otherDescription"  : self.userInputLocation}
-        success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-           NSLog(@"%@ %@", operation, model);
-            self.locationWithSystem = @"";
-            self.userInputLocation = @"";
-            self.action = @"";
-       } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-           
-       }];
+    if ([self networkReachability]) {
+        [[KUHTTPClient manager] uploadTraceWithUID:self.userName traceInfo:
+         @{@"userId"            : self.userName,
+           @"latitude"          : @(self.nowLocation.latitude),
+           @"longitude"         : @(self.nowLocation.longitude),
+           @"timestamp"         : [[NSDate date] convertStringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
+           @"address"           : self.locationWithSystem,
+           @"action"            : self.action,
+           @"dayOfWeek"         : @([[NSDate date] weekdayWithDate]),
+           @"otherDescription"  : self.userInputLocation}
+                                           success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+                                               NSLog(@"%@ %@", operation, model);
+                                               self.locationWithSystem = @"";
+                                               self.userInputLocation = @"";
+                                               self.action = @"";
+                                           } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+                                               
+                                           }];
+    }
+    else{
+        KULocationModel *model = [[KULocationModel alloc] init];
+        model.userId = self.userName;
+        model.latitude = @(self.nowLocation.latitude);
+        model.longitude = @(self.nowLocation.longitude);
+        model.timestamp = [[NSDate date] convertStringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+        model.address = self.locationWithSystem;
+        model.action = self.action;
+        model.dayOfWeek = @([[NSDate date] weekdayWithDate]);
+        model.otherDescription = self.userInputLocation;
+        [KULocationDAO insertWithModel:model];
+    }
+    
     
 }
 
@@ -316,6 +334,8 @@
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation: newLocation completionHandler:^(NSArray *array, NSError *error) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"message" delegate:nil cancelButtonTitle:@"done" otherButtonTitles: nil];
+        [alert show];
         if (array.count > 0) {
             if ([self.updateLocationDate isCanUpdate:[NSDate date]]) {
                 self.nowLocation = newLocation.coordinate;
@@ -326,6 +346,49 @@
             }
         }
     }];
+}
+
+- (BOOL)networkReachability{
+    BOOL reabchability = NO;
+    switch ([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus) {
+        case AFNetworkReachabilityStatusNotReachable:
+        {
+            reabchability = NO;
+        }
+            break;
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+        {
+            reabchability = YES;
+        }
+            break;
+        default:
+            break;
+    }
+    return reabchability;
+}
+
+- (void)networkingReachabilityChange:(NSNotification *)notification{
+    if ([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN || [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi) {
+        NSArray *dataArray = [KULocationDAO selectNotUpload];
+        for (KULocationModel *locationModel in dataArray) {
+            [[KUHTTPClient manager] uploadTraceWithUID:locationModel.userId traceInfo:
+             @{@"userId"            : locationModel.userId,
+               @"latitude"          : locationModel.latitude,
+               @"longitude"         : locationModel.longitude,
+               @"timestamp"         : locationModel.timestamp,
+               @"address"           : locationModel.address,
+               @"action"            : locationModel.action,
+               @"dayOfWeek"         : locationModel.dayOfWeek,
+               @"otherDescription"  : locationModel.otherDescription}
+               success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+                   [KULocationDAO deleteWithIndex:locationModel.index];
+               } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+                                                   
+            }];
+        }
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

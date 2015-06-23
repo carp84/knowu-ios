@@ -36,8 +36,11 @@
     } completion:^(BOOL finished) {
         
     }];
-    
 }
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self cancel:nil];
+}
+
 - (IBAction)confirm:(UIButton *)sender {
     if (self.selectedBirthdayBlock) {
         self.selectedBirthdayBlock([self.picker.date convertStringWithFormat:@"yyyy-MM-dd"]);

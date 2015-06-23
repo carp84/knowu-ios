@@ -54,7 +54,6 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     self.pickerView = [[[NSBundle mainBundle] loadNibNamed:@"KUSelectedBirthdayView" owner:self options:nil] objectAtIndex:0];
     self.pickerView.alpha = 0;
     self.pickerView.selectedBirthdayBlock = ^(NSString *birthday){
-        NSLog(@"%@", birthday);
         weakSelf.birthdayTextField.text = birthday;
         weakSelf.skipFillInDetailInfo = NO;
         [weakSelf changeSkipButtonTitle:nil];
@@ -70,7 +69,8 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     
     self.birthdayTextField.touchBlock = ^{
         [weakSelf.pickerView show];
-        
+        [weakSelf.careerTextField resignFirstResponder];
+        [weakSelf.cellTextField resignFirstResponder];
     };
     
     [self.backButton setBackgroundImage:[UIImage imageNamed:IMAGE_BACK_NORMAL] forState:UIControlStateNormal];
