@@ -11,8 +11,6 @@
 
 #define MULTIPLE_PLAN_ENABLE 0
 
-static NSString *currentUserId;
-
 static FMDatabase *db;
 static dispatch_queue_t dbqueue;
 
@@ -27,23 +25,9 @@ static dispatch_queue_t dbqueue;
 	}];
 }
 
-+ (void)setUserId:(NSString *)userId {
-	NSAssert(nil != userId, @"nil != userId must be true !!!!!!");
-	[self resetDB];
-    currentUserId = userId;
-}
-
 + (NSString *)dbPathForCurrentUser {
 	NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-	NSAssert(currentUserId != nil, @"nil != userId must be true !!!!!!");
-
-	if (currentUserId == nil) {
-		return documentsDir;
-	}
-	else {
-		NSString *storeDir = [documentsDir stringByAppendingPathComponent:currentUserId];
-		return storeDir;
-	}
+    return documentsDir;
 }
 
 #pragma mark - DB
@@ -97,7 +81,7 @@ static dispatch_queue_t dbqueue;
 + (FMDatabase *)prepareDatabase {
 	NSString *dbfileDir = [DBHandler dbPathForCurrentUser];
 
-	NSString *dbfilePath = [dbfileDir stringByAppendingPathComponent:[NSString stringWithFormat:@"lianjia_im.sqlite"]];
+	NSString *dbfilePath = [dbfileDir stringByAppendingPathComponent:[NSString stringWithFormat:@"knowu.sqlite"]];
 
 	FMDatabase *_fmdb = [FMDatabase databaseWithPath:dbfilePath];
 
@@ -105,7 +89,7 @@ static dispatch_queue_t dbqueue;
 		[_fmdb close];
         return nil;
     }
-    NSString *msgTableCreateSql = @"create table if not exists `location` (`id` integer primary key autoincrement, `userId` text not null,`latitude` text not null, `longitude` text not null, `timestamp` text not null, `address` text, `action` text,`dayOfWeek` integer, `otherDescription` text, `isUpload` integer default 0, `ctime` timestamp)";
+    NSString *msgTableCreateSql = @"create table if not exists `location` (`id` integer primary key autoincrement, `userId` text not null,`latitude` text not null, `longitude` text not null, `timestamp` text not null, `address` text, `action` text,`dayOfWeek` integer, `otherDescription` text, `isUpload` integer default 0, `ctime` timestamp not null default CURRENT_TIMESTAMP)";
     
     [_fmdb executeUpdate:msgTableCreateSql];
     

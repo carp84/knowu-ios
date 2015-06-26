@@ -55,9 +55,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *leftSpliteImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rightSpliteImageView;
 
-/** 上传数据的时间，3秒之内禁止上传数据，避免数据重复*/
-@property (nonatomic, strong) NSDate *updateLocationDate;
-
 @property (nonatomic, strong) NSDictionary *petDictionary;
 
 @property (nonatomic, assign) CLLocationCoordinate2D nowLocation;
@@ -148,7 +145,7 @@
 }
 
 - (void)initData {
-    
+    self.userName = @"multisim10";
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -162,7 +159,6 @@
     
     [self.locationManager startUpdatingLocation];
     
-    self.updateLocationDate = [NSDate date];
     self.userInputLocation = @"";
     self.locationWithSystem = @"";
     self.action = @"";
@@ -334,17 +330,16 @@
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation: newLocation completionHandler:^(NSArray *array, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"message" delegate:nil cancelButtonTitle:@"done" otherButtonTitles: nil];
-        [alert show];
+        NSLog(@"%f", newLocation.coordinate.longitude);
         if (array.count > 0) {
-            if ([self.updateLocationDate isCanUpdate:[NSDate date]]) {
-                self.nowLocation = newLocation.coordinate;
-
-                CLPlacemark *placemark = [array objectAtIndex:0];
-                self.locationWithSystem = placemark.name;
-                [self uploadLocation:newLocation.coordinate];
-            }
+            self.nowLocation = newLocation.coordinate;
+            CLPlacemark *placemark = [array objectAtIndex:0];
+            self.locationWithSystem = placemark.name;
         }
+        else {
+            self.nowLocation = newLocation.coordinate;
+        }
+        [self uploadLocation:newLocation.coordinate];
     }];
 }
 
@@ -371,6 +366,7 @@
 - (void)networkingReachabilityChange:(NSNotification *)notification{
     if ([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN || [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi) {
         NSArray *dataArray = [KULocationDAO selectNotUpload];
+        NSLog(@"%d", dataArray.count);
         for (KULocationModel *locationModel in dataArray) {
             [[KUHTTPClient manager] uploadTraceWithUID:locationModel.userId traceInfo:
              @{@"userId"            : locationModel.userId,
@@ -382,7 +378,8 @@
                @"dayOfWeek"         : locationModel.dayOfWeek,
                @"otherDescription"  : locationModel.otherDescription}
                success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-                   [KULocationDAO deleteWithIndex:locationModel.index];
+                   NSLog(@"%d", locationModel.index);
+                   [KULocationDAO deleteWithIndex:@(locationModel.index)];
                } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
                                                    
             }];

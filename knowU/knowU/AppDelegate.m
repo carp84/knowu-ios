@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <AFNetworkActivityIndicatorManager.h>
-
+#import <AFNetworking.h>
 @interface AppDelegate ()
 
 @end
@@ -24,6 +24,7 @@
     [NSURLCache setSharedURLCache:URLCache];
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     
     return YES;
 }

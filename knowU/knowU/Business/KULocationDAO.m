@@ -44,11 +44,11 @@
     model.action = [rs stringForColumn:@"action"];
     model.dayOfWeek = @([rs intForColumn:@"dayOfWeek"]);
     model.otherDescription = [rs stringForColumn:@"otherDescription"];
-    model.index = [rs stringForColumn:@"id"];
+    model.index = [rs intForColumn:@"id"];
     return model;
 }
 
-+ (BOOL)updateWithIndex:(NSString *)index{
++ (BOOL)updateWithIndex:(NSNumber *)index{
     __block BOOL rel = NO;
     [DBHandler run:^{
         FMDatabase *db = [DBHandler getDB];
@@ -57,11 +57,11 @@
     return rel;
 }
 
-+ (BOOL)deleteWithIndex:(NSString *)index;{
++ (BOOL)deleteWithIndex:(NSNumber *)index{
     __block BOOL rel = NO;
     [DBHandler run:^{
         FMDatabase *db = [DBHandler getDB];
-        rel = [db executeUpdate:@"delete from location where isUpload = 1"];
+        rel = [db executeUpdate:@"delete from location where id = ?", index];
     }];
     return rel;
 }

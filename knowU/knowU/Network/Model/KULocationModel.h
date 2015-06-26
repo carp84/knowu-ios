@@ -19,6 +19,6 @@
 @property (nonatomic, strong) NSNumber *dayOfWeek;
 @property (nonatomic, copy) NSString *otherDescription;
 @property (nonatomic, strong) NSNumber *isUpload;
-@property (nonatomic, copy) NSString *index;
+@property (nonatomic, assign) NSInteger index;
 
 @end

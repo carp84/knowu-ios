@@ -15,8 +15,8 @@
 
 + (NSArray *)selectNotUpload;
 
-+ (BOOL)updateWithIndex:(NSString *)index;
++ (BOOL)updateWithIndex:(NSNumber *)index;
 
-+ (BOOL)deleteWithIndex:(NSString *)index;
++ (BOOL)deleteWithIndex:(NSNumber *)index;
 
 @end
