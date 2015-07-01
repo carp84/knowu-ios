@@ -320,8 +320,6 @@
         model.otherDescription = self.userInputLocation;
         [KULocationDAO insertWithModel:model];
     }
-    
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -366,7 +364,6 @@
 - (void)networkingReachabilityChange:(NSNotification *)notification{
     if ([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN || [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi) {
         NSArray *dataArray = [KULocationDAO selectNotUpload];
-        NSLog(@"%d", dataArray.count);
         for (KULocationModel *locationModel in dataArray) {
             [[KUHTTPClient manager] uploadTraceWithUID:locationModel.userId traceInfo:
              @{@"userId"            : locationModel.userId,
@@ -378,7 +375,6 @@
                @"dayOfWeek"         : locationModel.dayOfWeek,
                @"otherDescription"  : locationModel.otherDescription}
                success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-                   NSLog(@"%d", locationModel.index);
                    [KULocationDAO deleteWithIndex:@(locationModel.index)];
                } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
                                                    
