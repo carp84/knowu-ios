@@ -18,13 +18,10 @@
 #import "KUHomepageViewController.h"
 #import "DevicePlatInfo.h"
 #import "KUFeedPetViewController.h"
-#import <CoreLocation/CoreLocation.h>
 #import "CONSTS.h"
 #import "KUBaseModel.h"
-
+#import "KUGPS.h"
 @interface KULoginViewController () <CLLocationManagerDelegate>
-
-@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) NSMutableData *receiveData;
 /** 用户名*/
@@ -57,17 +54,10 @@
 }
 
 - (void)initData{
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 10;
-    self.locationManager.delegate = self;
-    self.locationManager.activityType = CLActivityTypeFitness;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
-//        [self.locationManager requestWhenInUseAuthorization];
-        [self.locationManager requestAlwaysAuthorization];
-    }
-    
-    [self.locationManager startUpdatingLocation];
+    KUGPS *gps = [KUGPS manager];
+    gps.locationBlock = ^(NSString *placeName, CLLocationCoordinate2D locationCoordinate){
+        
+    };
     
     RAC(self.loginButton, userInteractionEnabled) =
     [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *userName, NSString *password){
@@ -163,11 +153,6 @@
     }];
 }
 
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation{
-  
-}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;

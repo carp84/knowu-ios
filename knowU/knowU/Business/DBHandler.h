@@ -11,9 +11,6 @@
 
 @interface DBHandler : NSObject
 
-//绑定用户数据库，程序启动或者登录后调用
-+ (void)setUserId:(NSString *)userId;
-
 //返回根据当前用户生成的数据库跟目录
 + (NSString *)dbPathForCurrentUser;
 

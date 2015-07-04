@@ -26,6 +26,7 @@
 		4E823F9F1AF3345800FD515D /* KULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823F9E1AF3345800FD515D /* KULoginViewController.m */; };
 		4E823FA61AF3371700FD515D /* KUHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E823FA51AF3371700FD515D /* KUHomepageViewController.m */; };
 		4E86355D1B09DB2500A5F8D5 /* KUProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E86355C1B09DB2500A5F8D5 /* KUProfile.m */; };
+		4EA1640E1B481E7400A40A4E /* KUGPS.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA1640D1B481E7400A40A4E /* KUGPS.m */; };
 		4EA5029B1AED36CB00B33D3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA5029A1AED36CB00B33D3C /* main.m */; };
 		4EA5029E1AED36CB00B33D3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA5029D1AED36CB00B33D3C /* AppDelegate.m */; };
 		4EA502A41AED36CB00B33D3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EA502A21AED36CB00B33D3C /* Main.storyboard */; };
@@ -96,6 +97,8 @@
 		4E823FA51AF3371700FD515D /* KUHomepageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUHomepageViewController.m; sourceTree = "<group>"; };
 		4E86355B1B09DB2500A5F8D5 /* KUProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUProfile.h; sourceTree = "<group>"; };
 		4E86355C1B09DB2500A5F8D5 /* KUProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUProfile.m; sourceTree = "<group>"; };
+		4EA1640C1B481E7400A40A4E /* KUGPS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUGPS.h; sourceTree = "<group>"; };
+		4EA1640D1B481E7400A40A4E /* KUGPS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUGPS.m; sourceTree = "<group>"; };
 		4EA502951AED36CB00B33D3C /* knowU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = knowU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EA502991AED36CB00B33D3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EA5029A1AED36CB00B33D3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 				4EE761E11B39B01400B82E57 /* DBHandler.m */,
 				4EE761E51B39B06B00B82E57 /* KULocationDAO.h */,
 				4EE761E61B39B06B00B82E57 /* KULocationDAO.m */,
+				4EA1640C1B481E7400A40A4E /* KUGPS.h */,
+				4EA1640D1B481E7400A40A4E /* KUGPS.m */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -467,6 +472,11 @@
 					4EA502941AED36CB00B33D3C = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = 83CM7487EB;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					4EA502AD1AED36CB00B33D3C = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -576,6 +586,7 @@
 				4EE761E71B39B06B00B82E57 /* KULocationDAO.m in Sources */,
 				4EF22B671B064DEF004FE5AC /* KUSelectedBirthdayView.m in Sources */,
 				4EA5029B1AED36CB00B33D3C /* main.m in Sources */,
+				4EA1640E1B481E7400A40A4E /* KUGPS.m in Sources */,
 				4E6B86AC1AFF65B500956EEE /* KUBaseInfoViewController.m in Sources */,
 				4E1DD3F31AFCB80100B53F7A /* KURegisterViewController.m in Sources */,
 				4E38D0E11B090680003BB8FE /* KUPetAlertView.m in Sources */,

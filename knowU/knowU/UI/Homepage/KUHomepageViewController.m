@@ -25,6 +25,7 @@
 #import <AFNetworking.h>
 #import "KULocationDAO.h"
 #import "KULocationModel.h"
+#import "KUGPS.h"
 
 @interface KUHomepageViewController () <CLLocationManagerDelegate>
 
@@ -145,20 +146,19 @@
 }
 
 - (void)initData {
-    self.userName = @"multisim10";
-    
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 10;
-    self.locationManager.delegate = self;
-    self.locationManager.activityType = CLActivityTypeFitness;
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
-//        [self.locationManager requestWhenInUseAuthorization];
-        [self.locationManager requestAlwaysAuthorization];
-    }
-    
-    [self.locationManager startUpdatingLocation];
-    
+    WEAKSELF;
+    KUGPS *gps = [KUGPS manager];
+    gps.locationBlock = ^(NSString *placeName, CLLocationCoordinate2D locationCoordinate){
+        
+        weakSelf.nowLocation = locationCoordinate;
+        if (placeName.length) {
+            self.locationWithSystem = placeName;
+        }
+        
+        [weakSelf uploadLocation:locationCoordinate];
+        
+    };
+
     self.userInputLocation = @"";
     self.locationWithSystem = @"";
     self.action = @"";
@@ -320,25 +320,6 @@
         model.otherDescription = self.userInputLocation;
         [KULocationDAO insertWithModel:model];
     }
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation{
-    
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation: newLocation completionHandler:^(NSArray *array, NSError *error) {
-        NSLog(@"%f", newLocation.coordinate.longitude);
-        if (array.count > 0) {
-            self.nowLocation = newLocation.coordinate;
-            CLPlacemark *placemark = [array objectAtIndex:0];
-            self.locationWithSystem = placemark.name;
-        }
-        else {
-            self.nowLocation = newLocation.coordinate;
-        }
-        [self uploadLocation:newLocation.coordinate];
-    }];
 }
 
 - (BOOL)networkReachability{
