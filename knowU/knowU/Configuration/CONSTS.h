@@ -11,6 +11,7 @@
 
 #define WEAKSELF typeof(self) __weak weakSelf = self;
 static const NSTimeInterval TIME_OUT_INTERVAL = 60;
+
 #define SCREENWIDTH     [UIScreen mainScreen].bounds.size.width
 #define SCREENHEIGHT    [UIScreen mainScreen].bounds.size.height
 

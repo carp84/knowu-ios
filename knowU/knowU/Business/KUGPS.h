@@ -17,5 +17,11 @@
 @property (nonatomic, copy) void (^locationBlock)(NSString *placeName, CLLocationCoordinate2D locationCoordinate);
 
 + (instancetype)manager;
+- (void)initLocation;
 
+- (void)startMonitoringSignificantLocationChanges;
+- (void)startUpdatingLocation;
+
+- (void)stopMonitoringSignificantLocationChanges;
+- (void)stopUpdatingLocation;
 @end

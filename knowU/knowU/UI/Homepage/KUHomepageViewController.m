@@ -175,6 +175,23 @@
 
 - (void)initNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkingReachabilityChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backgroundFetch:) name:@"KUPerformFetchNotification" object:nil];
+}
+
+- (void)backgroundFetch:(NSNotification *)notification{
+    WEAKSELF;
+    KUGPS *gps = [KUGPS manager];
+    [gps initLocation];
+    gps.locationBlock = ^(NSString *placeName, CLLocationCoordinate2D locationCoordinate){
+        
+        weakSelf.nowLocation = locationCoordinate;
+        if (placeName.length) {
+            self.locationWithSystem = placeName;
+        }
+        
+        [weakSelf uploadLocation:locationCoordinate];
+        
+    };
 }
 
 - (void)showPetTypeWithLoginModel:(KULoginDayModel *)loginModel{
@@ -361,7 +378,6 @@
                                                    
             }];
         }
-        
     }
 }
 
@@ -369,6 +385,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)dealloc{
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"KUPerformFetchNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AFNetworkingReachabilityDidChangeNotification object:nil];
+}
+
+
 
 /*
 #pragma mark - Navigation

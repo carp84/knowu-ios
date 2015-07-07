@@ -8,6 +8,7 @@
 
 #import "KUGPS.h"
 #import <UIKit/UIKit.h>
+#import "CONSTS.h"
 
 static KUGPS *location;
 
@@ -31,19 +32,46 @@ static KUGPS *location;
 {
     self = [super init];
     if (self) {
+        [self initLocation];
+    }
+    return self;
+}
+
+- (void)initLocation{
+    if ([CLLocationManager locationServicesEnabled]) {
+        if (self.locationManager) {
+            [self.locationManager stopUpdatingHeading];
+            self.locationManager.delegate = nil;
+            self.locationManager = nil;
+        }
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.distanceFilter = 10;
         self.locationManager.delegate = self;
         self.locationManager.activityType = CLActivityTypeFitness;
+        self.locationManager.pausesLocationUpdatesAutomatically = YES;
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0){
             //        [self.locationManager requestWhenInUseAuthorization];
             [self.locationManager requestAlwaysAuthorization];
         }
-        
         [self.locationManager startUpdatingLocation];
     }
-    return self;
+}
+
+- (void)startMonitoringSignificantLocationChanges{
+    [self.locationManager startMonitoringSignificantLocationChanges];
+}
+
+- (void)startUpdatingLocation{
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)stopMonitoringSignificantLocationChanges{
+    [self.locationManager stopMonitoringSignificantLocationChanges];
+}
+
+- (void)stopUpdatingLocation{
+    [self.locationManager stopUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager

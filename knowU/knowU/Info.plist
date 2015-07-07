@@ -30,7 +30,9 @@
 	<string></string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>location</string>
+		<string>voip</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>

@@ -9,7 +9,11 @@
 #import "AppDelegate.h"
 #import <AFNetworkActivityIndicatorManager.h>
 #import <AFNetworking.h>
+#import "CONSTS.h"
+#import "KUGPS.h"
 @interface AppDelegate ()
+
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -18,6 +22,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [application setMinimumBackgroundFetchInterval: UIApplicationBackgroundFetchIntervalMinimum];
+    [application beginBackgroundTaskWithExpirationHandler:^{
+
+    }];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
@@ -35,12 +43,25 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+//    [[KUGPS manager] stopUpdatingLocation];
+//    [[KUGPS manager] startMonitoringSignificantLocationChanges];
+    if (self.timer) {
+        [self.timer invalidate];
+    }
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:60 * 5 target:self selector:@selector(updateLocation:) userInfo:nil repeats:YES];
+    [self.timer fire];
+    
+}
+
+- (void)updateLocation:(NSTimer *)timer{
+    NSLog(@"updateLocation");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"KUPerformFetchNotification" object:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+//    [[KUGPS manager] stopMonitoringSignificantLocationChanges];
+//    [[KUGPS manager] startUpdatingLocation];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -49,6 +70,11 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    NSLog(@"performFetchWithCompletionHandler %@", completionHandler);
+//    [[NSNotificationCenter defaultCenter] postNotificationName:KUPerformFetchNotification object:nil];
 }
 
 @end
