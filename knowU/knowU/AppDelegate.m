@@ -49,8 +49,8 @@
     if (self.timer) {
         [self.timer invalidate];
     }
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:60 * 5 target:self selector:@selector(updateLocation:) userInfo:nil repeats:YES];
-    [self.timer fire];
+    self.timer = [NSTimer timerWithTimeInterval:60 * 10 target:self selector:@selector(updateLocation:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     
 }
 
