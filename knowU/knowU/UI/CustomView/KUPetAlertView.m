@@ -105,6 +105,10 @@
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
     }
+    if (textView.text.length >= 20 && text.length > range.length) {
+        return NO;
+    }
+    
     return YES;
 }
 
