@@ -21,4 +21,7 @@
 /** 验证是否为有效邮箱*/
 - (BOOL) validateEmail;
 
+/** 验证用户名*/
+- (BOOL) validateUserName;
+
 @end

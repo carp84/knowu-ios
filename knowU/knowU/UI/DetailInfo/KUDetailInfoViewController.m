@@ -67,10 +67,16 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
         make.trailing.equalTo(@0);
     }];
     
+    self.birthdayTextField.tintColor = [UIColor clearColor];
+    
     self.birthdayTextField.touchBlock = ^{
         [weakSelf.pickerView show];
         [weakSelf.careerTextField resignFirstResponder];
         [weakSelf.cellTextField resignFirstResponder];
+    };
+    
+    self.pickerView.hiddenBirthdayBlock = ^{
+        [weakSelf.birthdayTextField resignFirstResponder];
     };
     
     [self.backButton setBackgroundImage:[UIImage imageNamed:IMAGE_BACK_NORMAL] forState:UIControlStateNormal];
@@ -224,7 +230,6 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     navigationController.navigationBar.hidden = YES;
     [self presentViewController:navigationController animated:NO completion:NULL];
 }
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];

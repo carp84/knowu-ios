@@ -10,11 +10,11 @@
 
 @interface KUBaseModel : MTLModel <MTLJSONSerializing>
 
-@property (assign, readonly, nonatomic) int code;
+@property (assign, readonly, nonatomic) NSInteger code;
 @property (assign, readonly, nonatomic) int success;
 @property (copy, readonly, nonatomic) NSString *message;
 
-- (instancetype)initWithCode:(int)code
+- (instancetype)initWithCode:(NSInteger)code
                      message:(NSString *)message
                      success:(int)success;
 

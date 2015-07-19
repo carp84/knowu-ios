@@ -40,5 +40,13 @@
     return [emailTest evaluateWithObject:self];
 }
 
+/** 验证用户名*/
+- (BOOL) validateUserName{
+    NSString *emailRegex = @"^[0-9a-zA-Z_]+$";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:self];
+}
+
 
 @end

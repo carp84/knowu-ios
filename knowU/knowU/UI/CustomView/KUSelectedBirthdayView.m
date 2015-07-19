@@ -34,7 +34,9 @@
         }];
         [self.selectedView layoutIfNeeded];
     } completion:^(BOOL finished) {
-        
+        if (self.hiddenBirthdayBlock) {
+            self.hiddenBirthdayBlock();
+        }
     }];
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{

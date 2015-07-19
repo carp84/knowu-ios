@@ -140,6 +140,11 @@
         return;
     }
     
+    if (![self.userNameTextField.text validateUserName]) {
+        [self showAlertViewWithMessage:STRING_USER_NAME_UNAVAILABLE];
+        return;
+    }
+    
     if (![self.mailTextField.text length]) {
         [self showAlertViewWithMessage:STRING_NO_MAIL];
         return;

@@ -11,6 +11,6 @@
 @interface KUSelectedBirthdayView : UIView
 
 @property (nonatomic, copy) void (^selectedBirthdayBlock)(NSString *birthday);
-
+@property (nonatomic, copy) void (^hiddenBirthdayBlock)();
 - (void)show;
 @end

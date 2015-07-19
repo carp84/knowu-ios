@@ -211,7 +211,7 @@
 #pragma mark- 根据登录天数展示不同数据
 - (void)showWithLoginInfoWithModel:(KULoginDayModel *)model {
     
-    self.loginDayLabel.text = [NSString stringWithFormat:@"%d天", model.day];
+    self.loginDayLabel.text = [NSString stringWithFormat:@"%d天", 4 - model.day];
     [self.loginDayLabel showOtherFontFromLocation:[self.loginDayLabel.text length] - 1 length:1 fontSize:[UIFont systemFontOfSize:12]];
     
     self.totalLoginDayLabel.text = [NSString stringWithFormat:@"已登录%d天", model.day];

@@ -69,9 +69,10 @@ static KUHTTPDataSource *httpDataSource;
         NSLog(@"%@",responseObject);
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:@"系统错误" success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
-                failure(operation, nil);
+                failure(operation, baseModel);
             }
         });
     }];
@@ -88,9 +89,10 @@ static KUHTTPDataSource *httpDataSource;
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:@"系统错误" success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
-                failure(operation, nil);
+                failure(operation, baseModel);
             }
         });
     }];
@@ -110,9 +112,10 @@ static KUHTTPDataSource *httpDataSource;
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:@"系统错误" success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
-                failure(operation, nil);
+                failure(operation, baseModel);
             }
         });
     }];
@@ -128,9 +131,10 @@ static KUHTTPDataSource *httpDataSource;
     return [self.operationManager PUT:[URLString UTF8Encode] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:@"系统错误" success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
-                failure(operation, nil);
+                failure(operation, baseModel);
             }
         });
     }];

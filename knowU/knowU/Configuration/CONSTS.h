@@ -68,6 +68,7 @@ static const NSTimeInterval TIME_OUT_INTERVAL = 60;
 
 /*************************************填写注册信息*******************************************/
 #define STRING_NO_USER_NAME             @"赶紧给自己起个好听的昵称吧^_^"
+#define STRING_USER_NAME_UNAVAILABLE    @"用户名由数字、字母下划线组成"
 #define STRING_NO_MAIL                  @"没有邮箱怎么找回密码呢？赶紧填写吧"
 #define STRING_NO_PASSWORD              @"没有密码账户会不安全的"
 #define STRING_NO_CONFIRM_PASSWORD      @"两次密码输入不一致哦～～"

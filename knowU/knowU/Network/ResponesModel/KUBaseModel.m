@@ -36,7 +36,7 @@
     return self;
 }
 
-- (instancetype)initWithCode:(int)code
+- (instancetype)initWithCode:(NSInteger)code
                           message:(NSString *)message
                           success:(int)success
 {

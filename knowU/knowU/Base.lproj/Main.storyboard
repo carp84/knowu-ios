@@ -66,7 +66,7 @@
                                         <rect key="frame" x="10" y="11" width="23" height="23"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign_icon_2" translatesAutoresizingMaskIntoConstraints="NO" id="ohc-dx-MAA">
-                                        <rect key="frame" x="10" y="56" width="23" height="23"/>
+                                        <rect key="frame" x="10" y="57" width="23" height="23"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的登录名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mM2-tq-aIE">
                                         <rect key="frame" x="48" y="0.0" width="212" height="45"/>
@@ -87,9 +87,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="ohc-dx-MAA" firstAttribute="centerY" secondItem="4EL-V8-3l3" secondAttribute="centerY" id="07J-Vz-Zxe"/>
                                     <constraint firstItem="mM2-tq-aIE" firstAttribute="leading" secondItem="4EL-V8-3l3" secondAttribute="leading" id="3ai-EY-guF"/>
                                     <constraint firstItem="mM2-tq-aIE" firstAttribute="leading" secondItem="KhS-Qb-e8X" secondAttribute="trailing" constant="15" id="8Im-6o-7th"/>
                                     <constraint firstItem="nVS-8Y-1xW" firstAttribute="top" secondItem="mM2-tq-aIE" secondAttribute="bottom" id="9sC-7X-3c8"/>
+                                    <constraint firstItem="4EL-V8-3l3" firstAttribute="leading" secondItem="ohc-dx-MAA" secondAttribute="trailing" constant="15" id="Am3-wm-P4I"/>
                                     <constraint firstAttribute="trailing" secondItem="mM2-tq-aIE" secondAttribute="trailing" constant="10" id="BtS-Tz-hgC"/>
                                     <constraint firstItem="nVS-8Y-1xW" firstAttribute="leading" secondItem="nu6-OK-Mbg" secondAttribute="leading" id="Elb-D4-nvk"/>
                                     <constraint firstAttribute="centerX" secondItem="nVS-8Y-1xW" secondAttribute="centerX" id="MIk-6x-K45"/>
@@ -117,6 +119,8 @@
                                     <mask key="constraints">
                                         <exclude reference="joo-hU-Otw"/>
                                         <exclude reference="MIk-6x-K45"/>
+                                        <exclude reference="dMf-vm-wEZ"/>
+                                        <exclude reference="qT4-4E-H8T"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -408,7 +412,7 @@
                                             <constraint firstAttribute="height" constant="0.5" id="IPJ-Lz-ipq"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="填写一个您喜欢的昵称" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kl9-sG-hKy">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择喜欢的用户名" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kl9-sG-hKy">
                                         <rect key="frame" x="88" y="0.0" width="178" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
