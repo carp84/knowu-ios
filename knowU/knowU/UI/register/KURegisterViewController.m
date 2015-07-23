@@ -140,10 +140,10 @@
         return;
     }
     
-    if (![self.userNameTextField.text validateUserName]) {
-        [self showAlertViewWithMessage:STRING_USER_NAME_UNAVAILABLE];
-        return;
-    }
+//    if (![self.userNameTextField.text validateUserName]) {
+//        [self showAlertViewWithMessage:STRING_USER_NAME_UNAVAILABLE];
+//        return;
+//    }
     
     if (![self.mailTextField.text length]) {
         [self showAlertViewWithMessage:STRING_NO_MAIL];
@@ -178,7 +178,7 @@
         controller.password = self.passwordTextField.text;
         [self.navigationController pushViewController:controller animated:YES];
     } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:[NSString stringWithFormat:@"error code is %ld, message is %@", (long)model.code, model.message] delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
         [alertView show];
     }];
 }

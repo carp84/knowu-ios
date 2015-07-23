@@ -56,7 +56,6 @@
 - (void)initData{
     KUGPS *gps = [KUGPS manager];
     gps.locationBlock = ^(NSString *placeName, CLLocationCoordinate2D locationCoordinate){
-        
     };
     
     RAC(self.loginButton, userInteractionEnabled) =
@@ -148,7 +147,7 @@
         navigationController.navigationBar.hidden = YES;
         [self presentViewController:navigationController animated:NO completion:NULL];
     } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:[NSString stringWithFormat:@"error code is %ld, message is %@", (long)model.code, model.message] delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
         [alertView show];
     }];
 }

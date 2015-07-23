@@ -21,7 +21,8 @@
 
 - (NSString *)UTF8Encode {
     
-    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)self, (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]", NULL,  kCFStringEncodingUTF8));
+    return [self stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)self, (CFStringRef)@"!$&'()*+,-./:;=?@_~%#[]", NULL,  kCFStringEncodingUTF8));
 }
 
 - (BOOL) validateCell

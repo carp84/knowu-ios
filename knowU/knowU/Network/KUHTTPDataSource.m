@@ -43,8 +43,8 @@ static KUHTTPDataSource *httpDataSource;
     self = [super init];
     if (self) {
         self.operationManager = [AFHTTPRequestOperationManager manager];
-//        self.operationManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
         self.operationManager.requestSerializer = [AFJSONRequestSerializer serializer];
+//        self.operationManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
         [self.operationManager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         [self.operationManager.operationQueue setMaxConcurrentOperationCount:MAX_CONCURRENT_HTTP_REQUEST_COUNT];
         self.operationManager.completionQueue = dispatch_queue_create("afmanager.completion.queue", DISPATCH_QUEUE_SERIAL);
@@ -65,11 +65,10 @@ static KUHTTPDataSource *httpDataSource;
                               success:(KUSuccessBlock)success
                               failure:(KUFailureBlock)failure{
     WEAKSELF;
-    return [self.operationManager GET:[URLString UTF8Encode] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+    return [self.operationManager GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:@"系统错误" success:0];
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:error.localizedFailureReason success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
                 failure(operation, baseModel);
@@ -85,11 +84,10 @@ static KUHTTPDataSource *httpDataSource;
                                success:(KUSuccessBlock)success
                                failure:(KUFailureBlock)failure{
     WEAKSELF;
-    return [self.operationManager POST:[URLString UTF8Encode] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    return [self.operationManager POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error);
-        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:@"系统错误" success:0];
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:error.description success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
                 failure(operation, baseModel);
@@ -107,12 +105,12 @@ static KUHTTPDataSource *httpDataSource;
                                         success:(KUSuccessBlock)success
                                         failure:(KUFailureBlock)failure{
     WEAKSELF;
-    return [self.operationManager POST:[URLString UTF8Encode] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    return [self.operationManager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 1.0) name:@"pic" fileName:fileName mimeType:@"image/jpeg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:@"系统错误" success:0];
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:error.localizedFailureReason success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
                 failure(operation, baseModel);
@@ -128,10 +126,10 @@ static KUHTTPDataSource *httpDataSource;
                               success:(KUSuccessBlock)success
                               failure:(KUFailureBlock)failure{
     WEAKSELF;
-    return [self.operationManager PUT:[URLString UTF8Encode] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    return [self.operationManager PUT:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:@"系统错误" success:0];
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:error.localizedFailureReason success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
                 failure(operation, baseModel);

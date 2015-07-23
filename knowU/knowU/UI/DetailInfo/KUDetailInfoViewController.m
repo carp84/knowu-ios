@@ -16,6 +16,7 @@
 #import "NSString+Addition.h"
 #import "DevicePlatInfo.h"
 #import "KUBaseModel.h"
+#import "KUGPS.h"
 
 typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
     ButtonTypeOfMale = 1,   //1表示性别为女，2表示性别为男
@@ -215,7 +216,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
                                             success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
                                                 [self handlePushViewController];
                                             } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-                                                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+                                                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:[NSString stringWithFormat:@"error code is %ld, message is %@", (long)model.code, model.message] delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
                                                 [alertView show];
                                             }];
 

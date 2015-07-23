@@ -43,7 +43,8 @@ static KUHTTPClient *client;
 
 #pragma mark- 合并基本的URL
 - (NSString *)URLWithPath:(NSString *)url path:(NSString *)path {
-    return [url stringByAppendingPathComponent:path];
+    
+    return [NSString stringWithFormat:@"%@%@", url, path];
 }
 
 /**
@@ -64,12 +65,9 @@ static KUHTTPClient *client;
                                     success:(KUSuccessBlock)success
                                     failure:(KUFailureBlock)failure{
     
-//    [[dictionary objectForKey:@"url"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
-//    NSString *url = [self URLWithPath:[DefaultURL manager].registerURL path:[NSString stringWithFormat:@"?userId=%@&emailAddress=%@&password=%@", [UID UTF8Encode], [mail UTF8Encode], [password MD5]]];
-    return [dataSource POSTClient:[DefaultURL manager].registerURL
-                       parameters:@{@"userId" : UID,
-                                    @"emailAddress" : mail,
-                                    @"password" : [password MD5]}
+    NSString *url = [self URLWithPath:[DefaultURL manager].registerURL path:[NSString stringWithFormat:@"?userId=%@&emailAddress=%@&password=%@", [UID UTF8Encode], [mail UTF8Encode], [password MD5]]];
+    return [dataSource POSTClient:url
+                       parameters:nil
                        modelClass:[KUBaseModel class]
                           success:success failure:failure];
 }
@@ -90,11 +88,10 @@ static KUHTTPClient *client;
                                 password:(NSString *)password
                                  success:(KUSuccessBlock)success
                                  failure:(KUFailureBlock)failure {
-//    NSString *url = [self URLWithPath:[DefaultURL manager].loginURL path:[NSString stringWithFormat:@"?userId=%@&password=%@",[UID UTF8Encode], [password MD5]]];
+    NSString *url = [self URLWithPath:[DefaultURL manager].loginURL path:[NSString stringWithFormat:@"?userId=%@&password=%@",[UID UTF8Encode], [password MD5]]];
     
-    return [dataSource POSTClient:[DefaultURL manager].loginURL
-                      parameters:@{@"userId" : UID,
-                                   @"password" : [password MD5]}
+    return [dataSource POSTClient:url
+                      parameters:nil
                        modelClass:[KUBaseModel class]
                           success:success failure:failure];
 }

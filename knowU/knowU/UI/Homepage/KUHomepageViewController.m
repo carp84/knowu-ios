@@ -12,7 +12,6 @@
 #import "UILabel+Addition.h"
 #import "UIColor+Addition.h"
 #import "KUProfile.h"
-#import <CoreLocation/CoreLocation.h>
 #import "KUHTTPClient.h"
 #import "NSDate+Addition.h"
 #import "KUPetAlertView.h"
@@ -50,7 +49,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *petImageView;
 
 @property (nonatomic, copy) NSString *userInputLocation;
-@property (nonatomic, copy) NSString *locationWithSystem;
 @property (weak, nonatomic) IBOutlet UIButton *feedButton;
 @property (weak, nonatomic) IBOutlet UIButton *inputLocationButton;
 @property (weak, nonatomic) IBOutlet UIImageView *leftSpliteImageView;
@@ -58,9 +56,10 @@
 
 @property (nonatomic, strong) NSDictionary *petDictionary;
 
-@property (nonatomic, assign) CLLocationCoordinate2D nowLocation;
-
 @property (nonatomic, copy) NSString *action;
+
+@property (nonatomic, assign) CLLocationCoordinate2D nowLocation;
+@property (nonatomic, copy) NSString *locationWithSystem;
 
 @end
 
@@ -148,6 +147,7 @@
 - (void)initData {
     WEAKSELF;
     KUGPS *gps = [KUGPS manager];
+    [gps initLocation];
     gps.locationBlock = ^(NSString *placeName, CLLocationCoordinate2D locationCoordinate){
         
         weakSelf.nowLocation = locationCoordinate;
@@ -168,7 +168,7 @@
             [self showPetTypeWithLoginModel:(KULoginDayModel *)model];
         }
     } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:[NSString stringWithFormat:@"error code is %ld, message is %@", (long)model.code, model.message] delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
         [alertView show];
     }];
 }
@@ -203,7 +203,7 @@
     } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         self.petDictionary = [self petInfoWithIndex:-1];
 
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:model.message delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:[NSString stringWithFormat:@"error code is %ld, message is %@", (long)model.code, model.message] delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
         [alertView show];
     }];
 }
