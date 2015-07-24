@@ -46,7 +46,7 @@ static KUGPS *location;
         }
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.distanceFilter = 10;
+        self.locationManager.distanceFilter = 1000;
         self.locationManager.delegate = self;
         self.locationManager.activityType = CLActivityTypeFitness;
         self.locationManager.pausesLocationUpdatesAutomatically = YES;

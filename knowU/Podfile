@@ -10,3 +10,5 @@ pod 'FMDB'
 pod 'Mantle', "~> 2.0"
 pod 'ReactiveCocoa'
 pod 'Masonry'
+pod 'Fabric'
+pod 'Crashlytics'

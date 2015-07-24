@@ -4,27 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
+		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-FMDB.xcscheme</key>
+		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Mantle.xcscheme</key>
+		<key>Mantle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Masonry.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-ReactiveCocoa.xcscheme</key>
+		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -34,35 +29,40 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ReactiveCocoa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1A5F0412B89C4E2D9CBCD96E</key>
+		<key>3048BB7831CA3B02D5860AFC01884B6C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>64B1C17A1C64D4DDE9B02375</key>
+		<key>328D36938143B011FC84B864E18493B4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D259EC30022920671AAE4D7</key>
+		<key>36996A667FF665273BB661F662A8A933</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D6E01A1B0836A29D66A89CC</key>
+		<key>6E7A3E44C91B2AEDCDB19FE03EC02C6A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A1A7F8EAFE62402EEFD918AF</key>
+		<key>B35128FDC6B39894BB7527F57C04C7A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B1B8922C55E8E61047128574</key>
+		<key>E78486C9639931214C6A3663703F539C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

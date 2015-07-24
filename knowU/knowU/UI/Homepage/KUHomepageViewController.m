@@ -145,6 +145,11 @@
 }
 
 - (void)initData {
+    
+    self.userInputLocation = @"";
+    self.locationWithSystem = @"";
+    self.action = @"";
+    
     WEAKSELF;
     KUGPS *gps = [KUGPS manager];
     [gps initLocation];
@@ -158,10 +163,6 @@
         [weakSelf uploadLocation:locationCoordinate];
         
     };
-
-    self.userInputLocation = @"";
-    self.locationWithSystem = @"";
-    self.action = @"";
     
     [[KUHTTPClient manager] loginDayWithUID:self.userName success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
         if ([model isKindOfClass: [KULoginDayModel class]]) {
