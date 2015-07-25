@@ -41,6 +41,12 @@
 		4EE761EB1B39B0B100B82E57 /* KULocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE761EA1B39B0B100B82E57 /* KULocationModel.m */; };
 		4EEC5DC11B024B8700F0A4B1 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC5DC01B024B8700F0A4B1 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4EECA7321AEE91E400BF3DAA /* KUBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EECA7311AEE91E400BF3DAA /* KUBaseModel.m */; };
+		4EEF8F9A1B637F13005FDE91 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EEF8F991B637F13005FDE91 /* SystemConfiguration.framework */; };
+		4EEF8F9C1B637F1A005FDE91 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EEF8F9B1B637F1A005FDE91 /* MobileCoreServices.framework */; };
+		4EEF8F9E1B637F25005FDE91 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EEF8F9D1B637F25005FDE91 /* CoreTelephony.framework */; };
+		4EEF8FA01B637F2C005FDE91 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EEF8F9F1B637F2C005FDE91 /* CoreLocation.framework */; };
+		4EEF8FA21B637F37005FDE91 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EEF8FA11B637F37005FDE91 /* libicucore.dylib */; };
+		4EEF8FA41B637F46005FDE91 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EEF8FA31B637F46005FDE91 /* libc++.dylib */; };
 		4EF22B671B064DEF004FE5AC /* KUSelectedBirthdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF22B661B064DEF004FE5AC /* KUSelectedBirthdayView.m */; };
 		4EF22B691B064E81004FE5AC /* KUSelectedBirthdayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EF22B681B064E81004FE5AC /* KUSelectedBirthdayView.xib */; };
 		4EF22B711B06548D004FE5AC /* NSDate+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF22B701B06548D004FE5AC /* NSDate+Addition.m */; };
@@ -126,6 +132,12 @@
 		4EEC5DC01B024B8700F0A4B1 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		4EECA7301AEE91E400BF3DAA /* KUBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUBaseModel.h; sourceTree = "<group>"; };
 		4EECA7311AEE91E400BF3DAA /* KUBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUBaseModel.m; sourceTree = "<group>"; };
+		4EEF8F991B637F13005FDE91 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4EEF8F9B1B637F1A005FDE91 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		4EEF8F9D1B637F25005FDE91 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		4EEF8F9F1B637F2C005FDE91 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4EEF8FA11B637F37005FDE91 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		4EEF8FA31B637F46005FDE91 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		4EF22B651B064DEF004FE5AC /* KUSelectedBirthdayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUSelectedBirthdayView.h; sourceTree = "<group>"; };
 		4EF22B661B064DEF004FE5AC /* KUSelectedBirthdayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUSelectedBirthdayView.m; sourceTree = "<group>"; };
 		4EF22B681B064E81004FE5AC /* KUSelectedBirthdayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KUSelectedBirthdayView.xib; sourceTree = "<group>"; };
@@ -140,6 +152,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EEF8FA41B637F46005FDE91 /* libc++.dylib in Frameworks */,
+				4EEF8FA21B637F37005FDE91 /* libicucore.dylib in Frameworks */,
+				4EEF8FA01B637F2C005FDE91 /* CoreLocation.framework in Frameworks */,
+				4EEF8F9E1B637F25005FDE91 /* CoreTelephony.framework in Frameworks */,
+				4EEF8F9C1B637F1A005FDE91 /* MobileCoreServices.framework in Frameworks */,
+				4EEF8F9A1B637F13005FDE91 /* SystemConfiguration.framework in Frameworks */,
 				FEF5C95437E90C71C335A4CE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +433,12 @@
 		F5B3456593C22525DD7BFFE1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4EEF8FA31B637F46005FDE91 /* libc++.dylib */,
+				4EEF8FA11B637F37005FDE91 /* libicucore.dylib */,
+				4EEF8F9F1B637F2C005FDE91 /* CoreLocation.framework */,
+				4EEF8F9D1B637F25005FDE91 /* CoreTelephony.framework */,
+				4EEF8F9B1B637F1A005FDE91 /* MobileCoreServices.framework */,
+				4EEF8F991B637F13005FDE91 /* SystemConfiguration.framework */,
 				8B7A5228A5B177EA920961BB /* libPods.a */,
 			);
 			name = Frameworks;
@@ -432,6 +456,7 @@
 				4EA502921AED36CB00B33D3C /* Frameworks */,
 				4EA502931AED36CB00B33D3C /* Resources */,
 				F1B72476BD76BA31DA7B58AD /* Copy Pods Resources */,
+				4EEF8F981B6373CC005FDE91 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -540,6 +565,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		4EEF8F981B6373CC005FDE91 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 142b9a52f46d37124824a16ca607a55104feb324 91656dd91fffbba310f6f81f1d1c4e3654376ebbdac39b8eaeade17b3155f290";
 		};
 		F1B72476BD76BA31DA7B58AD /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -722,13 +760,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Zepp Labs, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zepp Labs, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yu miao (828Z3C46PP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yu miao (828Z3C46PP)";
 				INFOPLIST_FILE = knowU/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ae14fce7-c638-4cd9-ba8a-7618f4afc2a3";
+				PROVISIONING_PROFILE = "0baad624-c305-4276-a806-cd85d2f4d58f";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -740,13 +778,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Zepp Labs, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zepp Labs, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yu miao (828Z3C46PP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yu miao (828Z3C46PP)";
 				INFOPLIST_FILE = knowU/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ae14fce7-c638-4cd9-ba8a-7618f4afc2a3";
+				PROVISIONING_PROFILE = "0baad624-c305-4276-a806-cd85d2f4d58f";
 			};
 			name = Release;
 		};

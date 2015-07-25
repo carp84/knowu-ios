@@ -12,6 +12,10 @@
 #define WEAKSELF typeof(self) __weak weakSelf = self;
 static const NSTimeInterval TIME_OUT_INTERVAL = 60;
 
+//leancloud的id和key
+static NSString *AVAppID = @"kz2851jtfvpgvi3epwg1373fhbnt30gj3zqeju9enqvdz1y4";
+static NSString *AVAppKey = @"7d16fp02n6mi36swjf0l12ca7avruoct366s9ln15058dpn9";
+
 #define SCREENWIDTH     [UIScreen mainScreen].bounds.size.width
 #define SCREENHEIGHT    [UIScreen mainScreen].bounds.size.height
 

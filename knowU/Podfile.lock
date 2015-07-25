@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AVOSCloud (3.1.2.8)
   - Crashlytics (3.1.0)
   - Fabric (1.2.8):
     - Fabric/Base (= 1.2.8)
@@ -43,6 +44,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - AVOSCloud
   - Crashlytics
   - Fabric
   - FMDB
@@ -52,6 +54,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  AVOSCloud: 534bef9ffbf9d9acd7e96f74ca6faf590f4acf28
   Crashlytics: ef9a58a4e806b316a1748c06432f6f847ba09ac6
   Fabric: a9eabe53915e9f1db55a84dd2838737928675878
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52

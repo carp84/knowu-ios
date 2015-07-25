@@ -146,10 +146,6 @@
 
 - (void)initData {
     
-    self.userInputLocation = @"";
-    self.locationWithSystem = @"";
-    self.action = @"";
-    
     WEAKSELF;
     KUGPS *gps = [KUGPS manager];
     [gps initLocation];
@@ -172,11 +168,37 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:[NSString stringWithFormat:@"error code is %ld, message is %@", (long)model.code, model.message] delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
         [alertView show];
     }];
+    
+    //如果数据库中有数据就先上传数据
+    [self uploadCache];
 }
 
 - (void)initNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkingReachabilityChange:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backgroundFetch:) name:@"KUPerformFetchNotification" object:nil];
+}
+
+#pragma mark- 如果数据库中有数据就先上传数据
+- (void)uploadCache{
+    NSArray *dataArray = [KULocationDAO selectNotUpload];
+    for (KULocationModel *locationModel in dataArray) {
+        NSMutableDictionary *traceDictionary = [NSMutableDictionary dictionary];
+        [traceDictionary setObject:locationModel.userId.length ? locationModel.userId : @"" forKey:@"userId"];
+        [traceDictionary setObject:[locationModel.latitude isKindOfClass:[NSNumber class]] ? locationModel.latitude : @"" forKey:@"latitude"];
+        [traceDictionary setObject:[locationModel.longitude isKindOfClass:[NSNumber class]] ? locationModel.longitude : @"" forKey:@"longitude"];
+        [traceDictionary setObject:locationModel.timestamp.length ? locationModel.timestamp : @"" forKey:@"timestamp"];
+        [traceDictionary setObject:locationModel.address.length ? locationModel.address : @"" forKey:@"address"];
+        [traceDictionary setObject:locationModel.action.length ? locationModel.action : @"" forKey:@"action"];
+        [traceDictionary setObject:[locationModel.dayOfWeek isKindOfClass:[NSNumber class]] ? locationModel.dayOfWeek : @""forKey:@"dayOfWeek"];
+        [traceDictionary setObject:locationModel.otherDescription.length ? locationModel.otherDescription : @"" forKey:@"otherDescription"];
+        [[KUHTTPClient manager] uploadTraceWithUID:locationModel.userId
+                                         traceInfo:traceDictionary
+                                           success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+                                               [KULocationDAO deleteWithIndex:@(locationModel.index)];
+                                           } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
+                                               
+                                           }];
+    }
 }
 
 - (void)backgroundFetch:(NSNotification *)notification{
@@ -308,20 +330,23 @@
 
 - (void)uploadLocation:(CLLocationCoordinate2D)coordinate{
     if ([self networkReachability]) {
-        [[KUHTTPClient manager] uploadTraceWithUID:self.userName traceInfo:
-         @{@"userId"            : self.userName,
-           @"latitude"          : @(self.nowLocation.latitude),
-           @"longitude"         : @(self.nowLocation.longitude),
-           @"timestamp"         : [[NSDate date] convertStringWithFormat:@"yyyy-MM-dd HH:mm:ss"],
-           @"address"           : self.locationWithSystem,
-           @"action"            : self.action,
-           @"dayOfWeek"         : @([[NSDate date] weekdayWithDate]),
-           @"otherDescription"  : self.userInputLocation}
+        NSMutableDictionary *traceDictionary = [NSMutableDictionary dictionary];
+        [traceDictionary setObject:self.userName.length ? self.userName : @"" forKey:@"userId"];
+        [traceDictionary setObject:@(self.nowLocation.latitude) forKey:@"latitude"];
+        [traceDictionary setObject:@(self.nowLocation.longitude) forKey:@"longitude"];
+        [traceDictionary setObject:[[NSDate date] convertStringWithFormat:@"yyyy-MM-dd HH:mm:ss"] forKey:@"timestamp"];
+        [traceDictionary setObject:self.locationWithSystem.length ? self.locationWithSystem : @"" forKey:@"address"];
+        [traceDictionary setObject:self.action.length ? self.action : @"" forKey:@"action"];
+        [traceDictionary setObject:@([[NSDate date] weekdayWithDate]) forKey:@"dayOfWeek"];
+        [traceDictionary setObject:self.userInputLocation.length ? self.userInputLocation : @"" forKey:@"otherDescription"];
+        
+        [[KUHTTPClient manager] uploadTraceWithUID:self.userName
+                                         traceInfo:traceDictionary
                                            success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
                                                NSLog(@"%@ %@", operation, model);
-                                               self.locationWithSystem = @"";
-                                               self.userInputLocation = @"";
-                                               self.action = @"";
+                                               self.locationWithSystem = nil;
+                                               self.userInputLocation = nil;
+                                               self.action = nil;
                                            } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
                                                
                                            }];
@@ -362,23 +387,7 @@
 
 - (void)networkingReachabilityChange:(NSNotification *)notification{
     if ([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN || [AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi) {
-        NSArray *dataArray = [KULocationDAO selectNotUpload];
-        for (KULocationModel *locationModel in dataArray) {
-            [[KUHTTPClient manager] uploadTraceWithUID:locationModel.userId traceInfo:
-             @{@"userId"            : locationModel.userId,
-               @"latitude"          : locationModel.latitude,
-               @"longitude"         : locationModel.longitude,
-               @"timestamp"         : locationModel.timestamp,
-               @"address"           : locationModel.address,
-               @"action"            : locationModel.action,
-               @"dayOfWeek"         : locationModel.dayOfWeek,
-               @"otherDescription"  : locationModel.otherDescription}
-               success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-                   [KULocationDAO deleteWithIndex:@(locationModel.index)];
-               } failure:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-                                                   
-            }];
-        }
+       [self uploadCache];
     }
 }
 
