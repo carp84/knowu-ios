@@ -28,7 +28,27 @@
 
 @implementation KUPetAlertView
 
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initUI];
+    }
+    return self;
+}
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        [self initUI];
+    }
+    return self;
+}
+
 - (void)awakeFromNib{
+    [self initUI];
+}
+
+- (void)initUI{
     //输入您所在地点的具体位置
     [self.cancelButton setBackgroundImage:[UIImage imageNamed:IMAGE_ALERT_CANCEL_NORMAL] forState:UIControlStateNormal];
     [self.cancelButton setBackgroundImage:[UIImage imageNamed:IMAGE_ALERT_CANCEL_HIGHLIGHTED] forState:UIControlStateHighlighted];
@@ -36,6 +56,7 @@
     [self.confirmButton setBackgroundImage:[UIImage imageNamed:IMAGE_ALERT_CONFIRM_HIGHLIGHTED] forState:UIControlStateHighlighted];
     self.actionTextView.delegate = self;
 }
+
 - (IBAction)cancel:(UIButton *)sender {
     [self.actionTextView resignFirstResponder];
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{

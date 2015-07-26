@@ -17,7 +17,6 @@
 #import "Masonry.h"
 #import "KUHomepageViewController.h"
 #import "DevicePlatInfo.h"
-#import "KUFeedPetViewController.h"
 #import "CONSTS.h"
 #import "KUBaseModel.h"
 #import "KUGPS.h"

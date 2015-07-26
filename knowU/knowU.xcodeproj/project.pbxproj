@@ -35,7 +35,6 @@
 		4EA502B51AED36CB00B33D3C /* knowUTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA502B41AED36CB00B33D3C /* knowUTests.m */; };
 		4EA502C31AED3A6300B33D3C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA502C21AED3A6300B33D3C /* ViewController.m */; };
 		4EA502C71AED3DCB00B33D3C /* KUHTTPDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EA502C61AED3DCB00B33D3C /* KUHTTPDataSource.m */; };
-		4ECD7C441B0A2A92003BD81E /* KUFeedPetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECD7C431B0A2A92003BD81E /* KUFeedPetViewController.m */; };
 		4EE761E21B39B01400B82E57 /* DBHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE761E11B39B01400B82E57 /* DBHandler.m */; };
 		4EE761E71B39B06B00B82E57 /* KULocationDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE761E61B39B06B00B82E57 /* KULocationDAO.m */; };
 		4EE761EB1B39B0B100B82E57 /* KULocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE761EA1B39B0B100B82E57 /* KULocationModel.m */; };
@@ -120,8 +119,6 @@
 		4EA502C21AED3A6300B33D3C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4EA502C51AED3DCB00B33D3C /* KUHTTPDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUHTTPDataSource.h; sourceTree = "<group>"; };
 		4EA502C61AED3DCB00B33D3C /* KUHTTPDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUHTTPDataSource.m; sourceTree = "<group>"; };
-		4ECD7C421B0A2A92003BD81E /* KUFeedPetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUFeedPetViewController.h; sourceTree = "<group>"; };
-		4ECD7C431B0A2A92003BD81E /* KUFeedPetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUFeedPetViewController.m; sourceTree = "<group>"; };
 		4EE761E01B39B01400B82E57 /* DBHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHandler.h; sourceTree = "<group>"; };
 		4EE761E11B39B01400B82E57 /* DBHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHandler.m; sourceTree = "<group>"; };
 		4EE761E51B39B06B00B82E57 /* KULocationDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KULocationDAO.h; sourceTree = "<group>"; };
@@ -340,7 +337,6 @@
 		4EA502C01AED3A6300B33D3C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				4ECD7C411B0A2A7B003BD81E /* FeedPet */,
 				4E254E241B03BEE40081C2E2 /* CustomView */,
 				4E6B86A81AFF658700956EEE /* BaseInfo */,
 				4E6B86A91AFF658700956EEE /* DetailInfo */,
@@ -366,15 +362,6 @@
 				4EECA72F1AEE91CE00BF3DAA /* ResponesModel */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		4ECD7C411B0A2A7B003BD81E /* FeedPet */ = {
-			isa = PBXGroup;
-			children = (
-				4ECD7C421B0A2A92003BD81E /* KUFeedPetViewController.h */,
-				4ECD7C431B0A2A92003BD81E /* KUFeedPetViewController.m */,
-			);
-			path = FeedPet;
 			sourceTree = "<group>";
 		};
 		4EE761DF1B39AFE900B82E57 /* Business */ = {
@@ -631,7 +618,6 @@
 				4E254E231B03AC440081C2E2 /* DevicePlatInfo.m in Sources */,
 				4E1DD3E91AFCB16500B53F7A /* NSString+Addition.m in Sources */,
 				4EE761E21B39B01400B82E57 /* DBHandler.m in Sources */,
-				4ECD7C441B0A2A92003BD81E /* KUFeedPetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

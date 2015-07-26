@@ -309,23 +309,43 @@
 }
 
 - (IBAction)feed:(UIButton *)sender {
-    WEAKSELF;
-    KUPetAlertView *view = [[[NSBundle mainBundle] loadNibNamed:@"KUPetAlertView" owner:self options:nil] objectAtIndex:0];
-    view.inputBlock = ^(NSString *location){
-        weakSelf.action = location;
-        [weakSelf uploadLocation:self.nowLocation];
-    };
-    [view showWithType:KUFeedAlertType image:[UIImage imageNamed:[self.petDictionary objectForKey:@"alert"]]];
+    @try {
+        WEAKSELF;
+        KUPetAlertView *view = [[[NSBundle mainBundle] loadNibNamed:@"KUPetAlertView" owner:self options:nil] firstObject];
+        view.inputBlock = ^(NSString *location){
+            weakSelf.action = location;
+            [weakSelf uploadLocation:self.nowLocation];
+        };
+        [view showWithType:KUFeedAlertType image:[UIImage imageNamed:[self.petDictionary objectForKey:@"alert"]]];
+    }
+    @catch (NSException *exception) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:[NSString stringWithFormat:@"exception is %@, reason is %@", exception.name, exception.reason] delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+    }
+    @finally {
+        
+    }
+    
 }
 
 - (IBAction)inputLocation:(UIButton *)sender {
-    WEAKSELF;
-    KUPetAlertView *view = [[[NSBundle mainBundle] loadNibNamed:@"KUPetAlertView" owner:self options:nil] objectAtIndex:0];
-    view.inputBlock = ^(NSString *location){
-        weakSelf.userInputLocation = location;
-        [weakSelf uploadLocation:self.nowLocation];
-    };
-    [view showWithType:KULocationAlertType image:[UIImage imageNamed:[self.petDictionary objectForKey:@"alert"]]];
+    @try {
+        WEAKSELF;
+        KUPetAlertView *view = [[[NSBundle mainBundle] loadNibNamed:@"KUPetAlertView" owner:self options:nil] firstObject];
+        view.inputBlock = ^(NSString *location){
+            weakSelf.userInputLocation = location;
+            [weakSelf uploadLocation:self.nowLocation];
+        };
+        [view showWithType:KULocationAlertType image:[UIImage imageNamed:[self.petDictionary objectForKey:@"alert"]]];
+    }
+    @catch (NSException *exception) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:STRING_TIP_TITLE message:[NSString stringWithFormat:@"exception is %@, reason is %@", exception.name, exception.reason] delegate:nil cancelButtonTitle:STRING_CONFIRM otherButtonTitles: nil];
+        [alertView show];
+    }
+    @finally {
+        
+    }
+    
 }
 
 - (void)uploadLocation:(CLLocationCoordinate2D)coordinate{

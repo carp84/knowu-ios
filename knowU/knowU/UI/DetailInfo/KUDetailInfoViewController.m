@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, KUDetailInfoButtonType) {
 
 - (void)initUI {
     WEAKSELF;
-    self.pickerView = [[[NSBundle mainBundle] loadNibNamed:@"KUSelectedBirthdayView" owner:self options:nil] objectAtIndex:0];
+    self.pickerView = [[[NSBundle mainBundle] loadNibNamed:@"KUSelectedBirthdayView" owner:self options:nil] firstObject];
     self.pickerView.alpha = 0;
     self.pickerView.selectedBirthdayBlock = ^(NSString *birthday){
         weakSelf.birthdayTextField.text = birthday;
