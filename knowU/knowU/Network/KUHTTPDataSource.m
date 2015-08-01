@@ -68,7 +68,8 @@ static KUHTTPDataSource *httpDataSource;
     return [self.operationManager GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:error.localizedFailureReason success:0];
+        
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:[self failureResponseMessage:error] success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
                 failure(operation, baseModel);
@@ -87,7 +88,7 @@ static KUHTTPDataSource *httpDataSource;
     return [self.operationManager POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:error.description success:0];
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:[self failureResponseMessage:error] success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
                 failure(operation, baseModel);
@@ -110,7 +111,7 @@ static KUHTTPDataSource *httpDataSource;
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:error.localizedFailureReason success:0];
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:[self failureResponseMessage:error] success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
                 failure(operation, baseModel);
@@ -129,7 +130,7 @@ static KUHTTPDataSource *httpDataSource;
     return [self.operationManager PUT:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [weakSelf parseSuccessResponse:responseObject operation:operation modelClass:modelClass success:success failure:failure];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:error.localizedFailureReason success:0];
+        KUBaseModel *baseModel = [[KUBaseModel alloc] initWithCode:error.code message:[self failureResponseMessage:error] success:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (failure) {
                 failure(operation, baseModel);
@@ -177,6 +178,27 @@ static KUHTTPDataSource *httpDataSource;
         return YES;
     }
     return NO;
+}
+
+- (NSString *)failureResponseMessage:(NSError *)error{
+    switch ([error code]) {
+        case NSURLErrorTimedOut:
+            return STRING_HTTP_TIMEOUT;
+            break;
+            
+        case NSURLErrorCancelled:
+        case NSURLErrorUnsupportedURL:
+        case NSURLErrorCannotFindHost:
+        case NSURLErrorCannotConnectToHost:
+        case NSURLErrorNetworkConnectionLost:
+        case NSURLErrorDNSLookupFailed:
+        case NSURLErrorHTTPTooManyRedirects:
+            return STRING_HTTP_NETWORK_NOT_AVAILABLE;
+            break;
+        default:
+            return error.localizedFailureReason;
+            break;
+    }
 }
 
 @end
