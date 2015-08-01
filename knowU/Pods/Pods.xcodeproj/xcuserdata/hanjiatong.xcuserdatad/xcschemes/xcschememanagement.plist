@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>AVOSCloud.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,37 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1A14F23BD18F2670FA05B61F004B4247</key>
+		<key>6951DA9871DA259A9AAA6EFC68AEF8EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A5A30C2A9BEF51431E1CC85B3F499A0</key>
+		<key>695A8F0E01C23B0BA305B8783AC0A9C3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C1605542C48DB5C7A2E3A4EBB143108</key>
+		<key>79FCA141F14B31541E3CBCFB851A63C3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>87043E5CBFD40FFE0A063AC3D2615D37</key>
+		<key>BF238968B8B678EA5332DE136EE13893</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>959E205BB8DA71F6FF253E035B92B538</key>
+		<key>C966ED18547171587F7860C983987CED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C5C5F9355E25692FE95C3DFD1F85D075</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E78486C9639931214C6A3663703F539C</key>
+		<key>E247B14524B63A5DB4BA46B1815496ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>

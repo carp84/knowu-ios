@@ -57,6 +57,12 @@
     gps.locationBlock = ^(NSString *placeName, CLLocationCoordinate2D locationCoordinate){
     };
     
+    NSDictionary *userInfo = [NSDictionary dictionaryWithContentsOfFile:[self userInfoPath]];
+    if (userInfo) {
+        self.userNameTextField.text = [userInfo objectForKey:@"name"];
+        self.passwordTextField.text = [userInfo objectForKey:@"password"];
+    }
+    
     RAC(self.loginButton, userInteractionEnabled) =
     [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *userName, NSString *password){
             return @([userName length] > 0 && [password length]> 0);
@@ -81,6 +87,13 @@
     [RACSignal combineLatest:@[self.userNameTextField.rac_textSignal, self.passwordTextField.rac_textSignal] reduce:^(NSString *userName, NSString *password){
         return @(!([userName length] > 0 && [password length] > 0));
     }];
+    
+    
+}
+
+- (NSString *)userInfoPath{
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return [path stringByAppendingPathComponent:@"userInfo.plist"];
 }
 
 - (void)initNotification {
@@ -138,7 +151,10 @@
 }
 - (IBAction)login:(UIButton *)sender {
     [[KUHTTPClient manager] loginWithUID:self.userNameTextField.text password:self.passwordTextField.text success:^(AFHTTPRequestOperation *operation, KUBaseModel *model) {
-    
+        NSDictionary *userInfo = @{@"name" : self.userNameTextField.text,
+                                   @"password" : self.passwordTextField.text};
+        [userInfo writeToFile:[self userInfoPath] atomically:YES];
+        
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         KUHomepageViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"KUHomepageViewController"];
         controller.userName = self.userNameTextField.text;

@@ -15,7 +15,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
-#import <AVOSCloud/AVOSCloud.h>
+//#import <AVOSCloud/AVOSCloud.h>
 @interface AppDelegate ()
 
 @property (nonatomic, strong) NSTimer *timer;
@@ -29,10 +29,10 @@
     
     [Fabric with:@[CrashlyticsKit]];
     
-    [AVOSCloud setApplicationId:AVAppID
-                      clientKey:AVAppKey];
-
-    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+//    [AVOSCloud setApplicationId:AVAppID
+//                      clientKey:AVAppKey];
+//
+//    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [application setMinimumBackgroundFetchInterval: UIApplicationBackgroundFetchIntervalMinimum];
     [application beginBackgroundTaskWithExpirationHandler:^{
